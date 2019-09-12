@@ -2,7 +2,7 @@
 include  'config.php';
 session_start();
 
-$sql = 'SELECT * FROM memberweb WHERE UsernameWeb ="'.$_POST['username'].'" AND PasswordWeb = "'.$_POST['password'].'"';
+$sql = 'SELECT * FROM user WHERE phone ="'.$_POST['phone'].'" AND password = "'.$_POST['password'].'"'; 
 $result = mysqli_query($connect,$sql);
 $numrows = mysqli_num_rows($result);
 $objResult = mysqli_fetch_array($result,MYSQLI_ASSOC);
@@ -18,7 +18,6 @@ if($numrows==0){
 			session_write_close();
 			header("location:home.php");
 			}
-			
-
+		
 mysqli_close($connect);
 ?>
