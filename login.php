@@ -27,7 +27,7 @@
             </div>
         </div>
 
-        <form action="Login_check.php" method="post">
+        <form action="login_check.php" method="post">
             <div class="row text-center">
                 <div class="col-sm-12 mb-3 ">
                     <div class="form-group">
