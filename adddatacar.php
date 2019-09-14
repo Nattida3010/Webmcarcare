@@ -30,7 +30,7 @@
     <div class="container">
         <div class="form-group row">
             <div class="col-sm-4 text-left">
-                <button type="submit" class="btn btn-info" OnClick="back();">กลับ</button>
+                <button type="submit" class="btn btn-info" onclick="back()">กลับ</button>
             </div>
             <div class="col-md-12 mb-3 text-center">
                 <h3 class="name">เพิ่มข้อมูลรถ</h3>
@@ -38,11 +38,10 @@
         </div>
     </div>
 
-    <form action='addcar_check.php' method='post' id="mainform" name='form' enctype="multipart/form-data">
+    <form action='adddatacar_check.php' method='post' id="mainform" name='form' enctype="multipart/form-data">
         <div class="container" style="margin-top :30px;">
             <div class="row text-center">
             
-
                 <div class="col-sm-12 mb-2 ">
                     <div class="form-group inputWithIcon">
                         <input type="text" class="form-control" name="phone" placeholder="เบอร์โทรศัพท์" required pattern="^[0-9]+$">
@@ -74,7 +73,7 @@
                 
                 <div class="col-sm-12 mb-2 ">
                     <div class="form-group inputWithIcon">
-                        <input type="text" class="form-control" name="color" placeholder="ขนาด" >
+                        <input type="text" class="form-control" name="size" placeholder="ขนาด" >
                         <i class="fas fa-user"></i>
                     </div>
                 </div> 
@@ -82,8 +81,6 @@
                 <div class="col-sm-12">
                     <button type="submit" class="btn btn btn-info" name='submit'>สมัครสมาชิก </button>
                 </div>
-
-
             </div>
         </div>
 
@@ -91,7 +88,7 @@
     <script language="javascript">
         function back() {
             console.log("true");
-            window.location.href = ("selectpage.php");
+            location.href = ("addcustomer.php");
 
         }
 

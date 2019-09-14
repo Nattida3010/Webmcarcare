@@ -101,7 +101,7 @@
 <script language="javascript">
   function member() {
     console.log("true");
-    window.location.href = ("memberpage.php");
+    window.location.href = ("member.php");
   }
 </script>
 

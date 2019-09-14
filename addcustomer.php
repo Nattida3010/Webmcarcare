@@ -30,7 +30,7 @@
     <div class="container">
         <div class="form-group row">
             <div class="col-sm-4 text-left">
-                <button type="submit" class="btn btn-info" OnClick="back();">กลับ</button>
+                <button type="submit" class="btn btn-info" onclick="back()">กลับ</button>
             </div>
             <div class="col-md-12 mb-3 text-center">
                 <h3 class="name">เพิ่มสมาชิกใหม่</h3>
@@ -38,7 +38,7 @@
         </div>
     </div>
 
-    <form action='addcustomer.php' method='post' id="mainform" name='form' enctype="multipart/form-data">
+    <form action='addcustomer_chech.php' method='post' id="mainform" name='form' enctype="multipart/form-data">
         <div class="container" style="margin-top :30px;">
             <div class="row text-center">
                 
@@ -83,15 +83,16 @@
     <script language="javascript">
         function back() {
             console.log("true");
-            window.location.href = ("selectpage.php");
+            location.href = ("selectpage.php");
 
         }
+
     </script>
      <script language="javascript">
         function next() {
             console.log("true");
-             alert("กรุณากรอกข้อมูลรถ");
-            // window.location.href = ("addcar.php");
+            //  alert("กรุณากรอกข้อมูลรถ");
+            //  location.href = "addcar.php"; 
 
         }
     </script>

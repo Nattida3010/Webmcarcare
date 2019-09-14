@@ -19,7 +19,7 @@ $car = "INSERT INTO car(car_num,color,phone,types,size)
 
 	if($resultcar){
 
-	echo "<script>window.location = 'memberpage.php'</script>";
+	echo "<script>window.location = 'member.php'</script>";
 	}
 	else{
 

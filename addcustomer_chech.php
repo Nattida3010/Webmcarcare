@@ -9,7 +9,7 @@ $password = $_POST['password'];
 
 
 $user= "INSERT INTO user (status, FName, LName, Phone, password)
-                VALUES ('Customer','$FName', '$LName', '$Phone', '$password')";
+                VALUES ('Customer','$fname', '$lname', '$phone', '$password')";
 
 
 
@@ -19,7 +19,7 @@ $resultuser = mysqli_query($connect,$user);
 
 if($resultuser){
     
-    echo "<script>window.location = 'addcar.php'</script>";
+    echo "<script>window.location = 'adddatacar.php'</script>";
 }else{
     
     
