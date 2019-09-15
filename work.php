@@ -24,9 +24,21 @@
 </head>
 
 <body>
+            <center><h1 id="car1" name = "car1"></h1></center>
+         
+
 
     <?php
     session_start();
+    
+    $val='';
+    if(isset($_POST['query'])){
+       
+       $val = $_POST['query'] ;
+       
+        // echo "<script>console.log('Debug Objects: " .   $val  . "' );</script>";  
+    };
+ 
     ?>
 
     <div class="container" style="padding-top :60px;">
@@ -42,7 +54,7 @@
 
     <div class="container" style="margin-top :50px;">
         <div class="jumbotron" id="colorjum">
-            <form action='work.php' method="post" id="mainform" name='form' enctype="multipart/form-data">
+            <form action='work_check.php' method="post" id="mainform" name='form' enctype="multipart/form-data">
                 <div class="form-group row">
                     <label class="col-form-label col-sm-2 pt-0">รายการที่ลูกค้าเลือก</label>
                     <div class="col-sm-2">
@@ -112,25 +124,52 @@
                     </div>
                 </div>
 
-            
+            <button onclick="show()">test</button>
                 <div class="form-group row">
                     <div class="col pad" style="text-align: center;">
-                        <button type="submit" class="btn btn-success" value="Submit">บันทึก</button>
+                        <button type="submit" class="btn btn-success" value="Submit" >บันทึก</button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
 
-
+   
 
 </body>
+
+
 <script>
-    function back() {
+    //  $(document).ready(function() {
+    //     var x = localStorage.getItem('aaa');
+    //     $.ajax({
+    //         type: "POST",
+    //         url: "/work.php",
+    //         data: {query:x},
+    //         success : function(data){
+    //         }
+    //     });
+
+
+
+    //  }
+    
+
+    var x = localStorage.getItem('aaa');
+function back() {
         console.log("true");
         window.location.href = ("home.php");
 
     }
+
+    function show() {
+        
+        alert(x);
+    }s
+
+
+   
+    
 </script>
 
 </html>

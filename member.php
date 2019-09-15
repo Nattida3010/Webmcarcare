@@ -15,11 +15,12 @@
 
 
     <link rel="stylesheet" type="text/css" href="css/bs-pagepart.css">
+    
     <title>Mcarcare</title>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -40,14 +41,16 @@
             <div class="col-sm-12 mb-2 ">
             
                     <?php
-                    echo '<form action="member_check.php" method="post" name="brw_form" >';
+                    // echo '<form action="member_check.php" method="post" name="brw_form" >';
+                     echo '<form  method="post" name="brw_form">';
                     echo ' <div class="form-group inputWithIcon">';
-                    echo '<input class="form-control"  id="myInput" name="phone" type="text" placeholder="หมายเลขโทรศัพท์">';
+                    echo '<input   class="form-control" type="text" name="search_text" id="search_text"  placeholder="หมายเลขโทรศัพท์">';
+    
                     echo '<i class="fas fa-envelope"></i>';  
                     echo '</div>';
                     echo '<div class="col-sm-12 mt-4">';
-                    echo '<button class="btn btn btn-info" name="submit" type="submit" style="margin-right: 15px;">ค้นหา</button>';
                     echo '<button class="btn btn btn-warning" type="button" name="button"  OnClick="back();" class="ml-2">กลับ</button>';
+    
                     echo '</div>';
                     echo '</form>';
                     ?>
@@ -55,13 +58,47 @@
             </div>
         </div>
     </div>
-</body>
+    
+    <div id="result"></div>
+		</div>
+		<div style="clear:both"></div>
+
+ <script>
+$(document).ready(function(){
+	function load_data(query)
+	{
+		$.ajax({
+			url:"member_search.php",
+			method:"post",
+			data:{query:query},
+			success:function(data)
+			{
+				$('#result').html(data);
+			}
+		});
+	}
+	
+	$('#search_text').keyup(function(){
+		var search = $(this).val();
+		if(search != '')
+		{
+			load_data(search);
+		}
+		else
+		{
+			load_data();			
+		}
+	});
+});
+</script>
+
+
 
 <script language="javascript">
         function back() {
             console.log("true");
             location.href = ("selectpage.php");
-
         }
+       
     </script>
 </html>
