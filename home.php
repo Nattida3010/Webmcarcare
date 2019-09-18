@@ -92,10 +92,17 @@
 
     <?php
     include  'config.php';
-    $sqlwork = 'SELECT customer.Car_num,customer.FName,customer.LName,customer.Phone,customer.Type,customer.Color,work.wash_engin,work.spray_under,work.clean_dust,work.wash_asphalt,work.chang_fuel,work.level,work.size,work.status,work.payment,work.time
-    from customer 
-    inner join work on customer.Car_num=work.Car_num';
-    $querywork = mysqli_query($connect, $sqlwork);
+    /*select Aname, A.SupID,SupName
+from Aircraft AS A INNER JOIN Supplier As S
+ON A.SupID= S.SupID 
+`wash_engin`, `spray_under`, `wash_asphalt`, `chang_fuel`, `clean_dust`
+*/
+    $sqlwork = "SELECT w.time,w.car_num,u.fname,u.lname,c.phone,c.color,
+    w.wash_engin, w.spray_under, w.wash_asphalt, w.chang_fuel, w.clean_dust,
+    c.size,w.level,w.status,w.payment,c.types
+    FROM user AS `u` INNER JOIN car AS `c` ON u.phone = c.phone 
+    INNER JOIN work AS `w` ON c.car_num = w.car_num";
+    $result = mysqli_query($connect, $sqlwork);
 
     echo '<table table-hover class="table">';
     echo '<thead id="colortable">';
@@ -113,39 +120,44 @@
     echo '</tr>';
     echo '</thead>';
 
-
-    echo '<tbody>';
-    while ($user = mysqli_fetch_array($querywork, MYSQLI_ASSOC)) {
+    if($result){
+      echo '<tbody>';
+    while ($user = mysqli_fetch_assoc($result)) {
       $works = '';
       if ($user['wash_engin'] == '1')
         $works .= 'ล้างห้องเครื่อง ';
+
       if ($user['spray_under'] == '1')
         $works .= 'ล้างอัดฉีดช่วงล้าง ';
+
       if ($user['clean_dust'] == '1')
         $works .= 'ล้างสีดูดฝุ่น ';
+
+
       if ($user['wash_asphalt'] == '1')
         $works .= 'ล้างยางมะตอย ';
+
       if ($user['chang_fuel'] == '1')
         $works .= 'ถ่ายน้ำเครื่อง ';
+
       if ($user['level'] == '1')
         $level = 'น้อย';
+
       else if ($user['level'] == '2')
         $level = 'มาก';
-      if ($user['size'] == '1')
-        $size = 'เล็ก';
-      else if ($user['size'] == '2')
-        $size = 'ใหญ่';
+      else
+        $level = 'error';
 
 
       echo "<tr>";
       echo '<td>' . $user["time"] . '</td>';
-      echo '<td>' . $user["Car_num"] . '</td>';
-      echo '<td>' . $user['FName'] . ' ' . $user['LName'] . '</td>';
-      echo '<td>' . $user['Phone'] . '</td>';
-      echo '<td>' . $user['Type'] . '/' . $user['Color'] . '</td>';
+      echo '<td>' . $user["car_num"] . '</td>';
+      echo '<td>' . $user['fname'] . ' ' . $user['lname'] . '</td>';
+      echo '<td>' . $user['phone'] . '</td>';
+      echo '<td>' . $user['types'] . '/' . $user['color'] . '</td>';
       echo '<td>' . $works . '</td>';
       echo '<td>' . $level . '</td>';
-      echo '<td>' . $size . '</td>';
+      echo '<td>' . $user['size'] . '</td>';
       echo '<td><select class="custom-select" id="select">
                 <option value="1">กำลังดำเนินงาน</option>
                 <option value="2">เรียบร้อยแล้ว</option>
@@ -159,6 +171,10 @@
     }
     echo '</tbody>';
     echo '</table>';
+    
+    }else{
+      echo mysqli_error($connect);
+    }
     ?>
   </div>
 </body>

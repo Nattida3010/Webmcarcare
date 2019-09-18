@@ -16,22 +16,21 @@ if(isset($_POST['wash_asphalt']))
 $wash_asphalt = 1;
 if(isset($_POST['clean_dust']))
 $clean_dust =1;
+if(isset($_POST['car_num']))
+$car_num= $_POST['car_num'];
 
-
-$level = $_POST['level'];
-$phone = $_SESSION['phone_selected'];     
-$datetims = date("Y-m-d H:i:s");
+$level = $_POST['level'];  
+$datetime = date("Y-m-d H:i:s");
 include  'config.php';
 $sql = 'INSERT INTO work
-values("'.$car_num.'",'.$wash_engin.','.$spray_under.','.$clean_dust.','.$wash_asphalt.','.$chang_fuel.','.$level.',0,0,"'.$datetims.'")';
+values(0,"'.$car_num.'",'.$wash_engin.','.$spray_under.','.$clean_dust.','.$wash_asphalt.','.$chang_fuel.',0,0,"'.$datetime.'","'.$level.'")';
 $result = mysqli_query($connect,$sql);
 //$numrows = mysqli_num_rows($result);
 // $objResult = mysqli_fetch_array($result,MYSQLI_ASSOC);
 if(! $result){
     echo mysqli_error($connect);
 }else{
-    echo "<script>window.location = 'home.php'</script>";
-
+    header('location:home.php');
 }
            
    mysqli_close($connect);   

@@ -47,7 +47,8 @@
                 <button type="submit" class="btn btn-info" OnClick="back();">กลับ</button>
             </div>
             <div class="col-sm-4">
-                <h3 class="name">เพิ่มรายการ</h3>
+                <h3 class="name">เพิ่มรายการ </h3>
+                <h4><div class="d-flex justify-content-center" id="_carnum-label"></div></h4>
             </div>
         </div>
     </div>
@@ -55,6 +56,8 @@
     <div class="container" style="margin-top :50px;">
         <div class="jumbotron" id="colorjum">
             <form action='work_check.php' method="post" id="mainform" name='form' enctype="multipart/form-data">
+                <input type="hidden" name="car_num" id="_carnum">
+
                 <div class="form-group row">
                     <label class="col-form-label col-sm-2 pt-0">รายการที่ลูกค้าเลือก</label>
                     <div class="col-sm-2">
@@ -124,7 +127,7 @@
                     </div>
                 </div>
 
-            <button onclick="show()">test</button>
+                <button onclick="show()">test</button>
                 <div class="form-group row">
                     <div class="col pad" style="text-align: center;">
                         <button type="submit" class="btn btn-success" value="Submit" >บันทึก</button>
@@ -156,6 +159,10 @@
     
 
     var x = localStorage.getItem('aaa');
+    document.getElementById('_carnum').value = x;
+
+    $("#_carnum-label").append(x);
+
 function back() {
         console.log("true");
         window.location.href = ("home.php");
@@ -165,7 +172,7 @@ function back() {
     function show() {
         
         alert(x);
-    }s
+    }
 
 
    
