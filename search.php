@@ -16,7 +16,8 @@
 
   <link rel="stylesheet" type="text/css" href="css/bs-header.css">
   <title>Mcarcare</title>
-
+  <!-- Function -->
+  <script src="js/script.js"></script>
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -42,7 +43,7 @@
       <?php
       echo '<form action="search.php" method="post" name="brw_form" style="width:50%">';
       echo ' <div class="form-row ml-sm-5">';
-      echo '<input class="form-control mr-sm-3" id="myInput" type="text" placeholder="กรุณากรอกหมายเลขทะเบียนรถ" name="search">';
+      echo '<input class="form-control mr-sm-3" id="myInput" type="text" placeholder="กรุณากรอกหมายเลขทะเบียนรถ" name="name">';
       echo ' <button class="btn btn-outline-light" type="submit" name="submit" value = "ค้นหา">ค้นหา</button>';
       echo ' </div>';
       echo '</form>';
@@ -80,34 +81,33 @@
 
   <div class="container" style="margin-top :80px;">
     <div class="headtopic"></div>
-    <h3 class="name">รายการให้บริการรถ</h3>
-    <div id="clockbox"></div>
-    <button type="button" class="btn btn-info" OnClick="walkin();">เพิ่มรายการรถ
-      <i class='fas fa-plus'></i>
-    </button>
+    <h2 class="name">ผลการค้นหาหมายเลขทะเบียนรถ</h2>
+
   </div>
 
-
   <div class="head">
-
     <?php
     include  'config.php';
-    /*select Aname, A.SupID,SupName
-from Aircraft AS A INNER JOIN Supplier As S
-ON A.SupID= S.SupID 
-`wash_engin`, `spray_under`, `wash_asphalt`, `chang_fuel`, `clean_dust`
-*/
-    $sqlwork = "SELECT w.time,w.car_num,u.fname,u.lname,c.phone,c.color,
-    w.wash_engin, w.spray_under, w.wash_asphalt, w.chang_fuel, w.clean_dust,
-    c.size,w.level,w.status,w.payment,c.types
-    FROM user AS `u` INNER JOIN car AS `c` ON u.phone = c.phone 
-    INNER JOIN work AS `w` ON c.car_num = w.car_num";
-    $result = mysqli_query($connect, $sqlwork);
+    $name = $_POST['name'];
+    $sqlsearch = "SELECT * FROM customer WHERE Car_num LIKE '%$search%' ";
+    $resultsearch = mysqli_query($connect, $sqlsearch);
+
+    // echo '<table table-hover class="table">';
+    // echo '<thead id="colortable">';
+    // echo '<tr>';
+    // echo '<th scope="col">ลำดับ</th>';
+    // echo '<th>เลขทะเบียนรถ</th>';
+    // echo '<th>ชื่อเจ้าของรถ</th>';
+    // echo '<th>เบอร์โทรศัพท์</th>';
+    // echo '<th>ประเภท</th>';
+    // echo '<th>สี</th>';
+    // echo '</tr>';
+    // echo '</thead>';
 
     echo '<table table-hover class="table">';
     echo '<thead id="colortable">';
     echo '<tr>';
-    echo '<th scope="col">วัน/เดือน/ปี</th>';
+    echo '<th scope="col">ลำดับ</th>';
     echo '<th>เลขทะเบียนรถ</th>';
     echo '<th>ชื่อเจ้าของรถ</th>';
     echo '<th>เบอร์โทรศัพท์</th>';
@@ -120,137 +120,46 @@ ON A.SupID= S.SupID
     echo '</tr>';
     echo '</thead>';
 
-    if($result){
-      echo '<tbody>';
-    while ($user = mysqli_fetch_assoc($result)) {
-      $works = '';
-      if ($user['wash_engin'] == '1')
-        $works .= 'ล้างห้องเครื่อง ';
-
-      if ($user['spray_under'] == '1')
-        $works .= 'ล้างอัดฉีดช่วงล้าง ';
-
-      if ($user['clean_dust'] == '1')
-        $works .= 'ล้างสีดูดฝุ่น ';
-
-
-      if ($user['wash_asphalt'] == '1')
-        $works .= 'ล้างยางมะตอย ';
-
-      if ($user['chang_fuel'] == '1')
-        $works .= 'ถ่ายน้ำเครื่อง ';
-
-      if ($user['level'] == '1')
-        $level = 'น้อย';
-
-      else if ($user['level'] == '2')
-        $level = 'มาก';
-      else
-        $level = 'error';
-
-
-      echo "<tr>";
-      echo '<td>' . $user["time"] . '</td>';
-      echo '<td>' . $user["car_num"] . '</td>';
-      echo '<td>' . $user['fname'] . ' ' . $user['lname'] . '</td>';
-      echo '<td>' . $user['phone'] . '</td>';
-      echo '<td>' . $user['types'] . '/' . $user['color'] . '</td>';
-      echo '<td>' . $works . '</td>';
-      echo '<td>' . $level . '</td>';
-      echo '<td>' . $user['size'] . '</td>';
+    echo '<tbody>';
+    while ($search= mysqli_fetch_array($resultsearch)) {
+      echo '<tr>';
+      echo '<td>' . $search["ID"] . '</td>';
+      echo '<td>' . $search["Car_num"] . '</td>';
+      echo '<td>' . $search["FName"] . '  ' . $search["LName"] . '</td>';
+      echo '<td>' . $search["Phone"] . '</td>';
+      echo '<td>' . $search['Type'] . '/' . $search['Color'] . '</td>';
+      echo '<td>ล้างห้องเครื่อง ล้างอัดฉีดช่วงล้าง</td>';
+      echo '<td>มาก</td>';
+      echo '<td>มาก</td>';
       echo '<td><select class="custom-select" id="select">
-                <option value="1">กำลังดำเนินงาน</option>
-                <option value="2">เรียบร้อยแล้ว</option>
-                </select> </td>';
+    <option value="1">กำลังดำเนินงาน</option>
+    <option value="2">เรียบร้อยแล้ว</option>
+    </select> </td>';
       echo '<td><select class="custom-select" id="select">
-                <option value="3">รอการชำระเงิน</option>
-                <option value="4">เรียบร้อยแล้ว</option>
-                </select> </td>';
-
-      echo "</tr>";
+    <option value="3">รอการชำระเงิน</option>
+    <option value="4">เรียบร้อยแล้ว</option>
+    </select> </td>';
+      echo '</tr>';
     }
-    echo '</tbody>';
     echo '</table>';
-    
-    }else{
-      echo mysqli_error($connect);
-    }
+
+
+
     ?>
-  </div>
-</body>
-<script language="javascript">
-  function change() {
-    console.log("true");
-    if (confirm("ท่านต้องการเปลี่ยนสถานะใช่หรือไม่")) {
 
-    } else {
+    <script language="javascript">
+      function seach() {
+        console.log("true");
+        window.location.href = ("resultseachpage.html");
 
-    }
-
-  }
-</script>
-<script>
-  $(document).ready(function() {
-    $(".dropdown-toggle").dropdown();
-  });
-</script>
-
-<script>
-  $(document).ready(function() {
-    $("#myInput").on("keyup", function() {
-      var value = $(this).val().toLowerCase();
-      $("#myTable tr").filter(function() {
-        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      }
+    </script>
+    <script>
+      $(document).ready(function() {
+        $(".dropdown-toggle").dropdown();
       });
-    });
-  });
-</script>
-<script language="javascript">
-  function walkin() {
-    console.log("true");
-    window.location.href = ("selectpage.php");
+    </script>
 
-  }
-</script>
-
-<script>
-  tday = new Array("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday");
-  tmonth = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
-
-  function GetClock() {
-    var d = new Date();
-    var nday = d.getDay(),
-      nmonth = d.getMonth(),
-      ndate = d.getDate(),
-      nyear = d.getYear();
-    if (nyear < 1000) nyear += 1900;
-    var nhour = d.getHours(),
-      nmin = d.getMinutes(),
-      nsec = d.getSeconds(),
-      ap;
-
-    if (nhour == 0) {
-      ap = " AM";
-      nhour = 12;
-    } else if (nhour < 12) {
-      ap = " AM";
-    } else if (nhour == 12) {
-      ap = " PM";
-    } else if (nhour > 12) {
-      ap = " PM";
-      nhour -= 12;
-    }
-
-    if (nmin <= 9) nmin = "0" + nmin;
-    if (nsec <= 9) nsec = "0" + nsec;
-
-    document.getElementById('clockbox').innerHTML = "" + tday[nday] + ", " + tmonth[nmonth] + " " + ndate + ", " + nyear + " " + nhour + ":" + nmin + ":" + nsec + ap + "";
-  }
-
-  window.onload = function() {
-    GetClock();
-    setInterval(GetClock, 1000);
-  }
-</script>
+</body>
 
 </html>

@@ -4,11 +4,11 @@ session_start();
 $fname = $_POST["fname"];
 $lname = $_POST["lname"];
 $phone = $_POST["phone"];
-$password = $_POST['password'];
+$password = $_POST["password"];
 
 
 
-$user= "INSERT INTO user (status, FName, LName, Phone, password)
+$user= "INSERT INTO user (status, fname, lname, phone, password)
                 VALUES ('Customer','$fname', '$lname', '$phone', '$password')";
 
 

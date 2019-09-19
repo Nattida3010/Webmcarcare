@@ -59,7 +59,7 @@
                 <div class="col-sm-12 mb-2 ">
                     <div class="form-group inputWithIcon">
                         <input type="text" class="form-control" name="phone" value!=Phone placeholder="เบอร์โทรศัพท์" required pattern="^[0-9]+$">
-                        <i class="fas fa-phone-volume"></i>
+                        <i class="fas fa-mobile-alt"></i>
                     </div>
                 </div>
 
@@ -67,7 +67,7 @@
                 <div class="col-sm-12 mb-2 ">
                     <div class="form-group inputWithIcon">
                         <input type="password" class="form-control" name="password" placeholder="รหัสผ่าน" >
-                        <i class="fas fa-palette"></i>
+                        <i class="fas fa-key"></i>
                     </div>
                 </div>
 

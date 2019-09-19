@@ -33,7 +33,7 @@
                     <div class="form-group">
                         <div class="form-group inputWithIcon">
                             <input type="text" class="form-control" name="phone" id="phone" aria-describedby="helpId" placeholder="เบอร์โทรศัพท์ผู้ใช้">
-                            <i class="fas fa-user"></i>
+                            <i class="fas fa-mobile-alt"></i>
                         </div>
                     </div>
                     <div class="form-group">
@@ -54,9 +54,8 @@
                 <div class="col-sm-12">
                     <div class="d-flex justify-content-center links">
                         หากคุณยังไม่เคยเข้าใช้งานกรุณา
-                        <a href="signuppage.php" class="link">สมัครสมาชิก</a>
-                        &nbsp; ,คุณ
-                        <a href="forgotpassword.php">ลืมรหัสผ่าน?</a>
+                        <a href="singup.php" class="link">สมัครสมาชิก</a>
+                    
                     </div>
                 </div>
             </div>
