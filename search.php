@@ -81,7 +81,7 @@
 
   <div class="container" style="margin-top :80px;">
     <div class="headtopic"></div>
-    <h2 class="name">ผลการค้นหาหมายเลขทะเบียนรถ</h2>
+    <h2 class="name">ผลการค้นหาหมายเลขทะเบียนรถ </h2>
 
   </div>
 
@@ -89,25 +89,18 @@
     <?php
     include  'config.php';
     $name = $_POST['name'];
-    $sqlsearch = "SELECT * FROM customer WHERE Car_num LIKE '%$search%' ";
+    $sqlsearch = "SELECT w.time,w.car_num,u.fname,u.lname,c.phone,c.color,
+    w.wash_engin, w.spray_under, w.wash_asphalt, w.chang_fuel, w.clean_dust,
+    c.size,w.level,w.status,w.payment,c.types
+    FROM user AS `u` INNER JOIN car AS `c` ON u.phone = c.phone 
+    INNER JOIN work AS `w` ON c.car_num = w.car_num WHERE w.car_num LIKE '%$name%' ";
     $resultsearch = mysqli_query($connect, $sqlsearch);
 
-    // echo '<table table-hover class="table">';
-    // echo '<thead id="colortable">';
-    // echo '<tr>';
-    // echo '<th scope="col">ลำดับ</th>';
-    // echo '<th>เลขทะเบียนรถ</th>';
-    // echo '<th>ชื่อเจ้าของรถ</th>';
-    // echo '<th>เบอร์โทรศัพท์</th>';
-    // echo '<th>ประเภท</th>';
-    // echo '<th>สี</th>';
-    // echo '</tr>';
-    // echo '</thead>';
 
     echo '<table table-hover class="table">';
     echo '<thead id="colortable">';
     echo '<tr>';
-    echo '<th scope="col">ลำดับ</th>';
+    echo '<th scope="col">วัน/เดือน/ปี</th>';
     echo '<th>เลขทะเบียนรถ</th>';
     echo '<th>ชื่อเจ้าของรถ</th>';
     echo '<th>เบอร์โทรศัพท์</th>';
@@ -119,41 +112,54 @@
     echo '<th>ชำระเงิน</th>';
     echo '</tr>';
     echo '</thead>';
-
     echo '<tbody>';
     while ($search= mysqli_fetch_array($resultsearch)) {
-      echo '<tr>';
-      echo '<td>' . $search["ID"] . '</td>';
-      echo '<td>' . $search["Car_num"] . '</td>';
-      echo '<td>' . $search["FName"] . '  ' . $search["LName"] . '</td>';
-      echo '<td>' . $search["Phone"] . '</td>';
-      echo '<td>' . $search['Type'] . '/' . $search['Color'] . '</td>';
-      echo '<td>ล้างห้องเครื่อง ล้างอัดฉีดช่วงล้าง</td>';
-      echo '<td>มาก</td>';
-      echo '<td>มาก</td>';
+      /*  */
+      $works = '';
+      if ($search['wash_engin'] == '1')
+        $works .= 'ล้างห้องเครื่อง ';
+      if ($search['spray_under'] == '1')
+        $works .= 'ล้างอัดฉีดช่วงล้าง ';
+      if ($search['clean_dust'] == '1')
+        $works .= 'ล้างสีดูดฝุ่น ';
+      if ($search['wash_asphalt'] == '1')
+        $works .= 'ล้างยางมะตอย ';
+      if ($search['chang_fuel'] == '1')
+        $works .= 'ถ่ายน้ำเครื่อง ';
+      if ($search['level'] == '1')
+        $level = 'น้อย';
+      else if ($search['level'] == '2')
+        $level = 'มาก';
+      else
+        $level = 'error';
+      /*  */
+      echo "<tr>";
+      echo '<td>' . $search["time"] . '</td>';
+      echo '<td>' . $search["car_num"] . '</td>';
+      echo '<td>' . $search['fname'] . ' ' . $search['lname'] . '</td>';
+      echo '<td>' . $search['phone'] . '</td>';
+      echo '<td>' .$search['types'] . '/' . $search['color'] . '</td>';
+      echo '<td>' . $works . '</td>';
+      echo '<td>' . $level . '</td>';
+      echo '<td>' . $search['size'] . '</td>';
       echo '<td><select class="custom-select" id="select">
-    <option value="1">กำลังดำเนินงาน</option>
-    <option value="2">เรียบร้อยแล้ว</option>
-    </select> </td>';
+                <option value="1">กำลังดำเนินงาน</option>
+                <option value="2">เรียบร้อยแล้ว</option>
+                </select> </td>';
       echo '<td><select class="custom-select" id="select">
-    <option value="3">รอการชำระเงิน</option>
-    <option value="4">เรียบร้อยแล้ว</option>
-    </select> </td>';
-      echo '</tr>';
+                <option value="3">รอการชำระเงิน</option>
+                <option value="4">เรียบร้อยแล้ว</option>
+                </select> </td>';
+      echo "</tr>";
     }
+    echo '</tbody>';
     echo '</table>';
 
 
 
     ?>
 
-    <script language="javascript">
-      function seach() {
-        console.log("true");
-        window.location.href = ("resultseachpage.html");
-
-      }
-    </script>
+   
     <script>
       $(document).ready(function() {
         $(".dropdown-toggle").dropdown();

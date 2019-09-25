@@ -24,7 +24,7 @@
 </head>
 
 <body>
-            <center><h1 id="car1" name = "car1"></h1></center>
+            <!-- <center><h1 id="car1" name = "car1"></h1></center> -->
          
 
 
@@ -127,7 +127,7 @@
                     </div>
                 </div>
 
-                <button onclick="show()">test</button>
+              
                 <div class="form-group row">
                     <div class="col pad" style="text-align: center;">
                         <button type="submit" class="btn btn-success" value="Submit" >บันทึก</button>
@@ -167,11 +167,6 @@ function back() {
         console.log("true");
         window.location.href = ("home.php");
 
-    }
-
-    function show() {
-        
-        alert(x);
     }
 
 

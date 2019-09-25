@@ -42,7 +42,7 @@
       <?php
       echo '<form action="search.php" method="post" name="brw_form" style="width:50%">';
       echo ' <div class="form-row ml-sm-5">';
-      echo '<input class="form-control mr-sm-3" id="myInput" type="text" placeholder="กรุณากรอกหมายเลขทะเบียนรถ" name="search">';
+      echo '<input class="form-control mr-sm-3" id="myInput" type="text" placeholder="กรุณากรอกหมายเลขทะเบียนรถ" name="name">';
       echo ' <button class="btn btn-outline-light" type="submit" name="submit" value = "ค้นหา">ค้นหา</button>';
       echo ' </div>';
       echo '</form>';
@@ -92,18 +92,13 @@
 
     <?php
     include  'config.php';
-    /*select Aname, A.SupID,SupName
-from Aircraft AS A INNER JOIN Supplier As S
-ON A.SupID= S.SupID 
-`wash_engin`, `spray_under`, `wash_asphalt`, `chang_fuel`, `clean_dust`
-*/
+
     $sqlwork = "SELECT w.time,w.car_num,u.fname,u.lname,c.phone,c.color,
     w.wash_engin, w.spray_under, w.wash_asphalt, w.chang_fuel, w.clean_dust,
     c.size,w.level,w.status,w.payment,c.types
     FROM user AS `u` INNER JOIN car AS `c` ON u.phone = c.phone 
     INNER JOIN work AS `w` ON c.car_num = w.car_num";
     $result = mysqli_query($connect, $sqlwork);
-
     echo '<table table-hover class="table">';
     echo '<thead id="colortable">';
     echo '<tr>';
@@ -119,36 +114,27 @@ ON A.SupID= S.SupID
     echo '<th>ชำระเงิน</th>';
     echo '</tr>';
     echo '</thead>';
-
     if($result){
       echo '<tbody>';
+      $num = 1;
     while ($user = mysqli_fetch_assoc($result)) {
       $works = '';
       if ($user['wash_engin'] == '1')
         $works .= 'ล้างห้องเครื่อง ';
-
       if ($user['spray_under'] == '1')
         $works .= 'ล้างอัดฉีดช่วงล้าง ';
-
       if ($user['clean_dust'] == '1')
         $works .= 'ล้างสีดูดฝุ่น ';
-
-
       if ($user['wash_asphalt'] == '1')
         $works .= 'ล้างยางมะตอย ';
-
       if ($user['chang_fuel'] == '1')
         $works .= 'ถ่ายน้ำเครื่อง ';
-
       if ($user['level'] == '1')
         $level = 'น้อย';
-
       else if ($user['level'] == '2')
         $level = 'มาก';
       else
         $level = 'error';
-
-
       echo "<tr>";
       echo '<td>' . $user["time"] . '</td>';
       echo '<td>' . $user["car_num"] . '</td>';
@@ -158,17 +144,14 @@ ON A.SupID= S.SupID
       echo '<td>' . $works . '</td>';
       echo '<td>' . $level . '</td>';
       echo '<td>' . $user['size'] . '</td>';
-      echo '<td><select class="custom-select" id="select">
-                <option value="1">กำลังดำเนินงาน</option>
-                <option value="2">เรียบร้อยแล้ว</option>
-                </select> </td>';
-      echo '<td><select class="custom-select" id="select">
-                <option value="3">รอการชำระเงิน</option>
-                <option value="4">เรียบร้อยแล้ว</option>
-                </select> </td>';
-
+      echo '<td>'. $user['status'] .  '</td>';
+      echo '<td>'. $user['payment'] .  '</td>';
+      echo '<td><button type="button"  value = "1" onclick = "status('.$num.','."'".$user["car_num"]."'".')" id = "status'.$num.'" class="btn btn-outline-warning">กำลังดำเนิการ</button></td>';
+      echo '<td><button type="button" value = "1" onclick = "payment('.$num.','."'".$user["car_num"]."'".')" id = "payment'.$num.'" class="btn btn-outline-success">รอการชำระ</button></td>';
       echo "</tr>";
+      $num++;
     }
+    
     echo '</tbody>';
     echo '</table>';
     
@@ -178,22 +161,12 @@ ON A.SupID= S.SupID
     ?>
   </div>
 </body>
-<script language="javascript">
-  function change() {
-    console.log("true");
-    if (confirm("ท่านต้องการเปลี่ยนสถานะใช่หรือไม่")) {
 
-    } else {
-
-    }
-
-  }
-</script>
-<script>
+<!-- <script>
   $(document).ready(function() {
     $(".dropdown-toggle").dropdown();
   });
-</script>
+</script> -->
 
 <script>
   $(document).ready(function() {
@@ -209,14 +182,66 @@ ON A.SupID= S.SupID
   function walkin() {
     console.log("true");
     window.location.href = ("selectpage.php");
-
   }
 </script>
+<script> 
+ function status (work,carnum){
+  var status = $("#status"+work).val();
+   console.log(work);
+ 
+   
+    $.post("status.php", { status: status,carnum : carnum},
+     function(data) {
+       console.log(data);
+       
+	 $('#status'+work).attr('style',"background-color: red")
+   $('#status'+work).html("เรียบร้อย")
+
+
+     });
+               
+				
+              
+ }
+</script>
+<script> 
+ function payment (work,carnum){
+  var payment = $("#payment"+work).val();
+   console.log(work);
+ 
+   
+    $.post("payment.php", { payment: payment,carnum : carnum},
+     function(data) {
+       console.log(data);
+       
+	 $('#payment'+work).attr('style',"background-color: green")
+   $('#payment'+work).html("เรียบร้อย")
+
+
+     });
+               
+				
+              
+ }
+</script>
+
+
+
+
+
+<!-- <script language="javascript">
+  function getstatus() {
+    document.getElementById('status').value()
+    console.log(document.getElementById('status').value());
+    
+   
+  
+  }
+</script> -->
 
 <script>
   tday = new Array("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday");
   tmonth = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
-
   function GetClock() {
     var d = new Date();
     var nday = d.getDay(),
@@ -228,7 +253,6 @@ ON A.SupID= S.SupID
       nmin = d.getMinutes(),
       nsec = d.getSeconds(),
       ap;
-
     if (nhour == 0) {
       ap = " AM";
       nhour = 12;
@@ -240,13 +264,10 @@ ON A.SupID= S.SupID
       ap = " PM";
       nhour -= 12;
     }
-
     if (nmin <= 9) nmin = "0" + nmin;
     if (nsec <= 9) nsec = "0" + nsec;
-
     document.getElementById('clockbox').innerHTML = "" + tday[nday] + ", " + tmonth[nmonth] + " " + ndate + ", " + nyear + " " + nhour + ":" + nmin + ":" + nsec + ap + "";
   }
-
   window.onload = function() {
     GetClock();
     setInterval(GetClock, 1000);
