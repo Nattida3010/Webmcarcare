@@ -97,8 +97,11 @@
     w.wash_engin, w.spray_under, w.wash_asphalt, w.chang_fuel, w.clean_dust,
     c.size,w.level,w.status,w.payment,c.types
     FROM user AS `u` INNER JOIN car AS `c` ON u.phone = c.phone 
-    INNER JOIN work AS `w` ON c.car_num = w.car_num";
+    INNER JOIN work AS `w` ON c.car_num = w.car_num
+    WHERE w.status = 0 OR w.payment = 0";
     $result = mysqli_query($connect, $sqlwork);
+    $num_rows= mysqli_num_rows($result);
+    //echo '<script>alert("'.$num_rows.'")</script>';
     echo '<table table-hover class="table">';
     echo '<thead id="colortable">';
     echo '<tr>';
@@ -114,8 +117,9 @@
     echo '<th>ชำระเงิน</th>';
     echo '</tr>';
     echo '</thead>';
+    echo '<tbody>';
     if($result){
-      echo '<tbody>';
+      if($num_rows>0){
       $num = 1;
     while ($user = mysqli_fetch_assoc($result)) {
       $works = '';
@@ -135,26 +139,34 @@
         $level = 'มาก';
       else
         $level = 'error';
-      echo "<tr>";
-      echo '<td>' . $user["time"] . '</td>';
-      echo '<td>' . $user["car_num"] . '</td>';
-      echo '<td>' . $user['fname'] . ' ' . $user['lname'] . '</td>';
-      echo '<td>' . $user['phone'] . '</td>';
-      echo '<td>' . $user['types'] . '/' . $user['color'] . '</td>';
-      echo '<td>' . $works . '</td>';
-      echo '<td>' . $level . '</td>';
-      echo '<td>' . $user['size'] . '</td>';
-      echo '<td>'. $user['status'] .  '</td>';
-      echo '<td>'. $user['payment'] .  '</td>';
-      echo '<td><button type="button"  value = "1" onclick = "status('.$num.','."'".$user["car_num"]."'".')" id = "status'.$num.'" class="btn btn-outline-warning">กำลังดำเนิการ</button></td>';
-      echo '<td><button type="button" value = "1" onclick = "payment('.$num.','."'".$user["car_num"]."'".')" id = "payment'.$num.'" class="btn btn-outline-success">รอการชำระ</button></td>';
-      echo "</tr>";
-      $num++;
-    }
+
+        echo "<tr>";
+        echo '<td>' . $user["time"] . '</td>';
+        echo '<td>' . $user["car_num"] . '</td>';
+        echo '<td>' . $user['fname'] . ' ' . $user['lname'] . '</td>';
+        echo '<td>' . $user['phone'] . '</td>';
+        echo '<td>' . $user['types'] . '/' . $user['color'] . '</td>';
+        echo '<td>' . $works . '</td>';
+        echo '<td>' . $level . '</td>';
+        echo '<td>' . $user['size'] . '</td>';
+        if($user['status']==0)
+        echo '<td><button type="button"  value = "1" onclick = "status('.$num.','."'".$user["car_num"]."'".')" id = "status'.$num.'" class="btn btn-outline-warning">กำลังดำเนิการ</button></td>';
+        else if($user['status']==1)
+        echo '<td><button type="button" class="btn btn-success">เรียบร้อย</button></td>';
+        if($user['payment']==0)
+        echo '<td><button type="button" value = "1" onclick = "payment('.$num.','."'".$user["car_num"]."'".')" id = "payment'.$num.'" class="btn btn-outline-warning">รอการชำระ</button></td>';
+        else if($user['payment']==1)
+        echo '<td><button type="button" class="btn btn-success">เรียบร้อย</button></td>';
+        echo "</tr>";
+        $num++;
+        
+      }
+    }else
+      echo '<tr><td colspan="10">  <h2>ไม่มีรายการบริการในขณะนี้</h2><td></tr>';
     
-    echo '</tbody>';
-    echo '</table>';
-    
+      echo '</tbody>';
+      echo '</table>';
+      
     }else{
       echo mysqli_error($connect);
     }
@@ -193,9 +205,9 @@
     $.post("status.php", { status: status,carnum : carnum},
      function(data) {
        console.log(data);
-       
-	 $('#status'+work).attr('style',"background-color: red")
+	 $('#status'+work).attr('style',"background-color: green")
    $('#status'+work).html("เรียบร้อย")
+       //alert('สมัครสมาชิกสำเร็จ');
 
 
      });
@@ -229,15 +241,6 @@
 
 
 
-<!-- <script language="javascript">
-  function getstatus() {
-    document.getElementById('status').value()
-    console.log(document.getElementById('status').value());
-    
-   
-  
-  }
-</script> -->
 
 <script>
   tday = new Array("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday");

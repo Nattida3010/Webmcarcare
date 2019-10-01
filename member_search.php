@@ -23,20 +23,7 @@ if(isset($_POST["query"]))
     echo '<th>รายการ</th>';
     echo '</tr>';
     echo '</thead>';
-	// $output += '<div class="table-responsive">'
-    //  echo '<table table-hover class="table">';
-    // echo '<thead id="colortable" bgcolor = "#6cc1ec">';
-    // echo '<tr >';
-    // echo '<th>เบอร์โทรศัพท์</th>';
-    // echo '<th>เลขทะเบียนรถ</th>';
-    // echo '<th>ชื่อเจ้าของรถ</th>';
-    // echo '<th>ประเภท/สี</th>';
-    // echo '<th>ขนาดของรถ</th>';
-    // echo '</tr>';
-    // echo '</thead>';
-    // echo '<tbody>';
 
-    // for (int i =0 ,i< mysqli_num_rows($result),i++ ){
 
 	 while($user = mysqli_fetch_array($result))
 	{
@@ -76,7 +63,7 @@ else
 }
 
 
-echo '<div class="colors" id="re"></div>';
+echo '<div class="colors" id="red"></div>';
 ?>
 <style>
 .colors{
@@ -89,26 +76,12 @@ echo '<div class="colors" id="re"></div>';
             console.log("true");
             location.href = ("addcar.php");
         }
-        function order(b) {
+        function order(car) {
             a = b.value
-            console.log(a);
-            localStorage.setItem('aaa', a);  
+            console.log(num);
+            localStorage.setItem('work', num);  
             location.href = ("work.php");
-            // $.ajax({
-			// url:"work.php?value="+a,
-			// method:"GET",
-			// data:{query:a},
-			// success:function(data)
-			// {
-
-
-                // $('#re').html(data);
-               
-				
-              
-		// 	}   
-		// });
-// location.href = ("work.php");
+            
 
 
         }

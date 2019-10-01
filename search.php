@@ -82,6 +82,11 @@
   <div class="container" style="margin-top :80px;">
     <div class="headtopic"></div>
     <h2 class="name">ผลการค้นหาหมายเลขทะเบียนรถ </h2>
+    <h4> 
+    <div class = "d-flex justify-content-center" >
+    
+    </div>
+    </h4>
 
   </div>
 
@@ -142,14 +147,15 @@
       echo '<td>' . $works . '</td>';
       echo '<td>' . $level . '</td>';
       echo '<td>' . $search['size'] . '</td>';
-      echo '<td><select class="custom-select" id="select">
-                <option value="1">กำลังดำเนินงาน</option>
-                <option value="2">เรียบร้อยแล้ว</option>
-                </select> </td>';
-      echo '<td><select class="custom-select" id="select">
-                <option value="3">รอการชำระเงิน</option>
-                <option value="4">เรียบร้อยแล้ว</option>
-                </select> </td>';
+      if($search['status']==0)
+        echo '<td><button type="button"  value = "1" onclick = "status('."'".$search["car_num"]."'".')" class="btn btn-outline-warning">กำลังดำเนิการ</button></td>';
+        else if($search['status']==1)
+        echo '<td><button type="button" class="btn btn-success">เรียบร้อย</button></td>';
+        if($search['payment']==0)
+        echo '<td><button type="button" value = "1" onclick = "payment('."'".$search["car_num"]."'".')"  class="btn btn-outline-warning">รอการชำระ</button></td>';
+        else if($search['payment']==1)
+        echo '<td><button type="button" class="btn btn-success">เรียบร้อย</button></td>';
+        echo "</tr>";
       echo "</tr>";
     }
     echo '</tbody>';
@@ -159,12 +165,9 @@
 
     ?>
 
-   
-    <script>
-      $(document).ready(function() {
-        $(".dropdown-toggle").dropdown();
-      });
-    </script>
+
+    
+
 
 </body>
 
