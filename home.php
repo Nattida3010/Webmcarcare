@@ -25,7 +25,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css" rel="stylesheet"/>
 </head>
 
 <body>
@@ -77,6 +77,7 @@
       </ul>
     </div>
   </nav>
+  
 
   <div class="container" style="margin-top :80px;">
     <div class="headtopic"></div>
@@ -173,12 +174,6 @@
     ?>
   </div>
 </body>
-
-<!-- <script>
-  $(document).ready(function() {
-    $(".dropdown-toggle").dropdown();
-  });
-</script> -->
 
 <script>
   $(document).ready(function() {

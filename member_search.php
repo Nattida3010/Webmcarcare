@@ -77,9 +77,9 @@ echo '<div class="colors" id="red"></div>';
             location.href = ("addcar.php");
         }
         function order(car) {
-            a = b.value
-            console.log(num);
-            localStorage.setItem('work', num);  
+            a = car.value
+            console.log(car);
+            localStorage.setItem('aaa', a);  
             location.href = ("work.php");
             
 

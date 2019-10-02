@@ -17,7 +17,7 @@
   <link rel="stylesheet" type="text/css" href="css/bs-header.css">
   <title>Mcarcare</title>
   <!-- Function -->
-  <script src="js/script.js"></script>
+ 
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -29,7 +29,7 @@
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
 </head>
 
@@ -48,7 +48,7 @@
       echo '<form action="search.php" method="post" name="brw_form" style="width:50%">';
       echo ' <div class="form-row ml-sm-5">';
       echo '<input class="form-control mr-sm-3" id="myInput" type="text" placeholder="กรุณากรอกหมายเลขทะเบียนรถ" name="name">';
-      echo ' <button class="btn btn-outline-light" type="submit" name="submit" value = "ค้นหา">ค้นหา</button>';
+      echo ' <button class="btn btn-outline-light" id = "search_date" type="submit" name="submit" value = "ค้นหา">ค้นหา</button>';
       echo ' </div>';
       echo '</form>';
       ?>
@@ -83,109 +83,125 @@
     </div>
   </nav>
 
-  <div class="container" style="margin-top :80px;">
-    <div class="headtopic"></div>
-    <h2 class="name">รายงานการให้บริการของทางร้าน </h2>
-    <h4> 
-    <div class = "d-flex justify-content-center" >
-    <script>
-  $( function() {
-    $( "#datepicker" ).datepicker();
-  } );
-  </script>
-
- <!-- <h3>ค้นหา  : &nbsp;</h3> 
-<p><input class = "form-control  " type="text" id="datepicker" placeholder = "เลือกปฏิทิน"> </p>
-    </div> -->
-    <?php
-      echo '<form action="report.php" method="post" name="brw_form" style="width:50%">';
-      echo ' <div class="form-row ml-sm-5">';
-      echo '<h3>ค้นหา  : &nbsp;</h3> ';
-      echo '<input class="form-control mr-sm-3" id="datepicker" type="text"  placeholder = "เลือกปฏิทิน" name="date">';
-      echo ' <button class="btn btn-outline-light" type="submit" name="submit" value = "ค้นหา">ค้นหา</button>';
-      echo ' </div>';
-      echo '</form>';
-      ?>
+  <div class="container" style="padding-top :30px;">
+        <div class="form-group row">
+            <div class="col-md-20 mb-3 text-center">
+               
+    
+      <form  action="report.php" method="post" name="brw_form" style="width:50%">
+       <div class="form-row ">
+       
+          <h4>ค้นหาวันที่  : &nbsp;  <input class="form-control mr-sm-3"  id="datepicker" type="text"  placeholder = "เลือกปฏิทิน" >   </h4> 
+      <input type="hidden" id="datehidden" name="date">
+      <button class="btn btn-outline-warning"  type="submit" name="submit" value = "ค้นหา" onclick="test1();">ค้นหา</button>
+       </div>
+      </form>
+      </div>
+        </div>
+        </div>
 
 
-    <div class="head">
-    <?php
-    include  'config.php';
-    $name = $_POST['date'];
-    $sqlsearch = "SELECT w.time,w.car_num,u.fname,u.lname,c.phone,c.color,
-    w.wash_engin, w.spray_under, w.wash_asphalt, w.chang_fuel, w.clean_dust,
-    c.size,w.level,w.status,w.payment,c.types
-    FROM user AS `u` INNER JOIN car AS `c` ON u.phone = c.phone 
-    INNER JOIN work AS `w` ON c.car_num = w.car_num WHERE w.time LIKE '%$date%' ";
-    $resultsearch = mysqli_query($connect, $sqlsearch);
-
-
-    // echo '<table table-hover class="table">';
-    // echo '<thead id="colortable">';
-    // echo '<tr>';
-    // echo '<th scope="col">วัน/เดือน/ปี</th>';
-    // echo '<th>เลขทะเบียนรถ</th>';
-    // echo '<th>ชื่อเจ้าของรถ</th>';
-    // echo '<th>เบอร์โทรศัพท์</th>';
-    // echo '<th>ประเภท/สี</th>';
-    // echo '<th>รายการที่ลูกค้าใช้บริการ</th>';
-    // echo '<th>ระดับความสกปรก</th>';
-    // echo '<th>ขนาดของรถ</th>';
-    // echo '<th>สถานะของรถ</th>';
-    // echo '<th>ชำระเงิน</th>';
-    // echo '</tr>';
-    // echo '</thead>';
-    // echo '<tbody>';
-    // while ($search= mysqli_fetch_array($resultsearch)) {
-    //   /*  */
-    //   $works = '';
-    //   if ($search['wash_engin'] == '1')
-    //     $works .= 'ล้างห้องเครื่อง ';
-    //   if ($search['spray_under'] == '1')
-    //     $works .= 'ล้างอัดฉีดช่วงล้าง ';
-    //   if ($search['clean_dust'] == '1')
-    //     $works .= 'ล้างสีดูดฝุ่น ';
-    //   if ($search['wash_asphalt'] == '1')
-    //     $works .= 'ล้างยางมะตอย ';
-    //   if ($search['chang_fuel'] == '1')
-    //     $works .= 'ถ่ายน้ำเครื่อง ';
-    //   if ($search['level'] == '1')
-    //     $level = 'น้อย';
-    //   else if ($search['level'] == '2')
-    //     $level = 'มาก';
-    //   else
-    //     $level = 'error';
-    //   /*  */
-    //   echo "<tr>";
-    //   echo '<td>' . $search["time"] . '</td>';
-    //   echo '<td>' . $search["car_num"] . '</td>';
-    //   echo '<td>' . $search['fname'] . ' ' . $search['lname'] . '</td>';
-    //   echo '<td>' . $search['phone'] . '</td>';
-    //   echo '<td>' .$search['types'] . '/' . $search['color'] . '</td>';
-    //   echo '<td>' . $works . '</td>';
-    //   echo '<td>' . $level . '</td>';
-    //   echo '<td>' . $search['size'] . '</td>';
-    //   if($search['status']==0)
-    //     echo '<td><button type="button"  value = "1" onclick = "status('."'".$search["car_num"]."'".')" class="btn btn-outline-warning">กำลังดำเนิการ</button></td>';
-    //     else if($search['status']==1)
-    //     echo '<td><button type="button" class="btn btn-success">เรียบร้อย</button></td>';
-    //     if($search['payment']==0)
-    //     echo '<td><button type="button" value = "1" onclick = "payment('."'".$search["car_num"]."'".')"  class="btn btn-outline-warning">รอการชำระ</button></td>';
-    //     else if($search['payment']==1)
-    //     echo '<td><button type="button" class="btn btn-success">เรียบร้อย</button></td>';
-    //     echo "</tr>";
-    //   echo "</tr>";
-    // }
-    // echo '</tbody>';
-    // echo '</table>';
-
-
-
-    ?>
-
-
+      
+  <h2 class="name">รายงานการให้บริการของทางร้าน </h2>
+    
 
     
+   <script>
+    $( function() {
+    $( "#datepicker" ).datepicker();
+    });
+    </script>
+
+<?php
+include  'config.php';
+if(isset($_POST['date'])&&$_POST['date']!='Invalid date')
+$date = $_POST['date'];
+else
+$date = "";
+//echo $_POST['date'];
+
+  $sqlsearch = "SELECT w.time,w.car_num,u.fname,u.lname,c.phone,c.color,
+  w.wash_engin, w.spray_under, w.wash_asphalt, w.chang_fuel, w.clean_dust,
+  c.size,w.level,w.status,w.payment,c.types
+  FROM user AS `u` INNER JOIN car AS `c` ON u.phone = c.phone 
+  INNER JOIN work AS `w` ON c.car_num = w.car_num WHERE w.time LIKE '%$date%'";
+  $resultsearch = mysqli_query($connect, $sqlsearch);
+  echo '<table table-hover class="table">';
+  echo '<thead id="colortable">';
+  echo '<tr>';
+  echo '<th scope="col">วัน/เดือน/ปี</th>';
+  echo '<th>เลขทะเบียนรถ</th>';
+  echo '<th>ชื่อเจ้าของรถ</th>';
+  echo '<th>เบอร์โทรศัพท์</th>';
+  echo '<th>ประเภท/สี</th>';
+  echo '<th>รายการที่ลูกค้าใช้บริการ</th>';
+  echo '<th>ระดับความสกปรก</th>';
+  echo '<th>ขนาดของรถ</th>';
+  echo '<th>สถานะของรถ</th>';
+  echo '<th>ชำระเงิน</th>';
+  echo '</tr>';
+  echo '</thead>';
+  echo '<tbody>';
+  while ($search= mysqli_fetch_array($resultsearch)) {
+    /*  */
+    $works = '';
+    if ($search['wash_engin'] == '1')
+      $works .= 'ล้างห้องเครื่อง ';
+    if ($search['spray_under'] == '1')
+      $works .= 'ล้างอัดฉีดช่วงล้าง ';
+    if ($search['clean_dust'] == '1')
+      $works .= 'ล้างสีดูดฝุ่น ';
+    if ($search['wash_asphalt'] == '1')
+      $works .= 'ล้างยางมะตอย ';
+    if ($search['chang_fuel'] == '1')
+      $works .= 'ถ่ายน้ำเครื่อง ';
+    if ($search['level'] == '1')
+      $level = 'น้อย';
+    else if ($search['level'] == '2')
+      $level = 'มาก';
+    else
+      $level = 'error';
+    /*  */
+    echo "<tr>";
+    echo '<td>' . $search["time"] . '</td>';
+    echo '<td>' . $search["car_num"] . '</td>';
+    echo '<td>' . $search['fname'] . ' ' . $search['lname'] . '</td>';
+    echo '<td>' . $search['phone'] . '</td>';
+    echo '<td>' .$search['types'] . '/' . $search['color'] . '</td>';
+    echo '<td>' . $works . '</td>';
+    echo '<td>' . $level . '</td>';
+    echo '<td>' . $search['size'] . '</td>';
+    if($search['status']==0)
+      echo '<td><button type="button"  value = "1" onclick = "status('."'".$search["car_num"]."'".')" class="btn btn-outline-warning">กำลังดำเนิการ</button></td>';
+      else if($search['status']==1)
+      echo '<td><button type="button" class="btn btn-success">เรียบร้อย</button></td>';
+      if($search['payment']==0)
+      echo '<td><button type="button" value = "1" onclick = "payment('."'".$search["car_num"]."'".')"  class="btn btn-outline-warning">รอการชำระ</button></td>';
+      else if($search['payment']==1)
+      echo '<td><button type="button" class="btn btn-success">เรียบร้อย</button></td>';
+      echo "</tr>";
+    echo "</tr>";
+  }
+  echo '</tbody>';
+  echo '</table>';
+
+
+
+?>
+
+
+  <script>
+  
+  function test1(){
+	  var date = document.getElementById("datepicker").value;
+	  var transfer = moment(date,'MM/DD/YYYY').format("YYYY-MM-DD");
+	  document.getElementById("datehidden").value = transfer;
+    // return transfer;
+    console.log(transfer );
+  }
+  
+  </script>
+ 
 
 
 </body>

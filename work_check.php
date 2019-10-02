@@ -22,9 +22,10 @@ $car_num= $_POST['car_num'];
 $level = $_POST['level'];  
 $datetime = date_default_timezone_set('Asia/Bangkok');
 $datetime = date("Y-m-d H:i:s");
+$date  = date("Y/m/d");
 include  'config.php';
 $sql = 'INSERT INTO work
-values(0,"'.$car_num.'",'.$wash_engin.','.$spray_under.','.$clean_dust.','.$wash_asphalt.','.$chang_fuel.',0,"'.$datetime.'","'.$level.'",0)';
+values(0,"'.$car_num.'",'.$wash_engin.','.$spray_under.','.$clean_dust.','.$wash_asphalt.','.$chang_fuel.',0,"'.$datetime.'","'.$level.'",0,"'.$date.'")';
 $result = mysqli_query($connect,$sql);
 //$numrows = mysqli_num_rows($result);
 // $objResult = mysqli_fetch_array($result,MYSQLI_ASSOC);
