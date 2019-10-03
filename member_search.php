@@ -1,3 +1,4 @@
+
 <?php
 include  'config.php';
 session_start();
@@ -52,14 +53,25 @@ if(isset($_POST["query"]))
     }else
     {
      echo '<div class="colors"><center>ไม่พบข้อมูล กรุณาสมาชิก  </center></div>';
+ 
     }
 }
 else
 {
-    echo "<script>
-    alert('หมายเลขทะเบียนนี้ยังไม่เป็นสมาชิก กรุณาสมัครสมาชิก');
+    // echo'<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
+    echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>';
+    echo '<script>
+ 
+    Swal.fire({
+        type: "error",
+        title: "ไม่พบข้อมูล ",
+        text: "กรุณาสมัครสมาชิก ",
+       
+      })
+    </script>';
+
    
-    </script>";
+
 }
 
 

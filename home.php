@@ -26,6 +26,8 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css" rel="stylesheet"/>
+  <!-- sweetalert -->
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
 </head>
 
 <body>
@@ -82,8 +84,8 @@
   <div class="container" style="margin-top :80px;">
     <div class="headtopic"></div>
     <h3 class="name">รายการให้บริการรถ</h3>
-    <div id="clockbox"></div>
-    <button type="button" class="btn btn-info" OnClick="walkin();">เพิ่มรายการรถ
+    <div id="clockbox" ></div>
+    <button id="addorder" type="button" class="btn btn-info" OnClick="walkin();"  style="margin-bottom :30px; margin-left: 87%;" >เพิ่มรายการรถ
       <i class='fas fa-plus'></i>
     </button>
   </div>
@@ -93,8 +95,7 @@
 
     <?php
     include  'config.php';
-
-    $sqlwork = "SELECT w.time,w.car_num,u.fname,u.lname,c.phone,c.color,
+    $sqlwork = "SELECT w.work_id,w.time,w.car_num,u.fname,u.lname,c.phone,c.color,
     w.wash_engin, w.spray_under, w.wash_asphalt, w.chang_fuel, w.clean_dust,
     c.size,w.level,w.status,w.payment,c.types
     FROM user AS `u` INNER JOIN car AS `c` ON u.phone = c.phone 
@@ -140,7 +141,6 @@
         $level = 'มาก';
       else
         $level = 'error';
-
         echo "<tr>";
         echo '<td>' . $user["time"] . '</td>';
         echo '<td>' . $user["car_num"] . '</td>';
@@ -151,11 +151,11 @@
         echo '<td>' . $level . '</td>';
         echo '<td>' . $user['size'] . '</td>';
         if($user['status']==0)
-        echo '<td><button type="button"  value = "1" onclick = "status('.$num.','."'".$user["car_num"]."'".')" id = "status'.$num.'" class="btn btn-outline-warning">กำลังดำเนิการ</button></td>';
+        echo '<td><button type="button"  value = "1" onclick = "return status('.$num.','."'".$user["work_id"]."'".')" id = "status'.$num.'" class="btn btn-outline-warning">กำลังดำเนิการ</button></td>';
         else if($user['status']==1)
         echo '<td><button type="button" class="btn btn-success">เรียบร้อย</button></td>';
         if($user['payment']==0)
-        echo '<td><button type="button" value = "1" onclick = "payment('.$num.','."'".$user["car_num"]."'".')" id = "payment'.$num.'" class="btn btn-outline-warning">รอการชำระ</button></td>';
+        echo '<td><button type="button" value = "1" onclick = "return payment('.$num.','."'".$user["work_id"]."'".')" id = "payment'.$num.'" class="btn btn-outline-warning">รอการชำระ</button></td>';
         else if($user['payment']==1)
         echo '<td><button type="button" class="btn btn-success">เรียบร้อย</button></td>';
         echo "</tr>";
@@ -191,42 +191,73 @@
     window.location.href = ("selectpage.php");
   }
 </script>
+
+
 <script> 
  function status (work,carnum){
-  var status = $("#status"+work).val();
+  swal({
+    title: "คุณแน่ใจหรือไหม?",
+  text: "ต้องการเปลี่ยนสถานะการบริการ",
+  icon: "warning",
+  buttons: true,
+  dangerMode: true,
+})
+.then((willDelete) => {
+  if (willDelete) {
+    swal("Poof! Your imaginary file has been deleted!", {
+      icon: "success",
+    });  
+    var status = $("#status"+work).val();
    console.log(work);
  
-   
     $.post("status.php", { status: status,carnum : carnum},
      function(data) {
        console.log(data);
 	 $('#status'+work).attr('style',"background-color: green")
    $('#status'+work).html("เรียบร้อย")
        //alert('สมัครสมาชิกสำเร็จ');
-
-
      });
-               
+         
+  } else {
+    swal("ยกเลิกการเปลียนสถานะแล้ว");
+  }
+});
+
+      
 				
               
  }
 </script>
 <script> 
  function payment (work,carnum){
-  var payment = $("#payment"+work).val();
+  swal({
+  title: "คุณแน่ใจหรือไหม",
+  text: "ต้องการเปลี่ยนสถานะการจ่ายเงิน",
+  icon: "warning",
+  buttons: true,
+  dangerMode: true,
+})
+.then((willDelete) => {
+  if (willDelete) {
+    swal("เปลี่ยนสถานะสำเร็จ", {
+      icon: "success",
+    });
+    var payment = $("#payment"+work).val();
    console.log(work);
- 
-   
     $.post("payment.php", { payment: payment,carnum : carnum},
      function(data) {
        console.log(data);
        
 	 $('#payment'+work).attr('style',"background-color: green")
    $('#payment'+work).html("เรียบร้อย")
-
-
      });
                
+  } else {
+    swal("ยกเลิกการเปลียนสถานะแล้ว");
+  }
+}); 
+//
+  
 				
               
  }

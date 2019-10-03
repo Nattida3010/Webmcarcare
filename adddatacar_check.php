@@ -1,8 +1,7 @@
-
 <?php
 include  'config.php';
 session_start();
- $car_num = $_POST['car_num'];
+$car_num = $_POST['car_num'];
 $phone = $_POST['phone'];
 $types = $_POST['types'];
 $color = $_POST['color'];
@@ -30,4 +29,3 @@ mysqli_close($connect);
 
 
 ?>
-

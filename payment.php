@@ -5,7 +5,7 @@ $carnum = $_POST['carnum'];
 
 
 // echo "<script>console.log('".$status."' );console.log('".$carnum."')</script>";
-$sql = 'UPDATE work SET payment   = 1 WHERE car_num  = "'.$carnum.'"';
+$sql = 'UPDATE work SET payment   = 1 WHERE work_id  = "'.$carnum.'"';
 
 $result = mysqli_query($connect,$sql);
 

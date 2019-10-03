@@ -1,4 +1,3 @@
-
 <?php
 include  'config.php';
 session_start();
@@ -16,12 +15,9 @@ if($result){
       alert('หมายเลขทะเบียนนี้ยังไม่เป็นสมาชิก กรุณาสมัครสมาชิก');
       window.location='addcustomer.php';
       </script>";
+   
   }else{
-      // $_SESSION['phone_selected']=$_POST['phone'];
-      // echo "<script>
-      // alert('พบผู้ใช้".$carnumber."');
-      // window.location='workpage.php';
-      // </script>";
+   
 
 
       echo '<div id="myform" style="display:none">';
@@ -65,5 +61,5 @@ if($result){
         
    ?>
 
-   
-   </html>
+
+</html>
