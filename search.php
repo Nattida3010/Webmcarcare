@@ -60,11 +60,7 @@
             รายงาน
           </a>
         </li>
-        <li class="nav-item mr-sm-3">
-          <a class="nav-link" href="chat.php">
-            <i class="fas fa-bullhorn"></i>
-            ประกาศ</a>
-        </li>
+      
         <li class="nav-item dropleft">
           <a class="nav-link  active" href="#" id="navbarReportDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-user"></i>

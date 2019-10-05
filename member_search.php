@@ -13,9 +13,10 @@ if(isset($_POST["query"]))
 	$query = 'SELECT user.phone,car.car_num,user.fname,user.lname,car.types,car.color,car.size FROM user inner join car on user.phone = car.phone WHERE user.phone = "'.$_POST['query'].'"';
     $result = mysqli_query($connect, $query);
     if(mysqli_num_rows($result) > 0){
-    echo '<table width="200" >';
-    echo '<thead id="colortable" bgcolor = "#6cc1ec">';
-    echo '<tr >';
+        echo'<div class= "container" > ';
+        echo '<table  class="table ">';
+        echo '<thead id="colortable" bgcolor = "#6cc1ec" >';
+        echo '<tr >';
     echo '<th>เบอร์โทรศัพท์</th>';
     echo '<th>เลขทะเบียนรถ</th>';
     echo '<th>ชื่อเจ้าของรถ</th>';

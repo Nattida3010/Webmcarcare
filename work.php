@@ -86,10 +86,23 @@
                             <input type="checkbox" name="spray_under" class="custom-control-input" id="defaultCheck2"
                                 value="option2">
                             <label class="custom-control-label" for="defaultCheck2">
-                                ล้างอัดฉีดช่วงล้าง
+                                ล้างอัดฉีดช่วงล่าง
                             </label>
                         </div>
                     </div>
+                    
+                    <div class="col-sm-2">
+                        <div class="custom-control custom-checkbox mb-3">
+                            <input type="checkbox" name="clean_dust" class="custom-control-input" id="defaultCheck5"
+                                value="option5">
+                            <label class="custom-control-label" for="defaultCheck5">
+                                
+                                ล้างสีดูดฝุ่น
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
 
                     <div class="col-sm-2">
                         <div class="custom-control custom-checkbox mb-3">
@@ -106,21 +119,10 @@
                             <input type="checkbox" name="chang_fuel" class="custom-control-input" id="defaultCheck4"
                                 value="option4">
                             <label class="custom-control-label" for="defaultCheck4">
-                                ถ่ายนำ้มันเครื่อง
+                                ถ่ายนำ้มันเครื่อง(มอเตอร์ไซค์)
                             </label>
                         </div>
                     </div>
-
-                    <div class="col-sm-2">
-                        <div class="custom-control custom-checkbox mb-3">
-                            <input type="checkbox" name="clean_dust" class="custom-control-input" id="defaultCheck5"
-                                value="option5">
-                            <label class="custom-control-label" for="defaultCheck5">
-                                ดูดฝุ่น
-                            </label>
-                        </div>
-                    </div>
-                </div>
 
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">ระดับความสกปรก</label>

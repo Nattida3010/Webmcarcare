@@ -20,6 +20,7 @@ if(isset($_POST["query"]))
     
     echo '<table  class="table table-sm table-hover">';
     echo '<thead id="colortable" bgcolor = "#6cc1ec">';
+    echo  '<center>';
     echo '<tr >';
   
     echo '<th>เลขทะเบียนรถ</th>';
@@ -28,20 +29,22 @@ if(isset($_POST["query"]))
     echo '<th>ขนาดของรถ</th>';
     echo '<th>รหัสผ่าน</th>';
     echo '</tr>';
+    echo  '</center>';
     echo '</thead>';
     echo '</div>';
 
 
 	 while($user = mysqli_fetch_array($result))
 	{
+        echo  '<center>';
         echo "<tr>";
-      
         echo '<td>' . $user["car_num"] . '</td>';
         echo '<td>' . $user['fname'] . ' ' . $user['lname'] . '</td>';
         echo '<td>' . $user['types'] . '/' . $user['color'] . '</td>';
         echo '<td>' . $user['size'] . '</td>';
         echo '<td>' . $user['password'] . '</td>';
         echo "</tr>";
+        echo  '</center>';
    
     }
 

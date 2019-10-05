@@ -17,23 +17,26 @@ if(isset($_POST["query"]))
     echo'<div class= "container" > ';
     echo '<table  class="table ">';
     echo '<thead id="colortable" bgcolor = "#6cc1ec" >';
+    echo  '<center>';
     echo '<tr >';
     echo '<th>เบอร์โทรศัพท์</th>';
-    echo '<th>ชื่อ-นามสกุล</th>';
+    echo '<th>ชื่อพนักงาน</th>';
     echo '<th>รหัสผ่าน</th>';
     echo '</tr>';
+    echo  '</center>';
     echo '</thead>';
   
     echo '</div>';
 
 	 while($user = mysqli_fetch_array($result))
-	{
+	{ 
+        echo  '<center>';
         echo "<tr>";
         echo '<td>' . $user["phone"] . '</td>';
-        echo '<td>' . $user['fname'] . ' ' . $user['lname'] . '</td>';
+        echo '<td> ' . $user['fname'] . ' ' . $user['lname'] . '</td>';
         echo '<td>' . $user['password'] . '</td>';
         echo "</tr>";
-   
+        echo  '</center>';
     }
 
     echo "</table>";

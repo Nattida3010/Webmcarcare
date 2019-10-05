@@ -44,7 +44,7 @@
                     // echo '<form action="member_check.php" method="post" name="brw_form" >';
                      echo '<form  method="post" name="brw_form">';
                     echo ' <div class="form-group inputWithIcon">';
-                    echo '<input   class="form-control" type="text" name="search_text" id="search_text"  placeholder="หมายเลขโทรศัพท์" autocomplete="off">';
+                    echo '<input   class="form-control" type="text" name="search_text" id="search_text"  placeholder="หมายเลขโทรศัพท์" autocomplete="off" >';
     
                     echo '<i class="fas fa-envelope"></i>';  
                     echo '</div>';
