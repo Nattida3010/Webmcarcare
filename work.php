@@ -160,20 +160,6 @@
 
 
 <script>
-//  $(document).ready(function() {
-//     var x = localStorage.getItem('aaa');
-//     $.ajax({
-//         type: "POST",
-//         url: "/work.php",
-//         data: {query:x},
-//         success : function(data){
-//         }
-//     });
-
-
-
-//  }
-
 
 var x = localStorage.getItem('aaa');
 document.getElementById('_carnum').value = x;

@@ -43,7 +43,7 @@
       <?php
       echo '<form action="search.php" method="post" name="brw_form" style="width:50%">';
       echo ' <div class="form-row ml-sm-5">';
-      echo '<input class="form-control mr-sm-3" id="myInput" type="text" placeholder="กรุณากรอกหมายเลขทะเบียนรถ" name="name">';
+      echo '<input class="form-control mr-sm-3" id="myInput" type="text" placeholder="กรุณากรอกหมายเลขทะเบียนรถ" name="name"autocomplete="off">';
       echo ' <button class="btn btn-outline-light" type="submit" name="submit" value = "ค้นหา">ค้นหา</button>';
       echo ' </div>';
       echo '</form>';
@@ -66,6 +66,17 @@
             ประกาศ</a>
         </li>
         <li class="nav-item dropleft">
+          <a class="nav-link  active" href="#" id="navbarReportDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-user"></i>
+            ข้อมูลของผู้ใช้
+           
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarReportDropdownMenuLink">
+            <a class="dropdown-item" href="reportStaff.php">พนักงาน</a>
+            <a class="dropdown-item" href="reportCustomer.php">ลูกค้า</a>
+          </div>
+        </li>
+        <li class="nav-item dropleft">
           <a class="nav-link  active" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-cogs"></i>
             <i class="fas fa-caret-down"></i>
@@ -81,7 +92,9 @@
 
   <div class="container" style="margin-top :80px;">
     <div class="headtopic"></div>
-    <h2 class="name">ผลการค้นหาหมายเลขทะเบียนรถ </h2>
+    <h2 class="name"  style="margin-bottom :30px;" >ผลการค้นหา </h2>
+  
+
     <h4> 
     <div class = "d-flex justify-content-center" >
     
@@ -166,7 +179,6 @@
     ?>
 
 
-    
 
 
 </body>

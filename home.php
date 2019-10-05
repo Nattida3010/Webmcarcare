@@ -55,16 +55,22 @@
     </button> -->
 
       <ul class="navbar-nav text-uppercase" id="ml" style="margin-left: 25%;">
-        <li class="nav-item mr-sm-3">
+        <li class="nav-item mr-sm-3" style="color: white;">
           <a class="nav-link" href="report.php">
             <i class="fas fa-file-alt"></i>
             รายงาน
           </a>
         </li>
-        <li class="nav-item mr-sm-3">
-          <a class="nav-link" href="chat.php">
-            <i class="fas fa-bullhorn"></i>
-            ประกาศ</a>
+        <li class="nav-item dropleft">
+          <a class="nav-link  active" href="#" id="navbarReportDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-user"></i>
+            ข้อมูลของผู้ใช้
+           
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarReportDropdownMenuLink">
+            <a class="dropdown-item" href="reportStaff.php">พนักงาน</a>
+            <a class="dropdown-item" href="reportCustomer.php">ลูกค้า</a>
+          </div>
         </li>
         <li class="nav-item dropleft">
           <a class="nav-link  active" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -76,7 +82,7 @@
             <a class="dropdown-item" href="login.php">ออกจากระบบ</a>
           </div>
         </li>
-      </ul>
+        </ul>
     </div>
   </nav>
   
@@ -204,7 +210,7 @@
 })
 .then((willDelete) => {
   if (willDelete) {
-    swal("Poof! Your imaginary file has been deleted!", {
+    swal("เปลี่ยนสถานะสำเร็จ", {
       icon: "success",
     });  
     var status = $("#status"+work).val();

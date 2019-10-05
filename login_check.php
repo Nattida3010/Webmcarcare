@@ -28,7 +28,7 @@ if($numrows==0){
 
 echo" <script>
  swal({
-   title: 'ไม่พบข้อมูล',
+   title: 'ไม่พอข้อมูล',
    text: 'กรุณาลองใหม่อีกครั้ง!',
    icon: 'warning',
    button: 'OK',
@@ -46,9 +46,14 @@ echo" <script>
 
 
 }else{
+
+	
 	$_SESSION["ID"] = $objResult["ID"];
 			session_write_close();
 			header("location:home.php");
+
+
+
 			}
 		
 mysqli_close($connect);

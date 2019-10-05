@@ -32,7 +32,7 @@
                 <div class="col-sm-12 mb-3 ">
                     <div class="form-group">
                         <div class="form-group inputWithIcon">
-                            <input type="text" class="form-control" name="phone" id="phone" aria-describedby="helpId" placeholder="เบอร์โทรศัพท์ผู้ใช้">
+                            <input type="text" class="form-control" name="phone" id="phone" aria-describedby="helpId" placeholder="เบอร์โทรศัพท์ผู้ใช้"autocomplete="off">
                             <i class="fas fa-mobile-alt"></i>
                         </div>
                     </div>

@@ -1,3 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<title>Mcarcare</title>
+</head>
+<body>
+	
+
+
 <?php
 include  'config.php';
 session_start();
@@ -5,26 +18,42 @@ $fname= $_POST['fname'];
 $lname = $_POST['lname'];
 $phone = $_POST['phone'];
 $password = $_POST['password'];
-// echo $fname;
-// echo $lname;
-// echo $phone;
-// echo $password;
+
 
 $sql = "INSERT INTO user (phone, fname, lname, password, status)
 				VALUES ('$phone','$fname','$lname','$password' ,'Admin')";
 $result = mysqli_query($connect,$sql);
 if($result){
-	echo "<script type='text/javascript'>";
-	echo "alert('สมัครสมาชิกสำเร็จ');";
-	echo "window.location = 'home.php'; ";
-	echo "</script>";
+	echo" <script>
+	swal({
+	  title: 'สำเร็จ',
+	  text: 'ข้อมูลนี้ได้เป็นสมาชิกเรียบร้อยแล้ว',
+	  icon: 'success',
+	  button: 'OK',
+	}).then(function () {
+	  window.location.href='home.php';
+	}, function (dismiss) {
+		return false;
+	})
+	</script>";
 	}
 	else{
-		echo mysqli_error($connect);
-	// echo "<script type='text/javascript'>";
-	// echo "alert('เกิดข้อผิดพลาด โปรดทำการสมัครใหม่อีกครั้ง".mysqli_error($connect)."');";
-	// echo "window.location = 'singup.php'; ";
-	// echo "</script>";
+		
+		echo" <script>
+ swal({
+   title: 'เกิดข้อผิดพลาด',
+   text: 'กรุณาลองใหม่อีกครั้ง!',
+   icon: 'warning',
+   button: 'OK',
+ }).then(function () {
+   window.location.href='singup.php';
+ }, function (dismiss) {
+     return false;
+ })
+ </script>";
 	}
 mysqli_close($connect);
 ?>
+
+</body>
+</html>

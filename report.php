@@ -73,50 +73,39 @@
                         รายงาน
                     </a>
                 </li>
-                <li class="nav-item mr-sm-3">
-                    <a class="nav-link" href="chat.php">
-                        <i class="fas fa-bullhorn"></i>
-                        ประกาศ</a>
-                </li>
                 <li class="nav-item dropleft">
-                    <a class="nav-link  active" href="#" id="navbarDropdownMenuLink" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-cogs"></i>
-                        <i class="fas fa-caret-down"></i>
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="addsingup.php">เพิ่มสมาชิก</a>
-                        <a class="dropdown-item" href="login.php">ออกจากระบบ</a>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </nav>
+          <a class="nav-link  active" href="#" id="navbarReportDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-user"></i>
+            ข้อมูลของผู้ใช้
+           
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarReportDropdownMenuLink">
+            <a class="dropdown-item" href="reportStaff.php">พนักงาน</a>
+            <a class="dropdown-item" href="reportCustomer.php">ลูกค้า</a>
+          </div>
+        </li>
+        <li class="nav-item dropleft">
+          <a class="nav-link  active" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-cogs"></i>
+            <i class="fas fa-caret-down"></i>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="addsingup.php">เพิ่มสมาชิก</a>
+            <a class="dropdown-item" href="login.php">ออกจากระบบ</a>
+          </div>
+        </li>
+        </ul>
+    </div>
+  </nav>
 
 
-
-    <!-- <div class="container" style="padding-top :30px;">
-        <div class="form-group row">
-            <div class="col-md-20 mb-3 text-center">
-      <form  action="report.php" method="post" name="brw_form" style="width:50%">
-       <div class="form-row ">
-       
-          <h4>ค้นหาวันที่  : &nbsp;  <input class="form-control mr-sm-3"  id="datepicker" type="text"  placeholder = "เลือกปฏิทิน" >   </h4> 
-      <input type="hidden" id="datehidden" name="date">
-      <button class="btn btn-outline-warning"  type="submit" name="submit" value = "ค้นหา" onclick="test1();">ค้นหา</button>
-       </div>
-      </form>
-      </div>
-        </div>
-        </div> -->
-
-
+<!-- รายงงาน รายวัน-->
     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter"
         style="margin-top :30px; margin-left: 87%;">
         รายวัน
     </button>
 
-    <h2 class="name" colspan="10">รายงานการให้บริการ</h2>
+    <h2 class="name" colspan="10" style="margin-bottom :30px;" >รายงานการให้บริการ</h2>
 
 
     <!-- Modal -->
@@ -140,7 +129,7 @@
                                                 id="datepicker" autocomplete="off" placeholder="เลือกปฏิทิน"> </h4>
                                         <input type="hidden" id="datehidden" name="date"> <br>
                                         <button class="btn btn-outline-warning " style="margin-left: 120%;"
-                                            type="submit" name="submit" value="ค้นหา" onclick="test1();">ค้นหา</button>
+                                            type="submit" name="submit" value="ค้นหา" onclick="transfer();">ค้นหา</button>
                                     </div>
                                 </form>
                             </div>
@@ -155,12 +144,7 @@
     </div>
     </div>
 
-    <script>
-    $(function() {
-        $("#datepicker").datepicker();
-
-    });
-    </script>
+ 
 
     <?php
 include  'config.php';
@@ -258,10 +242,14 @@ echo '</table>';
 
 
 ?>
+   <!-- ปฏิทินรายวัน -->
+   <script>
+    $(function() {
+        $("#datepicker").datepicker();
 
-
-    <script>
-    function test1() {
+    });
+    //ฟักงชันเปลี่ยนเวลา
+    function transfer() {
         var date = document.getElementById("datepicker").value;
         var transfer = moment(date, 'MM/DD/YYYY').format("YYYY-MM-DD");
         document.getElementById("datehidden").value = transfer;

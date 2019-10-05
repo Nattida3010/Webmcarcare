@@ -53,7 +53,7 @@
                 <div class="col-sm-12 mb-2 ">
                     <div class="form-group inputWithIcon">
                         <input type="text" class="form-control" name="fname" placeholder="ชื่อ" required
-                            pattern="^[ก-๏]+$">
+                            pattern="^[ก-๏]+$"  autocomplete="off">
                         <i class="fas fa-user"></i>
                     </div>
                 </div>
@@ -61,7 +61,7 @@
                 <div class="col-sm-12 mb-2 ">
                     <div class="form-group inputWithIcon">
                         <input type="text" class="form-control" name="lname" placeholder="นามสกุล" required
-                            pattern="^[ก-๏]+$">
+                            pattern="^[ก-๏]+$" autocomplete="off">
                         <i class="fas fa-user"></i>
                     </div>
                 </div>
@@ -69,7 +69,7 @@
                 <div class="col-sm-12 mb-2 ">
                     <div class="form-group inputWithIcon">
                         <input type="text" class="form-control" name="phone" value!=Phone placeholder="เบอร์โทรศัพท์"
-                            required pattern="^[0-9]+$">
+                            required pattern="^[0-9]+$" autocomplete="off">
                         <i class="fas fa-mobile-alt"></i>
                     </div>
                 </div>

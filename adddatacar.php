@@ -44,21 +44,21 @@
             
                 <div class="col-sm-12 mb-2 ">
                     <div class="form-group inputWithIcon">
-                        <input type="text" class="form-control" name="phone" placeholder="เบอร์โทรศัพท์" required pattern="^[0-9]+$">
+                        <input type="text" class="form-control" name="phone" placeholder="เบอร์โทรศัพท์" required pattern="^[0-9]+$"autocomplete="off">
                         <i class="fas fa-mobile-alt"></i>
                     </div>
                 </div>
                 
                 <div class="col-sm-12 mb-2 ">
                     <div class="form-group inputWithIcon">
-                        <input type="text" class="form-control" name="car_num" placeholder="หมายเลขทะเบียนรถ" >
+                        <input type="text" class="form-control" name="car_num" placeholder="หมายเลขทะเบียนรถ" autocomplete="off" >
                         <i class="fas fa-user"></i>
                     </div>
                 </div>
            
                 <div class="col-sm-12 mb-2 ">
                     <div class="form-group inputWithIcon">
-                        <input type="text" class="form-control" name="types" placeholder="ประเภทรถ">
+                        <input type="text" class="form-control" name="types" placeholder="ประเภทรถ" autocomplete="off">
                         <i class="fas fa-user"></i>
                     </div>
                 </div>
@@ -66,14 +66,14 @@
 
                 <div class="col-sm-12 mb-2 ">
                     <div class="form-group inputWithIcon">
-                        <input type="text" class="form-control" name="color" placeholder="สีรถ" >
+                        <input type="text" class="form-control" name="color" placeholder="สีรถ"autocomplete="off" >
                         <i class="fas fa-user"></i>
                     </div>
                 </div>
                 
                 <div class="col-sm-12 mb-2 ">
                     <div class="form-group inputWithIcon">
-                        <input type="text" class="form-control" name="size" placeholder="ขนาด" >
+                        <input type="text" class="form-control" name="size" placeholder="ขนาด" autocomplete="off">
                         <i class="fas fa-user"></i>
                     </div>
                 </div> 

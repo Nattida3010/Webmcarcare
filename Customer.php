@@ -10,45 +10,42 @@ $output = '';
 if(isset($_POST["query"]))
 {
 	$search = mysqli_real_escape_string($connect, $_POST["query"]);
-	$query = 'SELECT user.phone,car.car_num,user.fname,user.lname,car.types,car.color,car.size FROM user inner join car on user.phone = car.phone WHERE user.phone = "'.$_POST['query'].'"';
+    $query = 'SELECT user.password,user.phone,car.car_num,user.fname,user.lname,car.types,car.color,car.size FROM user 
+    inner join car on user.phone = car.phone WHERE user.phone = "'.$_POST['query'].'"and user.status = "Customer"';
+   
     $result = mysqli_query($connect, $query);
     if(mysqli_num_rows($result) > 0){
-    echo '<table width="200" >';
+        
+    echo'<div class= "container" > ';
+    
+    echo '<table  class="table table-sm table-hover">';
     echo '<thead id="colortable" bgcolor = "#6cc1ec">';
     echo '<tr >';
-    echo '<th>เบอร์โทรศัพท์</th>';
+  
     echo '<th>เลขทะเบียนรถ</th>';
     echo '<th>ชื่อเจ้าของรถ</th>';
     echo '<th>ประเภท/สี</th>';
     echo '<th>ขนาดของรถ</th>';
-    echo '<th>รายการ</th>';
+    echo '<th>รหัสผ่าน</th>';
     echo '</tr>';
     echo '</thead>';
+    echo '</div>';
 
 
 	 while($user = mysqli_fetch_array($result))
 	{
         echo "<tr>";
-        echo '<td>' . $user["phone"] . '</td>';
+      
         echo '<td>' . $user["car_num"] . '</td>';
         echo '<td>' . $user['fname'] . ' ' . $user['lname'] . '</td>';
         echo '<td>' . $user['types'] . '/' . $user['color'] . '</td>';
         echo '<td>' . $user['size'] . '</td>';
-        //<form method="post" action="setcarnum_session.php">
-       // echo '<td><form method="post" action="setcarnum_session.php"><input type="hidden" name="car_num" value="'. $user["car_num"] .'">';
-      //  echo '<button class="btn btn btn-success"  type="submit" name="carnum1" id="carnum1" OnClick="order(this);" class="ml-2" >เพิ่มรายการบริการ</button></td></form>';
-        
-       echo '<td><button class="btn btn btn-success"  type="submit" value = "'. $user["car_num"] .'" name="carnum1" id="carnum1" OnClick="order(this);" class="ml-2" >เพิ่มรายการบริการ</button></td>';
-        
+        echo '<td>' . $user['password'] . '</td>';
         echo "</tr>";
-        // $_SESSION['car_selected'] = $user["car_num"];
-	
-    // }
+   
     }
 
-    // echo $output;
     echo "</table>";
-    echo '<center><button class="btn btn btn-primary" type="button" name="button"  OnClick="add();" class="ml-2" >เพิ่มข้อมูลรถ</button></center>';
     
     }else
     {
@@ -65,7 +62,7 @@ else
     Swal.fire({
         type: "error",
         title: "ไม่พบข้อมูล ",
-        text: "ข้อมูลนี้ยังไม่ได้สมัครใช้งาน",
+        text: "กรุณาสมัครสมาชิก ",
        
       })
     </script>';

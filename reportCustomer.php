@@ -44,7 +44,7 @@
                     // echo '<form action="member_check.php" method="post" name="brw_form" >';
                      echo '<form  method="post" name="brw_form">';
                     echo ' <div class="form-group inputWithIcon">';
-                    echo '<input   class="form-control" type="text" name="search_text" id="search_text"  placeholder="หมายเลขโทรศัพท์" autocomplete="off">';
+                    echo '<input   class="form-control" type="text" name="search_text" id="search_text"  placeholder="หมายเลขโทรศัพท์"autocomplete="off">';
     
                     echo '<i class="fas fa-envelope"></i>';  
                     echo '</div>';
@@ -68,7 +68,7 @@ $(document).ready(function(){
 	function load_data(query)
 	{
 		$.ajax({
-			url:"member_search.php",
+			url:"Customer.php",
 			method:"post",
 			data:{query:query},
 			success:function(data)
@@ -79,7 +79,7 @@ $(document).ready(function(){
 	}
 	
 	$('#search_text').keyup(function(){
-		var search = $(this).val();
+		var search = $(this).val();5 
 		if(search != '')
 		{
 			load_data(search);
@@ -97,7 +97,7 @@ $(document).ready(function(){
 <script language="javascript">
         function back() {
             console.log("true");
-            location.href = ("selectpage.php");
+            location.href = ("home.php");
         }
        
     </script>
