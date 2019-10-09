@@ -22,7 +22,7 @@ if($result){
 
       echo '<div id="myform" style="display:none">';
       include  'config.php';
-      $sqlwork = 'SELECT user.phone,car.car_num,user.fname,user.lname,car.types,car.color,car.size
+      $sqlwork = 'SELECT user.phone,car.car_num,user.fname,user.lname,car.type,car.color,car.size
       from user
       inner join car  on user.phone=car.phone';
       $result = mysqli_query($connect,$sqlwork); 
@@ -44,7 +44,7 @@ if($result){
           echo '<td>' . $user["phone"] . '</td>';
           echo '<td>' . $user["car_num"] . '</td>';
           echo '<td>' . $user['fname'] . ' ' . $user['lname'] . '</td>';
-          echo '<td>' . $user['types'] . '/' . $user['color'] . '</td>';
+          echo '<td>' . $user['type'] . '/' . $user['color'] . '</td>';
           echo '<td>' . $user['size'] . '</td>';
           echo "</tr>";
       }

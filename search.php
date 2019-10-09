@@ -105,7 +105,7 @@
     $name = $_POST['name'];
     $sqlsearch = "SELECT w.time,w.car_num,u.fname,u.lname,c.phone,c.color,
     w.wash_engin, w.spray_under, w.wash_asphalt, w.chang_fuel, w.clean_dust,
-    c.size,w.level,w.status,w.payment,c.types
+    c.size,w.level,w.status,w.payment,c.type
     FROM user AS `u` INNER JOIN car AS `c` ON u.phone = c.phone 
     INNER JOIN work AS `w` ON c.car_num = w.car_num WHERE w.car_num LIKE '%$name%' ";
     $resultsearch = mysqli_query($connect, $sqlsearch);
@@ -152,7 +152,7 @@
       echo '<td>' . $search["car_num"] . '</td>';
       echo '<td>' . $search['fname'] . ' ' . $search['lname'] . '</td>';
       echo '<td>' . $search['phone'] . '</td>';
-      echo '<td>' .$search['types'] . '/' . $search['color'] . '</td>';
+      echo '<td>' .$search['type'] . '/' . $search['color'] . '</td>';
       echo '<td>' . $works . '</td>';
       echo '<td>' . $level . '</td>';
       echo '<td>' . $search['size'] . '</td>';

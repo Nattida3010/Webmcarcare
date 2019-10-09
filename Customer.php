@@ -10,7 +10,7 @@ $output = '';
 if(isset($_POST["query"]))
 {
 	$search = mysqli_real_escape_string($connect, $_POST["query"]);
-    $query = 'SELECT user.password,user.phone,car.car_num,user.fname,user.lname,car.types,car.color,car.size FROM user 
+    $query = 'SELECT user.password,user.phone,car.car_num,user.fname,user.lname,car.type,car.color,car.size FROM user 
     inner join car on user.phone = car.phone WHERE user.phone = "'.$_POST['query'].'"and user.status = "Customer"';
    
     $result = mysqli_query($connect, $query);
@@ -40,7 +40,7 @@ if(isset($_POST["query"]))
         echo "<tr>";
         echo '<td>' . $user["car_num"] . '</td>';
         echo '<td>' . $user['fname'] . ' ' . $user['lname'] . '</td>';
-        echo '<td>' . $user['types'] . '/' . $user['color'] . '</td>';
+        echo '<td>' . $user['type'] . '/' . $user['color'] . '</td>';
         echo '<td>' . $user['size'] . '</td>';
         echo '<td>' . $user['password'] . '</td>';
         echo "</tr>";

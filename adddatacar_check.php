@@ -3,14 +3,14 @@ include  'config.php';
 session_start();
 $car_num = $_POST['car_num'];
 $phone = $_POST['phone'];
-$types = $_POST['types'];
+$type = $_POST['type'];
 $color = $_POST['color'];
 $size = $_POST['size'];
 
-echo("<script>console.log('PHP: " . $car_num . "" . $phone . "" . $types . "" . $color. "" . $size. "');</script>");
+echo("<script>console.log('PHP: " . $car_num . "" . $phone . "" . $type . "" . $color. "" . $size. "');</script>");
 
-$car = "INSERT INTO car(car_num,color,phone,types,size)
-		VALUES ('$car_num','$color','$phone','$types', '$size')";
+$car = "INSERT INTO car(car_num,color,phone,type,size)
+		VALUES ('$car_num','$color','$phone','$type', '$size')";
 		
 
  $resultcar = mysqli_query($connect,$car);

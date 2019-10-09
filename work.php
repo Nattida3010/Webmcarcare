@@ -96,33 +96,29 @@
                             <input type="checkbox" name="clean_dust" class="custom-control-input" id="defaultCheck5"
                                 value="option5">
                             <label class="custom-control-label" for="defaultCheck5">
-                                
                                 ล้างสีดูดฝุ่น
                             </label>
                         </div>
                     </div>
-                </div>
+                
 
 
-                    <div class="col-sm-2">
-                        <div class="custom-control custom-checkbox mb-3">
+                        <div class="custom-control custom-checkbox mb-2"  >
                             <input type="checkbox" name="wash_asphalt" class="custom-control-input" id="defaultCheck3"
                                 value="option3">
                             <label class="custom-control-label" for="defaultCheck3">
                                 ล้างยางมะตอย
                             </label>
                         </div>
-                    </div>
-
-                    <div class="col-sm-2">
-                        <div class="custom-control custom-checkbox mb-3">
+                    
+                        <div class="custom-control custom-checkbox mb-3" style="margin-left:18%;">
                             <input type="checkbox" name="chang_fuel" class="custom-control-input" id="defaultCheck4"
                                 value="option4">
                             <label class="custom-control-label" for="defaultCheck4">
-                                ถ่ายนำ้มันเครื่อง(มอเตอร์ไซค์)
+                                ถ่ายนำ้มันเครื่อง(มอเตอร์ไซค์) 
                             </label>
                         </div>
-                    </div>
+                        </div>
 
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">ระดับความสกปรก</label>

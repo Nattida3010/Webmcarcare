@@ -67,7 +67,7 @@
 
                 <div class="col-sm-12 mb-2 ">
                     <div class="form-group inputWithIcon">
-                        <input type="text" class="form-control" name="types" placeholder="ประเภทรถ">
+                        <input type="text" class="form-control" name="type" placeholder="ประเภทรถ">
                         <i class="fas fa-user"></i>
                     </div>
                 </div>

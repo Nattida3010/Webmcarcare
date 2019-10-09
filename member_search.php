@@ -10,7 +10,7 @@ $output = '';
 if(isset($_POST["query"]))
 {
 	$search = mysqli_real_escape_string($connect, $_POST["query"]);
-	$query = 'SELECT user.phone,car.car_num,user.fname,user.lname,car.types,car.color,car.size FROM user inner join car on user.phone = car.phone WHERE user.phone = "'.$_POST['query'].'"';
+	$query = 'SELECT user.phone,car.car_num,user.fname,user.lname,car.type,car.color,car.size FROM user inner join car on user.phone = car.phone WHERE user.phone = "'.$_POST['query'].'"';
     $result = mysqli_query($connect, $query);
     if(mysqli_num_rows($result) > 0){
         echo'<div class= "container" > ';
@@ -33,7 +33,7 @@ if(isset($_POST["query"]))
         echo '<td>' . $user["phone"] . '</td>';
         echo '<td>' . $user["car_num"] . '</td>';
         echo '<td>' . $user['fname'] . ' ' . $user['lname'] . '</td>';
-        echo '<td>' . $user['types'] . '/' . $user['color'] . '</td>';
+        echo '<td>' . $user['type'] . '/' . $user['color'] . '</td>';
         echo '<td>' . $user['size'] . '</td>';
         //<form method="post" action="setcarnum_session.php">
        // echo '<td><form method="post" action="setcarnum_session.php"><input type="hidden" name="car_num" value="'. $user["car_num"] .'">';
