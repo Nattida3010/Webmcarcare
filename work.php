@@ -52,7 +52,7 @@
     <div class="container" style="padding-top :60px;">
         <div class="form-group row">
             <div class="col-sm-4">
-                <button type="submit" class="btn btn-info" OnClick="back();">กลับ</button>
+                <button type="submit" class="btn btn-warning" OnClick="back();">กลับ</button>
             </div>
             <div class="col-sm-4">
                 <h3 class="name">เพิ่มรายการ </h3>
@@ -64,7 +64,7 @@
     </div>
 
     <div class="container" style="margin-top :50px;">
-        <div class="jumbotron" id="colorjum">
+        <div class="jumbotron"  style = "color: #212529; background-color: #6CD4F1;">
             <form action='work_check.php' method="post" id="mainform" name='form' enctype="multipart/form-data">
                 <input type="hidden" name="car_num" id="_carnum">
 

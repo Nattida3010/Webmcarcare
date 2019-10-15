@@ -5,7 +5,7 @@ $car_num = $_POST['car_num'];
 $phone = $_POST['phone'];
 $type = $_POST['type'];
 $color = $_POST['color'];
-$size = $_POST['size'];
+$size= $_POST['size'];
 
 echo("<script>console.log('PHP: " . $car_num . "" . $phone . "" . $type . "" . $color. "" . $size. "');</script>");
 

@@ -67,23 +67,51 @@
 
                 <div class="col-sm-12 mb-2 ">
                     <div class="form-group inputWithIcon">
-                        <input type="text" class="form-control" name="type" placeholder="ประเภทรถ">
-                        <i class="fas fa-user"></i>
+                        <!-- <input type="text" class="form-control" name="type" placeholder="ประเภทรถ">
+                        <i class="fas fa-user"></i> -->
+                         <i class="fas fa-car-alt" ></i> 
+                    <select name="type"  class="form-control"  > 
+                    <option value="0">&nbsp;&nbsp;&nbsp;ประเภทรถ</option>
+                        <option value="กะบะ">&nbsp;&nbsp;&nbsp;กระบะ</option>
+                        <option value="เก๋ง">&nbsp;&nbsp;&nbsp;เก๋ง</option>
+                        <option value="Suv">&nbsp;&nbsp;&nbsp;Suv</option>
+                        <option value="มอเตอร์ไซต์">&nbsp;&nbsp;&nbsp;มอเตอร์ไซต์</option>
+                    </select>
+                    </div>
+                </div>
+             
+                <div class="col-sm-12 mb-2 ">
+                    <div class="form-group inputWithIcon">
+                        <!-- <input type="text"feclass="form-control" name="color" placeholder="สีรถ"> -->
+                        <i class="fas fa-palette"></i>
+                        <select name="color"  class="form-control"  > 
+                      <option value="0">&nbsp;&nbsp;&nbsp;สีรถ</option>
+                        <option value="ขาว">&nbsp;&nbsp;&nbsp;ขาว</option>
+                        <option value="ดำ">&nbsp;&nbsp;&nbsp;ดำ</option>
+                        <option value="บรอนซ์เงิน">&nbsp;&nbsp;&nbsp;บรอนซ์เงิน</option>
+                        <option value="บรอนซ์ทอง">&nbsp;&nbsp;&nbsp;บรอนซ์ทอง</option>
+                        <option value="แดง">&nbsp;&nbsp;&nbsp;แดง</option>
+                        <option value="น้ำเงิน">&nbsp;&nbsp;&nbsp;น้ำเงิน</option>
+                        <option value="เขียว">&nbsp;&nbsp;&nbsp;เขียว</option>
+                        <option value="เหลือง">&nbsp;&nbsp;&nbsp;เหลือง</option>
+                        <option value="ม่วง">&nbsp;&nbsp;&nbsp;ม่วง</option>
+                        <option value="ส้ม">&nbsp;&nbsp;&nbsp;ส้ม</option>
+                        <option value="น้ำตาล">&nbsp;&nbsp;&nbsp;น้ำตาล</option>
+                        <option value="ชมพู">&nbsp;&nbsp;&nbsp;ชมพู</option>
+                        <option value="ฟ้า">&nbsp;&nbsp;&nbsp;ฟ้า</option>
+                    </select>
                     </div>
                 </div>
 
-
                 <div class="col-sm-12 mb-2 ">
                     <div class="form-group inputWithIcon">
-                        <input type="text" class="form-control" name="color" placeholder="สีรถ">
-                        <i class="fas fa-user"></i>
-                    </div>
-                </div>
-
-                <div class="col-sm-12 mb-2 ">
-                    <div class="form-group inputWithIcon">
-                        <input type="text" class="form-control" name="size" placeholder="ขนาด">
-                        <i class="fas fa-user"></i>
+                        <i class="fas fa-truck-pickup"></i>
+                        <select name="size"  class="form-control"  > 
+                      <option value="0">&nbsp;&nbsp;&nbsp;ขนาด</option>
+                        <option value="เล็ก">&nbsp;&nbsp;&nbsp;เล็ก</option>
+                        <option value="ใหญ่">&nbsp;&nbsp;&nbsp;ใหญ่</option>
+                
+                    </select>
                     </div>
                 </div>
 

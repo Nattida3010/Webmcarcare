@@ -177,8 +177,8 @@
         else if($user['status']==2)
         echo '<td><button type="button" class="btn btn-success">เรียบร้อย</button></td>';
         if($user['payment']==0)
-        echo '<td><button type="button" value = "1" onclick = "return payment('.$num.','."'".$user["work_id"]."'".')" id = "payment'.$num.'" class="btn btn-outline-warning">รอการชำระ</button></td>';
-        else if($user['payment']==1)
+        echo '<td><button type="button" value = "0" onclick = "return payment('.$num.','."'".$user["work_id"]."'".')" id = "payment'.$num.'" class="btn btn-outline-warning">รอการชำระ</button></td>';
+        else if($user['payment'==1])
         echo '<td><button type="button" class="btn btn-success">เรียบร้อย</button></td>';
         echo "</tr>";
         $num++;

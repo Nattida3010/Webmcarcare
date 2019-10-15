@@ -74,47 +74,56 @@
                     </a>
                 </li>
                 <li class="nav-item dropleft">
-          <a class="nav-link  active" href="#" id="navbarReportDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-user"></i>
-            ข้อมูลของผู้ใช้
-           
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarReportDropdownMenuLink">
-            <a class="dropdown-item" href="reportStaff.php">พนักงาน</a>
-            <a class="dropdown-item" href="reportCustomer.php">ลูกค้า</a>
-          </div>
-        </li>
-        <li class="nav-item dropleft">
-          <a class="nav-link  active" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-cogs"></i>
-            <i class="fas fa-caret-down"></i>
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="addsingup.php">เพิ่มสมาชิก</a>
-            <a class="dropdown-item" href="login.php">ออกจากระบบ</a>
-          </div>
-        </li>
-        </ul>
+                    <a class="nav-link  active" href="#" id="navbarReportDropdownMenuLink" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-user"></i>
+                        ข้อมูลของผู้ใช้
+
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarReportDropdownMenuLink">
+                        <a class="dropdown-item" href="reportStaff.php">พนักงาน</a>
+                        <a class="dropdown-item" href="reportCustomer.php">ลูกค้า</a>
+                    </div>
+                </li>
+                <li class="nav-item dropleft">
+                    <a class="nav-link  active" href="#" id="navbarDropdownMenuLink" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-cogs"></i>
+                        <i class="fas fa-caret-down"></i>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="addsingup.php">เพิ่มสมาชิก</a>
+                        <a class="dropdown-item" href="login.php">ออกจากระบบ</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="form-group row" style="margin-top :30px;margin-left: 90%;">
+        <!-- รายงงาน -->
+        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#rang_ModalCenter"
+            style="margin-right: 5px;">
+            เริ่ม-สิ้นสุด
+        </button>
+        <!-- รายงงาน -->
+        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#dayModalCenter"
+          >
+          รายวัน
+        </button>
+
     </div>
-  </nav>
+
+    <h2 class="name" colspan="10" style="margin-bottom :30px;">รายงานการให้บริการ</h2>
 
 
-<!-- รายงงาน รายวัน-->
-    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter"
-        style="margin-top :30px; margin-left: 87%;">
-        รายวัน
-    </button>
-
-    <h2 class="name" colspan="10" style="margin-bottom :30px;" >รายงานการให้บริการ</h2>
-
-
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <!-- Modal  day-->
+    <div class="modal fade" id="dayModalCenter" tabindex="-1" role="dialog" aria-labelledby="dayModalCenterTitle"
+        aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content ">
                 <div class="modal-header">
-                    <h5 class="modal-title  col-md-3 ml-auto " id="exampleModalLongTitle">ค้นหาวันที่</h5>
+                    <h5 class="modal-title  col-md-3 ml-auto " id="dayModalLongTitle">ค้นหาวันที่</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -129,7 +138,50 @@
                                                 id="datepicker" autocomplete="off" placeholder="เลือกปฏิทิน"> </h4>
                                         <input type="hidden" id="datehidden" name="date"> <br>
                                         <button class="btn btn-outline-warning " style="margin-left: 120%;"
-                                            type="submit" name="submit" value="ค้นหา" onclick="transfer();">ค้นหา</button>
+                                            type="submit" name="submit" value="ค้นหา"
+                                            onclick="transfer();">ค้นหา</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- Modal test-->
+    <div class="modal fade" id="rang_ModalCenter" tabindex="-1" role="dialog" aria-labelledby="rang_ModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <h5 class="modal-title  col-md-3 ml-auto " id="testModalLongTitle">ค้นหาวันที่</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container" style="padding-top :10px;">
+                        <div class="form-group row">
+                            <div class="col-md-20 mb-3 text-center">
+                                <form action="report.php" method="post" name="brw_form" style="width:50%">
+                                    <div class="form-row " style="margin-left: 120px; text-align:center;">
+                                        <label for="from">เริ่ม</label>
+                                        <input type="text" name="from" class="form-control " id="fromdatepicker"
+                                            autocomplete="off" placeholder="เลือกปฏิทิน" style=" margin-bottom :10px;">
+                                        <input type="hidden" id="date_from_hidden" name="from">
+                                        <label for="to">สิ้นสุด</label>
+                                        <input type="text" name="to" class="form-control " id="todatepicker"
+                                            autocomplete="off" placeholder="เลือกปฏิทิน">
+                                        <input type="hidden" id="date_to_hidden" name="to">
+                                        <button class="btn btn-outline-warning "
+                                            style="margin-left: 110%; margin-top :30px;" type="submit" name="submit"
+                                            value="ค้นหา" onclick="transfer_rang();">ค้นหา</button>
+
                                     </div>
                                 </form>
                             </div>
@@ -144,26 +196,50 @@
     </div>
     </div>
 
- 
 
     <?php
 include  'config.php';
-if(isset($_POST['date'])&&$_POST['date']!='Invalid date')
-$date = $_POST['date'];
-else{
+if(isset($_POST['date'])&&$_POST['date']!='Invalid date'){
 
-$date = "";
-
-  
-}
-
-//echo $_POST['date'];
-
+  $date = $_POST['date'];
   $sqlsearch = "SELECT w.time,w.car_num,u.fname,u.lname,c.phone,c.color,
   w.wash_engin, w.spray_under, w.wash_asphalt, w.chang_fuel, w.clean_dust,
   c.size,w.level,w.status,w.payment,c.type
   FROM user AS `u` INNER JOIN car AS `c` ON u.phone = c.phone 
-  INNER JOIN work AS `w` ON c.car_num = w.car_num WHERE w.time LIKE '%$date%'";
+  INNER JOIN work AS `w` ON c.car_num = w.car_num WHERE w.time LIKE '%$date%'"; 
+}
+else{
+
+$date = "";
+$sqlsearch = "SELECT w.time,w.car_num,u.fname,u.lname,c.phone,c.color,
+w.wash_engin, w.spray_under, w.wash_asphalt, w.chang_fuel, w.clean_dust,
+c.size,w.level,w.status,w.payment,c.type
+FROM user AS `u` INNER JOIN car AS `c` ON u.phone = c.phone 
+INNER JOIN work AS `w` ON c.car_num = w.car_num WHERE w.time LIKE '%$date%'"; 
+
+}
+if(isset($_POST['from'])&&$_POST['from']!='Invalid date'&&isset($_POST['to'])&&$_POST['to']!='Invalid date'){
+  $date_from = $_POST['from'];
+  $date_to=$_POST['to'];
+    $sqlsearch = "SELECT w.time,w.car_num,u.fname,u.lname,c.phone,c.color,
+    w.wash_engin, w.spray_under, w.wash_asphalt, w.chang_fuel, w.clean_dust,
+    c.size,w.level,w.status,w.payment,c.type,w.date
+    FROM user AS `u` INNER JOIN car AS `c` ON u.phone = c.phone 
+    INNER JOIN work AS `w` ON c.car_num = w.car_num WHERE w.date BETWEEN '$date_from' and '$date_to'";
+    // echo $date_to;
+}else{
+  
+  $date_from = "";
+  $date_to = "";
+    
+}
+  
+  //echo $_POST['date'];
+  
+  
+
+//echo $_POST['date'];
+
   $resultsearch = mysqli_query($connect, $sqlsearch);
   $numrow = mysqli_num_rows($resultsearch);
   echo '<table table-hover class="table">';
@@ -242,11 +318,42 @@ echo '</table>';
 
 
 ?>
-   <!-- ปฏิทินรายวัน -->
-   <script>
+
+
+
+    <!-- ปฏิทินรายวัน -->
+    <script>
     $(function() {
         $("#datepicker").datepicker();
+        var dateFormat = "mm/dd/yy",
+            from = $("#fromdatepicker")
+            .datepicker({
+                defaultDate: "+1w",
+                changeMonth: true,
+                numberOfMonths: 3
+            })
+            .on("change", function() {
+                to.datepicker("option", "minDate", getDate(this));
+            }),
+            to = $("#todatepicker").datepicker({
+                defaultDate: "+1w",
+                changeMonth: true,
+                numberOfMonths: 3
+            })
+            .on("change", function() {
+                from.datepicker("option", "maxDate", getDate(this));
+            });
 
+        function getDate(element) {
+            var date;
+            try {
+                date = $.datepicker.parseDate(dateFormat, element.value);
+            } catch (error) {
+                date = null;
+            }
+
+            return date;
+        }
     });
     //ฟักงชันเปลี่ยนเวลา
     function transfer() {
@@ -256,8 +363,19 @@ echo '</table>';
         // return transfer;
         console.log(transfer);
     }
-    </script>
 
+    function transfer_rang() {
+
+        var from = document.getElementById("fromdatepicker").value;
+        var to = document.getElementById("todatepicker").value;
+        var date_from_transfer = moment(from, 'MM/DD/YYYY').format("YYYY-MM-DD");
+        var date_to_transfer = moment(to, 'MM/DD/YYYY').format("YYYY-MM-DD");
+        document.getElementById("date_from_hidden").value = date_from_transfer;
+        document.getElementById("date_to_hidden").value = date_to_transfer;
+        // return transfer;
+        console.log(transfer);
+    }
+    </script>
 
 
 </body>
