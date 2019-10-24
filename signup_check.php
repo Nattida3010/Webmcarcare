@@ -18,10 +18,11 @@ $fname= $_POST['fname'];
 $lname = $_POST['lname'];
 $phone = $_POST['phone'];
 $password = $_POST['password'];
+$email = $_POST['email'];
 
 
-$sql = "INSERT INTO user (phone, fname, lname, password, status)
-				VALUES ('$phone','$fname','$lname','$password' ,'Admin')";
+$sql = "INSERT INTO user (phone, fname, lname, password, status,email)
+				VALUES ('$phone','$fname','$lname','$password' ,'Admin','$email')";
 $result = mysqli_query($connect,$sql);
 if($result){
 	echo" <script>

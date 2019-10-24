@@ -1,55 +1,36 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>jQuery UI Datepicker - Select a Date Range</title>
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script>
-  $( function() {
-    var dateFormat = "YYYY-MM-DD",
-      from = $( "#from" )
-        .datepicker({
-          defaultDate: "+1w",
-          changeMonth: true,
-          numberOfMonths: 3
-        })
-        .on( "change", function() {
-          to.datepicker( "option", "minDate", getDate( this ) );
-        }),
-      to = $( "#to" ).datepicker({
-        defaultDate: "+1w",
-        changeMonth: true,
-        numberOfMonths: 3
-      })
-      .on( "change", function() {
-        from.datepicker( "option", "maxDate", getDate( this ) );
-      });
- 
-    function getDate( element ) {
-      var date;
-      try {
-        date = $.datepicker.parseDate( dateFormat, element.value );
-      } catch( error ) {
-        date = null;
-      }
- 
-      return date;
-    }
-  } );
-  
-  </script>
-</head>
-<body>
- 
-<label for="from">From</label>
-<input type="text" id="from" name="from">
-<label for="to">to</label>
-<input type="text" id="to" name="to">
- 
- 
-</body>
-</html>
+<form name="forgot" method="post" action="<?php $_SERVER['PHP_SELF'];?>"> 
+<p><label for="email">Email:</label> 
+<input name="email" type="text" value="" /> 
+</p> 
+<input type="submit" name="submit" value="submit"/> 
+<input type="reset" name="reset" value="reset"/> 
+</form> 
+<?php 
+if(isset($_POST['submit'])) 
+{ 
+    include  'config.php';
+$email = $_POST['email']; 
+
+$sql= "SELECT * FROM user WHERE email  ='.$email.'"; 
+$query = mysql_query($sql); 
+if(!$query)  
+    { 
+    die(mysql_error()); 
+    } 
+if(mysql_affected_rows() != 0) 
+    { 
+$row=mysql_fetch_array($query); 
+$password=$row["password"]; 
+$email=$row["email"]; 
+$subject="Verbazon.net - Password Request"; 
+$header="From: webmaster@verbazon.net"; 
+$content="Your password is ".$password; 
+mail($email, $subject, $content, $header);  
+print "An email containing the password has been sent to you"; 
+    } 
+else  
+    { 
+    echo("no such login in the system. please try again."); 
+    } 
+} 
+?>
