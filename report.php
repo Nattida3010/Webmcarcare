@@ -81,8 +81,8 @@
 
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarReportDropdownMenuLink">
-                        <a class="dropdown-item" href="reportStaff.php">พนักงาน</a>
-                        <a class="dropdown-item" href="reportCustomer.php">ลูกค้า</a>
+                        <option href="reportStaff.php">พนักงาน</a>
+                        <option href="reportCustomer.php">ลูกค้า</a>
                     </div>
                 </li>
                 <li class="nav-item dropleft">
@@ -92,26 +92,28 @@
                         <i class="fas fa-caret-down"></i>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="addsingup.php">เพิ่มสมาชิก</a>
-                        <a class="dropdown-item" href="login.php">ออกจากระบบ</a>
+                        <option href="addsingup.php">เพิ่มสมาชิก</a>
+                        <option href="login.php">ออกจากระบบ</a>
                     </div>
                 </li>
             </ul>
         </div>
     </nav>
 
-    <div class="form-group row" style="margin-top :30px;margin-left: 90%;">
+    <div class="form-group row" style="margin-top :30px;margin-left: 50%;">
         <!-- รายงงาน -->
         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#rang_ModalCenter"
             style="margin-right: 5px;">
             เริ่ม-สิ้นสุด
         </button>
         <!-- รายงงาน -->
-        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#dayModalCenter"
-          >
-          รายวัน
+        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#dayModalCenter">
+            รายวัน
         </button>
-
+        <!--กราฟ -->
+        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#grapModalCenter">
+            กราฟ
+        </button>
     </div>
 
     <h2 class="name" colspan="10" style="margin-bottom :30px;">รายงานการให้บริการ</h2>
@@ -153,7 +155,7 @@
         </div>
     </div>
     </div>
-    <!-- Modal test-->
+    <!-- Modal rang-->
     <div class="modal fade" id="rang_ModalCenter" tabindex="-1" role="dialog" aria-labelledby="rang_ModalCenterTitle"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -195,7 +197,71 @@
         </div>
     </div>
     </div>
+    <!-- Modal grap-->
+    <div class="modal fade" id="grapModalCenter" tabindex="-1" role="dialog" aria-labelledby="grapModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <h5 class="modal-title  col-md-3 ml-auto " id="testModalLongTitle">ค้นหาวันที่</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container" style="padding-top :10px;">
 
+                        <div class="col-md-20 mb-3 text-center">
+                            <form action="grap.php" method="post" name="brw_form" target="popup_name"style="width:50%"onSubmit="window.open('','popup_name','left=0,top=0,width=800,height=600,toolbar=no');">
+                                <div class="form-row " style="margin-left: 120px; text-align:center;">
+                                    <div class="col-sm-12 mb-2 ">
+
+                                        <select name="years" class="form-control">
+                                            <option value="null">&nbsp;&nbsp;&nbsp;ปี</option>
+                                            <option value="2019">&nbsp;&nbsp;&nbsp;2019</option>
+                                            <option value="2020">&nbsp;&nbsp;&nbsp;2020</option>
+                                            <option value="2021">&nbsp;&nbsp;&nbsp;2021</option>
+                                            <option value="2022">&nbsp;&nbsp;&nbsp;2022</option>
+
+                                        </select>
+
+                                    </div>
+
+
+                                    <select name="mount" class="form-control">
+                                        <option value='01' href="#">01</a>
+                                        <option value='02' href="#">02</a>
+                                        <option value='03' href="#">03</a>
+                                        <option value='04' href="#">04</a>
+                                        <option value='05' href="#">05</a>
+                                        <option value='06' href="#">06</a>
+                                        <option value='07' href="#">07</a>
+                                        <option value='08' href="#">08</a>
+                                        <option value='09' href="#">09</a>
+                                        <option value='10' href="#">10</a>
+                                        <option value='11' href="#">11</a>
+                                        <option value='12' href="#">12</a>
+                                    </select>
+
+                              
+
+                                    <button class="btn btn-outline-warning "
+                                        style="margin-left: 110%; margin-top :30px;" type="submit" name="submit"
+                                        value="ค้นหา" >ค้นหา</button>
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
 
     <?php
 include  'config.php';
