@@ -2,36 +2,28 @@
 include  'config.php';
 session_start();
 $years = $_POST['years'];
-echo $years;
+// echo $years;
 $mount = $_POST['mount'];
-echo $mount;
+// echo $mount;
   
 $grap = 'SELECT *,count(date) FROM work where date LIKE "'.$years.'-'.$mount.'%"group by date';
 
 $result = mysqli_query($connect,$grap);
 $numrows = mysqli_num_rows($result);
-echo $numrows;
-//mysqli_close($connect);
+// echo $numrows;
+
 $day = array();
 while($row = $result->fetch_assoc()) {
-    echo '<br>';
-    echo $row["count(date)"];
-    echo $row["date"];
+    // echo '<br>';
+    // echo $row["count(date)"];
+    // echo $row["date"];
 
     $rang = array("y"=>$row["count(date)"], "label"=>$row["date"]);
     array_push($day,$rang);
 }
 //print_r($day);
-$dataPoints = array(
-	array("y" => 25, "label" => "Sunday"),
-	array("y" => 15, "label" => "Monday"),
-	array("y" => 25, "label" => "Tuesday"),
-	array("y" => 5, "label" => "Wednesday"),
-	array("y" => 10, "label" => "Thursday"),
-	array("y" => 0, "label" => "Friday"),
-	array("y" => 20, "label" => "Saturday")
-);
 
+mysqli_close($connect);
 ?>
 <html>
 <head>
@@ -40,13 +32,14 @@ window.onload = function () {
  
 var chart = new CanvasJS.Chart("chartContainer", {
 	title: {
-		text: "Push-ups Over a Week"
+		text: "จำนวนรถของปี <?php echo "$years  เดือน  $mount" ; ?> "
 	},
 	axisY: {
-		title: "Number of Push-ups"
+		title: "จำนวนรถในแต่ละวัน "
 	},
 	data: [{
 		type: "line",
+		yValueFormatString: "#,##0.## คัน",
 		dataPoints: <?php echo json_encode($day, JSON_NUMERIC_CHECK); ?>
 	}]
 });

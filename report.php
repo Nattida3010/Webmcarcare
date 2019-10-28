@@ -42,7 +42,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-info" id="tab">
+<nav class="navbar navbar-expand-lg navbar-dark bg-info" id="tab">
         <a class="navbar-brand" href="home.php">
             <img src="image/font-white1.2.gif" alt="logo" class="home_logo">
         </a>
@@ -56,8 +56,8 @@
             <?php
       echo '<form action="search.php" method="post" name="brw_form" style="width:50%">';
       echo ' <div class="form-row ml-sm-5">';
-      echo '<input class="form-control mr-sm-3" id="myInput" type="text" placeholder="กรุณากรอกหมายเลขทะเบียนรถ" name="name">';
-      echo ' <button class="btn btn-outline-light" id = "search_date" type="submit" name="submit" value = "ค้นหา">ค้นหา</button>';
+      echo '<input class="form-control mr-sm-3" id="myInput" type="text" placeholder="กรุณากรอกหมายเลขทะเบียนรถ" name="name" autocomplete="off">';
+      echo ' <button class="btn btn-outline-light" type="submit" name="submit" value = "ค้นหา">ค้นหา</button>';
       echo ' </div>';
       echo '</form>';
       ?>
@@ -67,7 +67,7 @@
     </button> -->
 
             <ul class="navbar-nav text-uppercase" id="ml" style="margin-left: 25%;">
-                <li class="nav-item mr-sm-3">
+                <li class="nav-item mr-sm-3" style="color: white;">
                     <a class="nav-link" href="report.php">
                         <i class="fas fa-file-alt"></i>
                         รายงาน
@@ -81,8 +81,8 @@
 
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarReportDropdownMenuLink">
-                        <option href="reportStaff.php">พนักงาน</a>
-                        <option href="reportCustomer.php">ลูกค้า</a>
+                        <a class="dropdown-item" href="reportStaff.php">พนักงาน</a>
+                        <a class="dropdown-item" href="reportCustomer.php">ลูกค้า</a>
                     </div>
                 </li>
                 <li class="nav-item dropleft">
@@ -92,26 +92,28 @@
                         <i class="fas fa-caret-down"></i>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <option href="addsingup.php">เพิ่มสมาชิก</a>
-                        <option href="login.php">ออกจากระบบ</a>
+                        <a class="dropdown-item" href="addsingup.php">เพิ่มสมาชิก</a>
+                        <a class="dropdown-item" href="login.php">ออกจากระบบ</a>
                     </div>
                 </li>
             </ul>
         </div>
     </nav>
 
-    <div class="form-group row" style="margin-top :30px;margin-left: 50%;">
+    <div class="form-group row" style="margin-top :30px;margin-left: 80%;">
         <!-- รายงงาน -->
         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#rang_ModalCenter"
             style="margin-right: 5px;">
             เริ่ม-สิ้นสุด
         </button>
         <!-- รายงงาน -->
-        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#dayModalCenter">
+        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#dayModalCenter"
+            style="margin-right: 5px;">
             รายวัน
         </button>
         <!--กราฟ -->
-        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#grapModalCenter">
+        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#grapModalCenter"
+            style="margin-right: 5px;">
             กราฟ
         </button>
     </div>
@@ -154,7 +156,7 @@
             </div>
         </div>
     </div>
-    </div>
+
     <!-- Modal rang-->
     <div class="modal fade" id="rang_ModalCenter" tabindex="-1" role="dialog" aria-labelledby="rang_ModalCenterTitle"
         aria-hidden="true">
@@ -196,7 +198,7 @@
             </div>
         </div>
     </div>
-    </div>
+
     <!-- Modal grap-->
     <div class="modal fade" id="grapModalCenter" tabindex="-1" role="dialog" aria-labelledby="grapModalCenterTitle"
         aria-hidden="true">
@@ -211,12 +213,12 @@
                 <div class="modal-body">
                     <div class="container" style="padding-top :10px;">
 
-                        <div class="col-md-20 mb-3 text-center">
-                            <form action="grap.php" method="post" name="brw_form" target="popup_name"style="width:50%"onSubmit="window.open('','popup_name','left=0,top=0,width=800,height=600,toolbar=no');">
-                                <div class="form-row " style="margin-left: 120px; text-align:center;">
-                                    <div class="col-sm-12 mb-2 ">
-
-                                        <select name="years" class="form-control">
+                    <div class="form-row " style="margin-left: 120px; text-align:center;">
+                            <form action="grap.php" method="post" name="brw_form" target="popup_name" style="width:50%"
+                                onSubmit="window.open('','popup_name','left=0,top=0,width=800,height=600,toolbar=no');">
+                             
+                                <div class="text-center">
+                                        <select name="years" class="form-control" style="width: 80%;margin-top :30px; ">
                                             <option value="null">&nbsp;&nbsp;&nbsp;ปี</option>
                                             <option value="2019">&nbsp;&nbsp;&nbsp;2019</option>
                                             <option value="2020">&nbsp;&nbsp;&nbsp;2020</option>
@@ -224,11 +226,8 @@
                                             <option value="2022">&nbsp;&nbsp;&nbsp;2022</option>
 
                                         </select>
-
-                                    </div>
-
-
-                                    <select name="mount" class="form-control">
+                                    <select name="mount" class="form-control" style="width: 80%;margin-top :30px;">
+                                        <option value='null' href="#">วันที่</a>
                                         <option value='01' href="#">01</a>
                                         <option value='02' href="#">02</a>
                                         <option value='03' href="#">03</a>
@@ -242,27 +241,25 @@
                                         <option value='11' href="#">11</a>
                                         <option value='12' href="#">12</a>
                                     </select>
-
-                              
+                                  
+</div>
 
                                     <button class="btn btn-outline-warning "
                                         style="margin-left: 110%; margin-top :30px;" type="submit" name="submit"
-                                        value="ค้นหา" >ค้นหา</button>
+                                        value="ค้นหา">ค้นหา</button>
 
-                                </div>
+                                    
                             </form>
                         </div>
                     </div>
-                </div>
+                </div>  <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
+          
         </div>
     </div>
-    </div>
-    </div>
-
+ 
     <?php
 include  'config.php';
 if(isset($_POST['date'])&&$_POST['date']!='Invalid date'){
@@ -355,8 +352,10 @@ if(isset($_POST['from'])&&$_POST['from']!='Invalid date'&&isset($_POST['to'])&&$
     echo '<td>' . $level . '</td>';
     echo '<td>' . $search['size'] . '</td>';
     if($search['status']==0)
-      echo '<td><button type="button"  value = "1" onclick = "status('."'".$search["car_num"]."'".')" class="btn btn-outline-warning">กำลังดำเนิการ</button></td>';
+      echo '<td><button type="button"  value = "0" onclick = "status('."'".$search["car_num"]."'".')" class="btn btn-outline-info">รอดำเนิการ</button></td>';
       else if($search['status']==1)
+      echo '<td><button type="button"  value = "1" onclick = "status('."'".$search["car_num"]."'".')"  class="btn btn-outline-warning">กำลังดำเนิการ</button></td>';
+      else if($search['status']==2)
       echo '<td><button type="button" class="btn btn-success">เรียบร้อย</button></td>';
       if($search['payment']==0)
       echo '<td><button type="button" value = "1" onclick = "payment('."'".$search["car_num"]."'".')"  class="btn btn-outline-warning">รอการชำระ</button></td>';
@@ -365,7 +364,7 @@ if(isset($_POST['from'])&&$_POST['from']!='Invalid date'&&isset($_POST['to'])&&$
       echo "</tr>";
     echo "</tr>";
   }
- 
+  
 }
 else{
   echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>';
