@@ -227,7 +227,7 @@
 
                                         </select>
                                     <select name="mount" class="form-control" style="width: 80%;margin-top :30px;">
-                                        <option value='null' href="#">วันที่</a>
+                                        <option value='null' href="#">เดือน</a>
                                         <option value='01' href="#">01</a>
                                         <option value='02' href="#">02</a>
                                         <option value='03' href="#">03</a>
