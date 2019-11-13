@@ -6,7 +6,7 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <meta http-equiv="refresh" content="30"/>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -68,7 +68,7 @@
 
             <ul class="navbar-nav text-uppercase" id="ml" style="margin-left: 25%;">
                 <li class="nav-item mr-sm-3" style="color: white;">
-                    <a class="nav-link" href="report.php">
+                    <a class="nav-link active" href="report.php">
                         <i class="fas fa-file-alt"></i>
                         รายงาน
                     </a>
@@ -357,6 +357,10 @@ if(isset($_POST['from'])&&$_POST['from']!='Invalid date'&&isset($_POST['to'])&&$
       echo '<td><button type="button"  value = "1" onclick = "status('."'".$search["car_num"]."'".')"  class="btn btn-outline-warning">กำลังดำเนิการ</button></td>';
       else if($search['status']==2)
       echo '<td><button type="button" class="btn btn-success">เรียบร้อย</button></td>';
+      else if($search['status']==3)
+        echo '<td><button type="button"  class="btn btn-danger">ยกเลิก</button></td>';
+        else if($search['status']==4)
+        echo '<td><button type="button"  class="btn btn-outline-danger">เลื่อนเวลา</butt></td>';
       if($search['payment']==0)
       echo '<td><button type="button" value = "1" onclick = "payment('."'".$search["car_num"]."'".')"  class="btn btn-outline-warning">รอการชำระ</button></td>';
       else if($search['payment']==1)

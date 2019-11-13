@@ -1,11 +1,11 @@
 <?php
 include  'config.php';
-$payment = $_POST['payment '];
+$payment = $_POST['payment'];
 $carnum = $_POST['carnum'];
 
 
 // echo "<script>console.log('".$status."' );console.log('".$carnum."')</script>";
-$sql = 'UPDATE work SET payment   = 1 WHERE work_id  = "'.$carnum.'"';
+$sql = 'UPDATE work SET payment   = "'.$payment.'" WHERE work_id  = "'.$carnum.'"';
 
 $result = mysqli_query($connect,$sql);
 

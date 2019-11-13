@@ -6,7 +6,7 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <!-- <meta http-equiv="refresh" content="30"/> -->
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -64,8 +64,8 @@
     </button> -->
 
             <ul class="navbar-nav text-uppercase" id="ml" style="margin-left: 25%;">
-                <li class="nav-item mr-sm-3" style="color: white;">
-                    <a class="nav-link" href="report.php">
+                <li class="nav-item dropleft" >
+                    <a class="nav-link  active" href="report.php">
                         <i class="fas fa-file-alt"></i>
                         รายงาน
                     </a>
@@ -99,6 +99,7 @@
 
 
     <div class="container" style="margin-top :80px;">
+
         <div class="headtopic"></div>
         <h3 class="name">รายการให้บริการรถ</h3>
         <div id="clockbox"></div>
@@ -175,11 +176,15 @@
         else if($user['status']==1)
         echo '<td><button type="button"  value = "1" onclick = "return status('.$num.','."'".$user["work_id"]."'".')" id = "status'.$num.'" class="btn btn-outline-warning">กำลังดำเนิการ</button></td>';
         else if($user['status']==2)
-        echo '<td><button type="button" class="btn btn-success">เรียบร้อย</button></td>';
+        echo '<td><button type="button"  value = "2" onclick = "return status('.$num.','."'".$user["work_id"]."'".')" id = "status'.$num.'" class="btn btn-success">เรียบร้อย</button></td>';
+        else if($user['status']==3)
+        echo '<td><button type="button" value = "3" onclick = "return status('.$num.','."'".$user["work_id"]."'".')" id = "status'.$num.'" class="btn btn-danger">ยกเลิก</button></td>';
+        else if($user['status']==4)
+        echo '<td><button type="button"  value = "4" onclick = "return status('.$num.','."'".$user["work_id"]."'".')" id = "status'.$num.'" class="btn btn-outline-danger">เลื่อนเวลา</butt></td>';
         if($user['payment']==0)
         echo '<td><button type="button" value = "0" onclick = "return payment('.$num.','."'".$user["work_id"]."'".')" id = "payment'.$num.'" class="btn btn-outline-warning">รอการชำระ</button></td>';
         else if($user['payment'==1])
-        echo '<td><button type="button" class="btn btn-success">เรียบร้อย</button></td>';
+        echo '<td><button type="button" value = "1" onclick = "return payment('.$num.','."'".$user["work_id"]."'".')" id = "payment'.$num.'" class="btn btn-success">เรียบร้อย</button></td>';
         echo "</tr>";
         $num++;
         
@@ -217,6 +222,48 @@ function walkin() {
 
 <script>
 function status(work, carnum) {
+    var payment = $("#payment" + work).val();
+    var status = $("#status" + work).val();
+                console.log(work);
+                console.log(status);
+    if(status == 0) {
+                    console.log(status);
+                    swal({
+            title: "คุณแน่ใจหรือไหม?",
+            text: "ต้องการเปลี่ยนสถานะการบริการ",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+        .then((willDelete) => {
+            if (willDelete) {
+                swal("เปลี่ยนสถานะสำเร็จ", {
+                    icon: "success",
+                });
+               
+
+                $.post("status.php", {
+                        status: 1 ,
+                        carnum: carnum
+                    },
+                    function(data) {
+                        console.log(data);
+                        $('#status' + work).attr('class', "btn btn-outline-warning")
+                        $('#status' + work).html("กำลังดำเนินการ")
+                        $('#status' + work).val("1")
+                        //alert('สมัครสมาชิกสำเร็จ');
+                    });
+
+            } else {
+                swal("ยกเลิกการเปลียนสถานะแล้ว");
+            }
+        });
+
+
+                }
+                else if(status == 1) {
+                    console.log(status);
+               
     swal({
             title: "คุณแน่ใจหรือไหม?",
             text: "ต้องการเปลี่ยนสถานะการบริการ",
@@ -229,17 +276,17 @@ function status(work, carnum) {
                 swal("เปลี่ยนสถานะสำเร็จ", {
                     icon: "success",
                 });
-                var status = $("#status" + work).val();
-                console.log(work);
+               
 
                 $.post("status.php", {
-                        status: status,
+                        status: 2,
                         carnum: carnum
                     },
                     function(data) {
                         console.log(data);
-                        $('#status' + work).attr('style', "background-color: green")
+                        $('#status' + work).attr('class', "btn btn-success")
                         $('#status' + work).html("เรียบร้อย")
+                        $('#status' + work).val("2")
                         //alert('สมัครสมาชิกสำเร็จ');
                     });
 
@@ -248,13 +295,7 @@ function status(work, carnum) {
             }
         });
 
-
-
-
-}
-</script>
-<script>
-function payment(work, carnum) {
+ }  else if (status == 3) {
     swal({
             title: "คุณแน่ใจหรือไหม",
             text: "ต้องการเปลี่ยนสถานะการจ่ายเงิน",
@@ -267,8 +308,7 @@ function payment(work, carnum) {
                 swal("เปลี่ยนสถานะสำเร็จ", {
                     icon: "success",
                 });
-                var payment = $("#payment" + work).val();
-                console.log(work);
+            
                 $.post("payment.php", {
                         payment: payment,
                         carnum: carnum
@@ -276,8 +316,46 @@ function payment(work, carnum) {
                     function(data) {
                         console.log(data);
 
-                        $('#payment' + work).attr('style', "background-color: green")
+                        $('#status' + work).attr('class', "btn btn-danger")
+                        $('#payment' + work).html("ยกเลิก")
+                    });
+
+            } else {
+                swal("ยกเลิกการเปลียนสถานะแล้ว");
+            }
+        });
+ }
+}
+
+
+</script>
+
+<script>
+function payment(work, carnum) {
+    var payment = $("#payment" + work).val();
+                console.log(work);
+if(payment == 0) { 
+    swal({
+            title: "คุณแน่ใจหรือไหม",
+            text: "ต้องการเปลี่ยนสถานะการจ่ายเงิน",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+        .then((willDelete) => {
+            if (willDelete) {
+                swal("เปลี่ยนสถานะสำเร็จ", {
+                    icon: "success",
+                });
+               
+                $.post("payment.php", {
+                        payment: 1,
+                        carnum: carnum
+                    },
+                    function(data) {
+                        $('#payment' + work).attr('class', "btn btn-success")
                         $('#payment' + work).html("เรียบร้อย")
+                        $('#payment' + work).val("1")
                     });
 
             } else {
@@ -287,7 +365,7 @@ function payment(work, carnum) {
     //
 
 
-
+}
 }
 </script>
 

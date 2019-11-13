@@ -41,26 +41,18 @@
                 <button type="submit" class="btn btn-info" onclick="back()">กลับ</button>
             </div>
             <div class="col-md-12 mb-3 text-center">
-                <h3 class="name">เพิ่มสมาชิกใหม่</h3>
+                <h3 class="name">เพิ่มสมาชิกใหม่</h3><br>
+                <h6 class="name"> กรุณากรอก  ชื่อ - นามสกุล </h6>
             </div>
         </div>
     </div>
 
     <form action='addcustomer_chech.php' method='post' id="mainform" name='form' enctype="multipart/form-data">
-        <div class="container" style="margin-top :30px;">
+    <div class="container" style="margin-top :30px;">
             <div class="row text-center">
-
                 <div class="col-sm-12 mb-2 ">
                     <div class="form-group inputWithIcon">
-                        <input type="text" class="form-control" name="fname" placeholder="ชื่อ" required
-                            pattern="^[ก-๏]+$"  autocomplete="off">
-                        <i class="fas fa-user"></i>
-                    </div>
-                </div>
-
-                <div class="col-sm-12 mb-2 ">
-                    <div class="form-group inputWithIcon">
-                        <input type="text" class="form-control" name="lname" placeholder="นามสกุล" required
+                        <input type="text" class="form-control" name="fname" id="inputname" placeholder="ชื่อ" required
                             pattern="^[ก-๏]+$" autocomplete="off">
                         <i class="fas fa-user"></i>
                     </div>
@@ -68,16 +60,44 @@
 
                 <div class="col-sm-12 mb-2 ">
                     <div class="form-group inputWithIcon">
-                        <input type="text" class="form-control" name="phone" value!=Phone placeholder="เบอร์โทรศัพท์"
-                            required pattern="^[0-9]+$" autocomplete="off">
+                        <input type="text" class="form-control" name="lname" id="inputlastname" placeholder="นามสกุล"
+                            required pattern="^[ก-๏]+$" autocomplete="off">
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row text-center mb-2">
+                <div class="col-4">
+                    <hr width=80% size=5px;>
+                </div>
+                <div class="col-4">
+                    กรุณากรอก อีเมล์-เบอร์โทรศัพท์-รหัสผ่าน
+                </div>
+                <div class="col-4">
+                    <hr width=100% size=5px;>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-sm-12 mb-2 ">
+                    <div class="form-group inputWithIcon">
+                        <input type="text" class="form-control" name="email" id="email" value!=email
+                            placeholder="อีเมล์" required pattern="^[_\.0-9a-zA-Z-]+@([0-9a-zA-Z][0-9a-zA-Z-]+\.)+[a-zA-Z]+$" autocomplete="off">
                         <i class="fas fa-mobile-alt"></i>
                     </div>
                 </div>
-
-
+           
                 <div class="col-sm-12 mb-2 ">
                     <div class="form-group inputWithIcon">
-                        <input type="password" class="form-control" name="password" placeholder="รหัสผ่าน">
+                        <input type="text" class="form-control" name="phone" id="phone" value!=phone
+                            placeholder="เบอร์โทรศัพท์" required pattern="/^[0-9]{10}+$/" autocomplete="off">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                </div>
+                <div class="col-sm-12 mb-3">
+                    <div class="form-group inputWithIcon">
+                        <input type="password" class="form-control" name="password" id="password" placeholder="รหัสผ่าน"
+                            required autocomplete="off">
                         <i class="fas fa-key"></i>
                     </div>
                 </div>
@@ -88,6 +108,16 @@
 
 
             </div>
+
+            <!-- <div class="mt-2">
+                <div class="d-flex justify-content-center links">
+                    <button type="button" name="button" class="btn turnback_btn" OnClick="Back();" class="ml-2">กลับ</button>
+                </div>
+            </div> -->
+
+       
+
+              
         </div>
 
     </form>

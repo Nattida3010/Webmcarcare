@@ -88,7 +88,7 @@ try {
     $strRawMessage .= "MIME-Version: 1.0\r\n";
     $strRawMessage .= "Content-Type: text/html; charset=utf-8\r\n";
     $strRawMessage .= "Content-Transfer-Encoding: base64" . "\r\n\r\n";
-    $strRawMessage .= "A simple verification mail!" . "\r\n";
+    $strRawMessage .= "อีนาย" . "\r\n";
     $mime = rtrim(strtr(base64_encode($strRawMessage), '+/', '-_'), '=');
     $msg = new Google_Service_Gmail_Message();
     $msg->setRaw($mime);
