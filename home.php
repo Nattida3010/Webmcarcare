@@ -41,7 +41,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-info" id="tab">
         <a class="navbar-brand" href="home.php">
-            <img src="image/font-white1.2.gif" alt="logo" class="home_logo">
+            <img src="image/font-white1.2.png" alt="logo" class="home_logo">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

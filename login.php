@@ -21,18 +21,18 @@
 
 <body>
     <div class="container">
-        <div class="row text-center">
+        <div class="row text-center" >
             <div class="col-md-12 mb-5 text-center">
-                <img src="image/font-white1.2.gif" alt="Mcarcare">
+                <img src="image/MM.png" alt="Mcarcare" width="600" height = "150" style="margin-top: 5%;">
                 <br>
                 <br>
             </div>
         </div>
 
         <form action="login_check.php" method="post">
-            <div class="row text-center">
-                <div class="col-sm-12 mb-3 ">
-                    <div class="form-group">
+            <div class="row text-center" >
+                <div class="col-sm-12 mb-3 " >
+                    <div class="form-group" >
                         <div class="form-group inputWithIcon">
                             <input type="text" class="form-control" name="phone" id="phone" aria-describedby="helpId"
                                 placeholder="เบอร์โทรศัพท์ผู้ใช้" autocomplete="off">

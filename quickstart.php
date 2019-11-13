@@ -64,8 +64,6 @@ function getClient()
 
 // Get the API client and construct the service object.
 $client = getClient();
-
-
 $service = new Google_Service_Gmail($client);
 
 // Print the labels in the user's account.
@@ -82,8 +80,8 @@ $results = $service->users_labels->listUsersLabels($user);
 // }
   
 try {
-    $strSubject = "Mail from PHP Web mail";
-    $strRawMessage = "From: Me<Puinun.2015@gmail.com>\r\n";
+    $strSubject = " Test 2 Mail from PHP Web mail";
+    $strRawMessage = "From: Mcarcare<Puinun.2015@gmail.com>\r\n";
     $strRawMessage .= "To: manoj<znunun@gmail.com>\r\n";
     $strRawMessage .= "CC: rammanoj<znunun@gmail.com>\r\n";
     $strRawMessage .= "Subject: =?utf-8?B?" . base64_encode($strSubject) .     "?=\r\n";
