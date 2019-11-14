@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php
+session_start();
+?>
 <html>
 
 <head>
@@ -53,7 +56,8 @@
                 <div class="col-sm-12 mb-2 ">
                     <div class="form-group inputWithIcon">
                         <input type="text" class="form-control" name="phone" placeholder="เบอร์โทรศัพท์" required
-                            pattern="^[0-9]+$">
+                            pattern="^[0-9]+$" value = "<?php echo  $_SESSION["phone"];?>" >
+                            
                         <i class="fas fa-phone-volume"></i>
                     </div>
                 </div>

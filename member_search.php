@@ -33,8 +33,9 @@ if(isset($_POST["query"]))
         $size = 'เล็ก ';
        if ($user['size'] == '2')
         $size = 'ใหญ่ ';
+        $_SESSION["phone"] = $user["phone"];
         echo "<tr>";
-        echo '<td>' . $user["phone"] . '</td>';
+        echo '<td>' . $user["phone"] . '</td>';  
         echo '<td>' . $user["car_num"] . '</td>';
         echo '<td>' . $user['fname'] . ' ' . $user['lname'] . '</td>';
         echo '<td>' . $user['type'] . '/' . $user['color'] . '</td>';
@@ -44,15 +45,18 @@ if(isset($_POST["query"]))
       //  echo '<button class="btn btn btn-success"  type="submit" name="carnum1" id="carnum1" OnClick="order(this);" class="ml-2" >เพิ่มรายการบริการ</button></td></form>';
         
        echo '<td><button class="btn btn btn-success"  type="submit" value = "'. $user["car_num"] .'" name="carnum1" id="carnum1" OnClick="order(this);" class="ml-2" >เพิ่มรายการบริการ</button></td>';
-        
         echo "</tr>";
+        
         // $_SESSION['car_selected'] = $user["car_num"];
 	
     // }
+    
     }
+    
 
     // echo $output;
     echo "</table>";
+    
     echo '<center><button class="btn btn btn-primary" type="button" name="button"  OnClick="add();" class="ml-2" >เพิ่มข้อมูลรถ</button></center>';
     
     }else
@@ -60,6 +64,7 @@ if(isset($_POST["query"]))
      echo '<div class="colors"><center>ไม่พบข้อมูล กรุณาสมาชิก  </center></div>';
  
     }
+    
 }
 else
 {

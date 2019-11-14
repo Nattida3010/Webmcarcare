@@ -41,6 +41,7 @@
             <div class="col-sm-12 mb-2 ">
             
                     <?php
+                    
                     // echo '<form action="member_check.php" method="post" name="brw_form" >';
                      echo '<form  method="post" name="brw_form">';
                     echo ' <div class="form-group inputWithIcon">';
@@ -53,6 +54,8 @@
     
                     echo '</div>';
                     echo '</form>';
+
+                    
                     ?>
                     
             </div>
@@ -82,7 +85,8 @@ $(document).ready(function(){
 		var search = $(this).val();
 		if(search != '')
 		{
-			load_data(search);
+            load_data(search);
+            
 		}
 		else
 		{
