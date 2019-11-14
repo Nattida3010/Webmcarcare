@@ -131,7 +131,7 @@
     <script language="javascript">
     function back() {
         console.log("true");
-        window.location.href = ("login.php");
+        window.location.href = ("home.php");
 
     }
     </script>

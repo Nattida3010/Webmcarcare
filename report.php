@@ -352,17 +352,17 @@ if(isset($_POST['from'])&&$_POST['from']!='Invalid date'&&isset($_POST['to'])&&$
     echo '<td>' . $level . '</td>';
     echo '<td>' . $search['size'] . '</td>';
     if($search['status']==0)
-      echo '<td><button type="button"  value = "0" onclick = "status('."'".$search["car_num"]."'".')" class="btn btn-outline-info">รอดำเนิการ</button></td>';
+      echo '<td><button type="button"  class="btn btn-outline-secondary">รอดำเนิการ</button></td>';
       else if($search['status']==1)
-      echo '<td><button type="button"  value = "1" onclick = "status('."'".$search["car_num"]."'".')"  class="btn btn-outline-warning">กำลังดำเนิการ</button></td>';
+      echo '<td><button type="button"    class="btn btn-outline-info">กำลังดำเนิการ</button></td>';
       else if($search['status']==2)
       echo '<td><button type="button" class="btn btn-success">เรียบร้อย</button></td>';
       else if($search['status']==3)
         echo '<td><button type="button"  class="btn btn-danger">ยกเลิก</button></td>';
         else if($search['status']==4)
-        echo '<td><button type="button"  class="btn btn-outline-danger">เลื่อนเวลา</butt></td>';
+        echo '<td><button type="button"  class="btn btn-outline-warning">เลื่อนเวลา</butt></td>';
       if($search['payment']==0)
-      echo '<td><button type="button" value = "1" onclick = "payment('."'".$search["car_num"]."'".')"  class="btn btn-outline-warning">รอการชำระ</button></td>';
+      echo '<td><button type="button"  class="btn btn-outline-warning">รอการชำระ</button></td>';
       else if($search['payment']==1)
       echo '<td><button type="button" class="btn btn-success">เรียบร้อย</button></td>';
       echo "</tr>";

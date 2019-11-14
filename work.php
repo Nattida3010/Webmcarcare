@@ -55,9 +55,9 @@
                 <button type="submit" class="btn btn-warning" OnClick="back();">กลับ</button>
             </div>
             <div class="col-sm-4">
-                <h3 class="name">เพิ่มรายการ </h3>
-                <h4>
-                    <div class="d-flex justify-content-center" id="_carnum-label"></div>
+                <h3 class="name">เพิ่มรายการ </h3> 
+                <h4> 
+                    <div class="d-flex justify-content-center" id="_carnum-label">เลขทะเบียนรถ     </div>
                 </h4>
             </div>
         </div>
