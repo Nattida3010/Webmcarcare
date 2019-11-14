@@ -335,6 +335,10 @@ if(isset($_POST['from'])&&$_POST['from']!='Invalid date'&&isset($_POST['to'])&&$
       $works .= 'ล้างยางมะตอย ';
     if ($search['chang_fuel'] == '1')
       $works .= 'ถ่ายน้ำเครื่อง ';
+      if ($search['size'] == '1')
+      $size = 'เล็ก ';
+     if ($search['size'] == '2')
+      $size = 'ใหญ่ ';
     if ($search['level'] == '1')
       $level = 'น้อย';
     else if ($search['level'] == '2')
@@ -350,7 +354,7 @@ if(isset($_POST['from'])&&$_POST['from']!='Invalid date'&&isset($_POST['to'])&&$
     echo '<td>' .$search['type'] . '/' . $search['color'] . '</td>';
     echo '<td>' . $works . '</td>';
     echo '<td>' . $level . '</td>';
-    echo '<td>' . $search['size'] . '</td>';
+    echo '<td>' . $size. '</td>';
     if($search['status']==0)
       echo '<td><button type="button"  class="btn btn-outline-secondary">รอดำเนิการ</button></td>';
       else if($search['status']==1)

@@ -3,6 +3,7 @@
 include  'config.php';
 session_start();
 
+
 $output = '';
 
 
@@ -28,13 +29,16 @@ if(isset($_POST["query"]))
 
 
 	 while($user = mysqli_fetch_array($result))
-	{
+	{ if ($user['size'] == '1')
+        $size = 'เล็ก ';
+       if ($user['size'] == '2')
+        $size = 'ใหญ่ ';
         echo "<tr>";
         echo '<td>' . $user["phone"] . '</td>';
         echo '<td>' . $user["car_num"] . '</td>';
         echo '<td>' . $user['fname'] . ' ' . $user['lname'] . '</td>';
         echo '<td>' . $user['type'] . '/' . $user['color'] . '</td>';
-        echo '<td>' . $user['size'] . '</td>';
+        echo '<td>' . $size. '</td>';
         //<form method="post" action="setcarnum_session.php">
        // echo '<td><form method="post" action="setcarnum_session.php"><input type="hidden" name="car_num" value="'. $user["car_num"] .'">';
       //  echo '<button class="btn btn btn-success"  type="submit" name="carnum1" id="carnum1" OnClick="order(this);" class="ml-2" >เพิ่มรายการบริการ</button></td></form>';

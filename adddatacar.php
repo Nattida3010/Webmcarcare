@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<?php
+session_start();
+?>
+
 <html>
 
 <head>
@@ -53,7 +57,8 @@
                 <div class="col-sm-12 mb-2 ">
                     <div class="form-group inputWithIcon">
                         <input type="text" class="form-control" name="phone" placeholder="เบอร์โทรศัพท์" required
-                            pattern="^[0-9]+$">
+                            pattern="^[0-9]+$" value = "<?php echo $_SESSION['phone'];?>"  > 
+                           
                         <i class="fas fa-phone-volume"></i>
                     </div>
                 </div>
@@ -108,8 +113,8 @@
                         <i class="fas fa-truck-pickup"></i>
                         <select name="size"  class="form-control"  > 
                       <option value="0">&nbsp;&nbsp;&nbsp;ขนาด</option>
-                        <option value="เล็ก">&nbsp;&nbsp;&nbsp;เล็ก</option>
-                        <option value="ใหญ่">&nbsp;&nbsp;&nbsp;ใหญ่</option>
+                        <option value="1">&nbsp;&nbsp;&nbsp;เล็ก</option>
+                        <option value="2">&nbsp;&nbsp;&nbsp;ใหญ่</option>
                 
                     </select>
                     </div>

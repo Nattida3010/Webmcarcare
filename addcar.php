@@ -108,8 +108,8 @@
                         <i class="fas fa-truck-pickup"></i>
                         <select name="size"  class="form-control"  > 
                       <option value="0">&nbsp;&nbsp;&nbsp;ขนาด</option>
-                        <option value="เล็ก">&nbsp;&nbsp;&nbsp;เล็ก</option>
-                        <option value="ใหญ่">&nbsp;&nbsp;&nbsp;ใหญ่</option>
+                        <option  value="1" >&nbsp;&nbsp;&nbsp;เล็ก</option>
+                        <option  value="2">&nbsp;&nbsp;&nbsp;ใหญ่</option>
                 
                     </select>
                     </div>

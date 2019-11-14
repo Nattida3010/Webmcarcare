@@ -20,6 +20,7 @@ $resultuser = mysqli_query($connect,$user);
 if($resultuser){
     
     echo "<script>window.location = 'adddatacar.php'</script>";
+    $_SESSION['phone'] = $phone;
 }else{
     
     

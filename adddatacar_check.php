@@ -9,7 +9,7 @@ $size= $_POST['size'];
 
 echo("<script>console.log('PHP: " . $car_num . "" . $phone . "" . $type . "" . $color. "" . $size. "');</script>");
 
-$car = "INSERT INTO car(car_num,color,phone,type,size)
+$car = "INSERT INTO car (car_num,color,phone,type,size)
 		VALUES ('$car_num','$color','$phone','$type', '$size')";
 		
 
