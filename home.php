@@ -6,7 +6,7 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="refresh" content="30" />
+    <meta http-equiv="refresh" content="20" />
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -179,7 +179,7 @@
         if($user['status']==0)
         echo '<td><button type="button"  value = "0" onclick = "return status('.$num.','."'".$user["work_id"]."'".')" id = "status'.$num.'" class="btn btn-outline-secondary">รอดำเนิการ</button></td>';
         else if($user['status']==1)
-        echo '<td><button type="button"  value = "1" onclick = "return status('.$num.','."'".$user["work_id"]."'".')" id = "status'.$num.'" class="btn btn-outline-info">กำลังดำเนิการ</button></td>';
+        echo  '<td><button type="button"  value = "1" onclick = "return status('.$num.','."'".$user["work_id"]."'".')" id = "status'.$num.'" class="btn btn-outline-info">กำลังดำเนิการ</button></td>';
         else if($user['status']==2)
         echo '<td><button type="button"  value = "2" onclick = "return status('.$num.','."'".$user["work_id"]."'".')" id = "status'.$num.'" class="btn btn-success">เรียบร้อย</button></td>';
         else if($user['status']==3)
@@ -190,7 +190,8 @@
         echo '<td><button type="button" value = "0" onclick = "return payment('.$num.','."'".$user["work_id"]."'".')" id = "payment'.$num.'" class="btn btn-outline-warning">รอการชำระ</button></td>';
         else if($user['payment'==1])
         echo '<td><button type="button" value = "1" onclick = "return payment('.$num.','."'".$user["work_id"]."'".')" id = "payment'.$num.'" class="btn btn-success">เรียบร้อย</button></td>';
-        echo "</tr>";
+        else if($user['payment'==2])
+        echo '<td><button type="button" value = "2" onclick = "return payment('.$num.','."'".$user["work_id"]."'".')" id = "payment'.$num.'"class="btn btn-danger">ยกเลิก</button></td>';
         $num++;
         
       }
@@ -309,10 +310,16 @@ function status(work, carnum) {
             })
             .then((willDelete) => {
                 if (willDelete) {
+
+                // <?php    
+                // include  'config.php';
+                // $sql = 'UPDATE work  SET payment = '2' WHERE work_id  = '79';'; 
+                
+                // ?>
                     swal("เปลี่ยนสถานะสำเร็จ", {
                         icon: "success",
                     });
-
+                  
                     $.post("payment.php", {
                             payment: payment,
                             carnum: carnum

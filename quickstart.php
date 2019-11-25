@@ -80,15 +80,15 @@ $results = $service->users_labels->listUsersLabels($user);
 // }
   
 try {
-    $strSubject = " Test 2 Mail from PHP Web mail";
-    $strRawMessage = "From: Mcarcare<Puinun.2015@gmail.com>\r\n";
+    $strSubject = " Test 5 Mail from PHP Web mail";
+    $strRawMessage = "From: Mcarcare<mcarcare.service@gmail.com>\r\n";
     $strRawMessage .= "To: manoj<znunun@gmail.com>\r\n";
     $strRawMessage .= "CC: rammanoj<znunun@gmail.com>\r\n";
     $strRawMessage .= "Subject: =?utf-8?B?" . base64_encode($strSubject) .     "?=\r\n";
     $strRawMessage .= "MIME-Version: 1.0\r\n";
     $strRawMessage .= "Content-Type: text/html; charset=utf-8\r\n";
     $strRawMessage .= "Content-Transfer-Encoding: base64" . "\r\n\r\n";
-    $strRawMessage .= "อีนาย" . "\r\n";
+    $strRawMessage .= "เทสๆๆๆ ่า่ส" . "\r\n";
     $mime = rtrim(strtr(base64_encode($strRawMessage), '+/', '-_'), '=');
     $msg = new Google_Service_Gmail_Message();
     $msg->setRaw($mime);

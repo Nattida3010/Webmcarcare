@@ -87,7 +87,7 @@
                         <div class="form-group">
                             <form action="SendPassword.php" method="post"  style="width:50%">
 
-                                <h4> <input class="form-control  mr-sm-3 " name="txtemail" type="text" id="email"
+                                <h4> <input class="form-control  mr-sm-3 " name="email" type="text" id="email"
                                  style="width: 100%;border: 1px solid #ced4da;" autocomplete="on" placeholder="กรุณากรอกอีเมล์ของท่าน"> </h4>
                                 <br>
                                 <button class="btn btn-outline-warning " style="margin-left: 100%;" type="submit"

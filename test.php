@@ -1,9 +1,9 @@
 <?php
 require __DIR__ . '/vendor/autoload.php';
 
-if (php_sapi_name() != 'cli') {
-    throw new Exception('This application must be run on the command line.');
-}
+// if (php_sapi_name() != 'cli') {
+//     throw new Exception('This application must be run on the command line.');
+// }
 
 /**
  * Returns an authorized API client.
@@ -12,8 +12,11 @@ if (php_sapi_name() != 'cli') {
 function getClient()
 {
     $client = new Google_Client();
-    $client->setApplicationName('People API PHP Quickstart');
-    $client->setScopes(Google_Service_PeopleService::CONTACTS_READONLY);
+    $client->setApplicationName('Gmail API PHP Quickstart');
+    $client->setScopes(array(
+        'https://mail.google.com/',
+        'https://www.googleapis.com/auth/gmail.compose'
+    ));
     $client->setAuthConfig('credentials.json');
     $client->setAccessType('offline');
     $client->setPrompt('select_account consent');
@@ -61,26 +64,74 @@ function getClient()
 
 // Get the API client and construct the service object.
 $client = getClient();
-$service = new Google_Service_PeopleService($client);
+$service = new Google_Service_Gmail($client);
 
-// Print the names for up to 10 connections.
-$optParams = array(
-  'pageSize' => 10,
-  'personFields' => 'names,emailAddresses',
-);
-$results = $service->people_connections->listPeopleConnections('people/me', $optParams);
+// Print the labels in the user's account.
+$user = 'me';
+$results = $service->users_labels->listUsersLabels($user);
 
-if (count($results->getConnections()) == 0) {
-  print "No connections found.\n";
-} else {
-  print "People:\n";
-  foreach ($results->getConnections() as $person) {
-    if (count($person->getNames()) == 0) {
-      print "No names found for this connection\n";
-    } else {
-      $names = $person->getNames();
-      $name = $names[0];
-      printf("%s\n", $name->getDisplayName());
-    }
-  }
-}
+// if (count($results->getLabels()) == 0) {
+//   print "No labels found.\n";
+// } else {
+//   print "Labels:\n";
+//   foreach ($results->getLabels() as $label) {
+//     printf("- %s\n", $label->getName());
+//   }
+// }
+  
+try {
+
+include  'config.php';
+session_start();
+
+$sql = 'SELECT * FROM user WHERE email ="'.$_POST['email'].'" AND status = "Admin" '; 
+$result = mysqli_query($connect,$sql);
+$numrows = mysqli_num_rows($result);
+$objResult = mysqli_fetch_array($result,MYSQLI_ASSOC);
+if($numrows==0){
+ 
+
+
+
+echo" <script>
+ swal({
+   title: 'ไม่พอข้อมูล',
+   text: 'กรุณาลองใหม่อีกครั้ง!',
+   icon: 'warning',
+   button: 'OK',
+ }).then(function () {
+   window.location.href='login.php';
+ }, function (dismiss) {
+     return false;
+ })
+ </script>";
+
+
+
+
+
+
+
+}else{
+
+
+    $strSubject = " Test 6 Mail from PHP Web mail";
+    $strRawMessage = "From: Mcarcare<mcarcare.service@gmail.com>\r\n";
+    $strRawMessage .= "To: manoj<znunun@gmail.com>\r\n";
+    $strRawMessage .= "CC: rammanoj<znunun@gmail.com>\r\n";
+    $strRawMessage .= "Subject: =?utf-8?B?" . base64_encode($strSubject) .     "?=\r\n";
+    $strRawMessage .= "MIME-Version: 1.0\r\n";
+    $strRawMessage .= "Content-Type: text/html; charset=utf-8\r\n";
+    $strRawMessage .= "Content-Transfer-Encoding: base64" . "\r\n\r\n";
+    $strRawMessage .= "เทสๆๆๆ ่า่ส" . "\r\n";
+    $mime = rtrim(strtr(base64_encode($strRawMessage), '+/', '-_'), '=');
+    $msg = new Google_Service_Gmail_Message();
+    $msg->setRaw($mime);
+    $service->users_messages->send("me", $msg);
+} catch (Exception $e) {
+    print "An error occurred: " . $e->getMessage();
+}	
+	}
+		
+mysqli_close($connect);
+?>
