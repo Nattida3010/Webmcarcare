@@ -186,11 +186,12 @@
         echo '<td><button type="button" value = "3" onclick = "return status('.$num.','."'".$user["work_id"]."'".')" id = "status'.$num.'" class="btn btn-danger">ยกเลิก</button></td>';
         else if($user['status']==4)
         echo '<td><button type="button"  value = "4" onclick = "return status('.$num.','."'".$user["work_id"]."'".')" id = "status'.$num.'" class="btn btn-outline-warning">เลื่อนเวลา</butt></td>';
+        
         if($user['payment']==0)
-        echo '<td><button type="button" value = "0" onclick = "return payment('.$num.','."'".$user["work_id"]."'".')" id = "payment'.$num.'" class="btn btn-outline-warning">รอการชำระ</button></td>';
-        else if($user['payment'==1])
-        echo '<td><button type="button" value = "1" onclick = "return payment('.$num.','."'".$user["work_id"]."'".')" id = "payment'.$num.'" class="btn btn-success">เรียบร้อย</button></td>';
-        else if($user['payment'==2])
+        echo '<td><button type="button" value = "0" onclick = "return payment('.$num.','."'".$user["work_id"]."'".')" id = "payment'.$num.'" class="btn btn-outline-warning" >รอการชำระ</button></td>';
+        else if($user['payment']==1)
+        echo '<td><button type="button" value = "1" onclick = "return payment('.$num.','."'".$user["work_id"]."'".')" id = "payment'.$num.'" class="btn btn-success" >เรียบร้อย</button></td>';
+        else if($user['payment']==2)
         echo '<td><button type="button" value = "2" onclick = "return payment('.$num.','."'".$user["work_id"]."'".')" id = "payment'.$num.'"class="btn btn-danger">ยกเลิก</button></td>';
         $num++;
         
@@ -311,11 +312,11 @@ function status(work, carnum) {
             .then((willDelete) => {
                 if (willDelete) {
 
-                // <?php    
-                // include  'config.php';
-                // $sql = 'UPDATE work  SET payment = '2' WHERE work_id  = '79';'; 
+                <?php
+                include  'config.php';
+                $sql = 'UPDATE work  SET payment = '2' WHERE work_id  = '79';'; 
                 
-                // ?>
+                
                     swal("เปลี่ยนสถานะสำเร็จ", {
                         icon: "success",
                     });
@@ -340,10 +341,15 @@ function status(work, carnum) {
 </script>
 
 <script>
+
+
 function payment(work, carnum) {
+
     var payment = $("#payment" + work).val();
+    var status = $("#status" + work).val();
     console.log(work);
-    if (payment == 0) {
+    
+    if (payment == 0 && status == 2) {
         swal({
                 title: "คุณแน่ใจหรือไหม",
                 text: "ต้องการเปลี่ยนสถานะการจ่ายเงิน",
@@ -375,7 +381,17 @@ function payment(work, carnum) {
 
 
     }
+    
+
+else{
+    swal("ไม่สามารถเปลี่ยนสถานะได้");
+
 }
+
+}
+
+
+
 </script>
 
 
