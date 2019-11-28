@@ -7,7 +7,7 @@ $phone = $_POST['phone'];
 $password = $_POST['password'];
 $email = $_POST['email'];
 
-
+echo("<script>console.log('PHP: " . $fname . "" . $lname . "" . $phone . "" . $password. "" . $email. "');</script>");
 $user = "INSERT INTO user (phone, fname, lname, password, status,email)
 				VALUES ('$phone','$fname','$lname','$password' ,'Customer','$email')";
 

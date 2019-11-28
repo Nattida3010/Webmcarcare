@@ -216,39 +216,49 @@
                     <div class="form-row " style="margin-left: 120px; text-align:center;">
                             <form action="grap.php" method="post" name="brw_form" target="popup_name" style="width:50%"
                                 onSubmit="window.open('','popup_name','left=0,top=0,width=800,height=600,toolbar=no');">
-                             
-                                <div class="text-center">
+                            
+                                <div class="text-center"  >
+                                       <div class="form-row " style="margin-left: 10px; text-align:center;">
+                                        <label for="from">ปี</label>
                                         <select name="years" class="form-control" style="width: 80%;margin-top :30px; ">
-                                            <option value="null">&nbsp;&nbsp;&nbsp;ปี</option>
+                                                          
                                             <option value="2019">&nbsp;&nbsp;&nbsp;2019</option>
                                             <option value="2020">&nbsp;&nbsp;&nbsp;2020</option>
                                             <option value="2021">&nbsp;&nbsp;&nbsp;2021</option>
                                             <option value="2022">&nbsp;&nbsp;&nbsp;2022</option>
+                                            <option value="2023">&nbsp;&nbsp;&nbsp;2023</option>
+                                            <option value="2024">&nbsp;&nbsp;&nbsp;2024</option>
+                                            <option value="2025">&nbsp;&nbsp;&nbsp;2025</option>
+                                            <option value="2026">&nbsp;&nbsp;&nbsp;2026</option>
 
                                         </select>
-                                    <select name="mount" class="form-control" style="width: 80%;margin-top :30px;">
-                                        <option value='null' href="#">เดือน</a>
-                                        <option value='01' href="#">01</a>
-                                        <option value='02' href="#">02</a>
-                                        <option value='03' href="#">03</a>
-                                        <option value='04' href="#">04</a>
-                                        <option value='05' href="#">05</a>
-                                        <option value='06' href="#">06</a>
-                                        <option value='07' href="#">07</a>
-                                        <option value='08' href="#">08</a>
-                                        <option value='09' href="#">09</a>
-                                        <option value='10' href="#">10</a>
-                                        <option value='11' href="#">11</a>
-                                        <option value='12' href="#">12</a>
+                                        </div>
+                                        <br>
+                                        <div class="form-row " style="margin-left: 10px; text-align:center;">
+                                        <label for="from" style="margin-buttom: 90px; ">เดือน</label>
+                                    <select name="mount" id= "mount" class="form-control" style="width: 80%;margin-top :10px;">
+                                 
+                                        <option value='01' href="#">มกราคม</a>
+                                        <option value='02' href="#">กุมภาพันธ์</a>
+                                        <option value='03' href="#">มีนาคม</a>
+                                        <option value='04' href="#">เมษายน</a>
+                                        <option value='05' href="#">พฤษภาคม</a>
+                                        <option value='06' href="#">มิถุนายน</a>
+                                        <option value='07' href="#">กรกฎาคม</a>
+                                        <option value='08' href="#">สิงหาคม</a>
+                                        <option value='09' href="#">กันยายน</a>
+                                        <option value='10' href="#">ตุลาคม</a>
+                                        <option value='11' href="#">พฤษจิกายน</a>
+                                        <option value='12' href="#">ธันวาคม</a>
                                     </select>
-                                  
-</div>
+                                    </div>
+                                    </div>
 
                                     <button class="btn btn-outline-warning "
                                         style="margin-left: 110%; margin-top :30px;" type="submit" name="submit"
                                         value="ค้นหา">ค้นหา</button>
 
-                                    
+                                        
                             </form>
                         </div>
                     </div>
@@ -369,6 +379,8 @@ if(isset($_POST['from'])&&$_POST['from']!='Invalid date'&&isset($_POST['to'])&&$
       echo '<td><button type="button"  class="btn btn-outline-warning">รอการชำระ</button></td>';
       else if($search['payment']==1)
       echo '<td><button type="button" class="btn btn-success">เรียบร้อย</button></td>';
+      else if($search['payment']==2)
+      echo '<td><button type="button" class="btn btn-danger">ยกเลิก</button></td>';
       echo "</tr>";
     echo "</tr>";
   }
@@ -393,8 +405,7 @@ echo '</table>';
 ?>
 
 
-
-    <!-- ปฏิทินรายวัน -->
+   <!-- ปฏิทินรายวัน -->
     <script>
     $(function() {
         $("#datepicker").datepicker();

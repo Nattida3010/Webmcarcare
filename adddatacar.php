@@ -75,8 +75,8 @@ session_start();
                         <!-- <input type="text" class="form-control" name="type" placeholder="ประเภทรถ">
                         <i class="fas fa-user"></i> -->
                          <i class="fas fa-car-alt" ></i> 
-                    <select name="type"  class="form-control"  > 
-                    <option value="0">&nbsp;&nbsp;&nbsp;ประเภทรถ</option>
+                        <select name="type"  class="form-control"  > 
+                    <option hidden selected disabled>&nbsp;&nbsp;&nbsp;ประเภทรถ</option>
                         <option value="กะบะ">&nbsp;&nbsp;&nbsp;กระบะ</option>
                         <option value="เก๋ง">&nbsp;&nbsp;&nbsp;เก๋ง</option>
                         <option value="Suv">&nbsp;&nbsp;&nbsp;Suv</option>
@@ -90,7 +90,7 @@ session_start();
                         <!-- <input type="text"feclass="form-control" name="color" placeholder="สีรถ"> -->
                         <i class="fas fa-palette"></i>
                         <select name="color"  class="form-control"  > 
-                      <option value="0">&nbsp;&nbsp;&nbsp;สีรถ</option>
+                        <option hidden selected disabled>&nbsp;&nbsp;&nbsp;สีรถ</option>
                         <option value="ขาว">&nbsp;&nbsp;&nbsp;ขาว</option>
                         <option value="ดำ">&nbsp;&nbsp;&nbsp;ดำ</option>
                         <option value="บรอนซ์เงิน">&nbsp;&nbsp;&nbsp;บรอนซ์เงิน</option>
@@ -112,7 +112,7 @@ session_start();
                     <div class="form-group inputWithIcon">
                         <i class="fas fa-truck-pickup"></i>
                         <select name="size"  class="form-control"  > 
-                      <option value="0">&nbsp;&nbsp;&nbsp;ขนาด</option>
+                        <option hidden selected disabled>&nbsp;&nbsp;&nbsp;ขนาด</option>
                         <option value="1">&nbsp;&nbsp;&nbsp;เล็ก</option>
                         <option value="2">&nbsp;&nbsp;&nbsp;ใหญ่</option>
                 

@@ -170,6 +170,8 @@
       echo '<td><button type="button"  class="btn btn-outline-warning">รอการชำระ</button></td>';
       else if($search['payment']==1)
       echo '<td><button type="button" class="btn btn-success">เรียบร้อย</button></td>';
+      else if($search['payment']==2)
+      echo '<td><button type="button" class="btn btn-danger">ยกเลิก</button></td>';
       echo "</tr>";
     echo "</tr>";
     }

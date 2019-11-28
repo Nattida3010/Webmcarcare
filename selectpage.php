@@ -79,7 +79,7 @@
             <i class="fas fa-caret-down"></i>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="signuppage.php">เพิ่มสมาชิก</a>
+            <a class="dropdown-item"href="addsingup.php">เพิ่มสมาชิก</a>
             <a class="dropdown-item" href="login.php">ออกจากระบบ</a>
           </div>
         </li>

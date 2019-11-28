@@ -312,9 +312,7 @@ function status(work, carnum) {
             .then((willDelete) => {
                 if (willDelete) {
 
-                <?php
-                include  'config.php';
-                $sql = 'UPDATE work  SET payment = '2' WHERE work_id  = '79';'; 
+                
                 
                 
                     swal("เปลี่ยนสถานะสำเร็จ", {
@@ -373,31 +371,29 @@ function payment(work, carnum) {
                             $('#payment' + work).val("1")
                         });
 
-                } else {
-                    swal("ยกเลิกการเปลียนสถานะแล้ว");
-                }
+                } 
             });
-        //
-
-
-    }
+        }
     
+else if ( status == 3) {
+  
+    swal("เรียบร้อย", "รายการได้ถูกยกเลิกแล้ว", "success")
+                    $.post("payment.php", {
+                            payment: 2,
+                            carnum: carnum
+                        },
+                        function(data) {
+                            $('#payment' + work).attr('class', "btn btn-danger")
+                            $('#payment' + work).html("ยกเลิก")
+                            $('#payment' + work).val("2")
+                        });
 
-else{
-    swal("ไม่สามารถเปลี่ยนสถานะได้");
-
-}
-
-}
-
-
+                } else {
+                    swal("ไม่สามารถเปลียนสถานะได้");
+                }      
+    }
 
 </script>
-
-
-
-
-
 
 <script>
 tday = new Array("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday");
