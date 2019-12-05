@@ -43,90 +43,85 @@
     });
 });
 </script>
-
 <body>
 
-    <div class="container" style="padding-top :30px;">
-        <div class="form-group row">
-            <div class="col-sm-4 text-left">
-                <button type="submit" class="btn btn-info" OnClick="back();">กลับ</button>
-            </div>
-            <div class="col-md-12 mb-3 text-center">
-                <h3 class="name">ลงทะเบียนเข้าใช้งาน</h3><br>
-                
-                <h6 class="name"> กรุณากรอก  ชื่อ - นามสกุล </h6>
-            </div>
+<div class="container" style="padding-top :30px;">
+    <div class="form-group row">
+        <div class="col-sm-4 text-left">
+            <button type="submit" class="btn btn-info" OnClick="back();">กลับ</button>
+        </div>
+        <div class="col-md-12 mb-3 text-center">
+            <h3 class="name">สมัครสมาชิกเข้าใช้งาน</h3><br>
+            
+            <h6 class="name"> กรุณากรอก  ชื่อ - นามสกุล </h6>
         </div>
     </div>
- 
-    <form action='signup_check.php' method='post' id="mainform" name='form' enctype="multipart/form-data">
-        <div class="container" style="margin-top :30px;">
-            <div class="row text-center">
-                <div class="col-sm-12 mb-2 ">
-                    <div class="form-group inputWithIcon">
-                        <input type="text" class="form-control" name="fname" id="inputname" placeholder="ชื่อ" required
-                            pattern="^[ก-๏]+$" autocomplete="off">
-                        <i class="fas fa-user"></i>
-                    </div>
-                </div>
+</div>
 
-                <div class="col-sm-12 mb-2 ">
-                    <div class="form-group inputWithIcon">
-                        <input type="text" class="form-control" name="lname" id="inputlastname" placeholder="นามสกุล"
-                            required pattern="^[ก-๏]+$" autocomplete="off">
-                        <i class="fas fa-user"></i>
-                    </div>
+<form action='addsingup_check.php' method='post' id="mainform" name='form' enctype="multipart/form-data">
+    <div class="container" style="margin-top :30px;">
+        <div class="row text-center">
+            <div class="col-sm-12 mb-2 ">
+                <div class="form-group inputWithIcon">
+                    <input type="text" class="form-control" name="fname" id="inputname" placeholder="ชื่อ" required
+                        pattern="^[ก-๏]+$"  title="ชื่อต้องเป็นภาษาไทยเท่านั้น" autocomplete="off">
+                    <i class="fas fa-user"></i>
                 </div>
             </div>
 
-            <div class="row text-center mb-2">
-                <div class="col-4">
-                    <hr width=80% size=5px;>
-                </div>
-                <div class="col-4">
-                    กรุณากรอก อีเมล์-เบอร์โทรศัพท์-รหัสผ่าน
-                </div>
-                <div class="col-4">
-                    <hr width=100% size=5px;>
+            <div class="col-sm-12 mb-2 ">
+                <div class="form-group inputWithIcon">
+                    <input type="text" class="form-control" name="lname" id="inputlastname" placeholder="นามสกุล"
+                        required pattern="^[ก-๏]+$"  title="นามสกุลต้องเป็นภาษาไทยเท่านั้น"  autocomplete="off">
+                    <i class="fas fa-user"></i>
                 </div>
             </div>
-            <div class="row text-center">
-                <div class="col-sm-12 mb-2 ">
-                    <div class="form-group inputWithIcon">
-                        <input type="text" class="form-control" name="email" id="email" value!=email
-                            placeholder="อีเมล์" required pattern="^[_\.0-9a-zA-Z-]+@([0-9a-zA-Z][0-9a-zA-Z-]+\.)+[a-zA-Z]+$" autocomplete="off">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                </div>
-           
-                <div class="col-sm-12 mb-2 ">
-                    <div class="form-group inputWithIcon">
-                        <input type="text" class="form-control" name="phone" id="phone" value!=phone
-                            placeholder="เบอร์โทรศัพท์" required pattern="/^[0-9]{10}+$/" autocomplete="off">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                </div>
-                <div class="col-sm-12 mb-3">
-                    <div class="form-group inputWithIcon">
-                        <input type="password" class="form-control" name="password" id="password" placeholder="รหัสผ่าน"
-                            required autocomplete="off">
-                        <i class="fas fa-key"></i>
-                    </div>
-                </div>
-
-                <div class="col-sm-12">
-                    <button type="submit" class="btn btn btn-info" name='submit'>สมัครสมาชิก</button>
-                </div>
-            </div>
-
-            <!-- <div class="mt-2">
-                <div class="d-flex justify-content-center links">
-                    <button type="button" name="button" class="btn turnback_btn" OnClick="Back();" class="ml-2">กลับ</button>
-                </div>
-            </div> -->
-
         </div>
-    </form>
+
+        <div class="row text-center mb-2">
+            <div class="col-4">
+                <hr width=80% size=5px;>
+            </div>
+            <div class="col-4">
+                กรุณากรอก อีเมล์-เบอร์โทรศัพท์-รหัสผ่าน
+            </div>
+            <div class="col-4">
+                <hr width=100% size=5px;>
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col-sm-12 mb-2 ">
+                <div class="form-group inputWithIcon">
+                    <input type="text" class="form-control" name="email" id="email" value!=email
+                        placeholder="อีเมล์"   title="กรุณากรอกอีเมล์ให้ถูกต้อง" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" autocomplete="off">
+                        <i class="fas fa-envelope-square"></i>
+                </div>
+            </div>
+       
+            <div class="col-sm-12 mb-2 ">
+                <div class="form-group inputWithIcon">
+                    <input type="text"class="form-control" name="phone" id="phone" value!=phone   autocomplete="off"
+                        placeholder="เบอร์โทรศัพท์" pattern="^\d{10}$"   title="กรุณากรอกเบอร์โทรให้ถูกต้อง" required/>   
+
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+            </div>
+            <div class="col-sm-12 mb-3">
+                <div class="form-group inputWithIcon">
+                    <input type="password" class="form-control" name="password" id="password" placeholder="รหัสผ่าน"
+                    pattern=".{8,}" title="รหัสผ่านอย่างน้อย 8 ตัว" autocomplete="off">
+                    <i class="fas fa-key"></i>
+                </div>
+            </div>
+
+            <div class="col-sm-12">
+                <button type="submit" class="btn btn btn-info" name='submit'>เพิ่มสมาชิก</button>
+            </div>
+        </div>
+
+    
+    </div>
+</form>
 
     <script language="javascript">
     function back() {
@@ -134,7 +129,17 @@
         window.location.href = ("home.php");
 
     }
-    </script>
+    (function() {
+    $('#mainform').submit(function(event) {
+        var form = $('#mainform')[0];
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+        }
+        $(this).addClass('was-validated');
+    });
+});
+</script>
+   
 
 </body>
 

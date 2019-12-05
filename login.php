@@ -1,3 +1,7 @@
+<?
+ob_start();
+session_start();
+?>
 <html lang="en">
 
 <head>
@@ -41,7 +45,7 @@
                     </div>
                     <div class="form-group">
                         <div class="form-group inputWithIcon">
-                            <input type="password" class="form-control" name="password" id="password"
+                            <input type="password" class="form-control" name="password" id="password" autocomplete="off"
                                 aria-describedby="helpId" placeholder="รหัสผ่าน">
                             <i class="fas fa-key"></i>
                         </div>
@@ -88,7 +92,7 @@
                             <form action="SendPassword.php" method="post"  style="width:50%">
 
                                 <h4> <input class="form-control  mr-sm-3 " name="email" type="text" id="email"
-                                 style="width: 100%;border: 1px solid #ced4da;" autocomplete="on" placeholder="กรุณากรอกอีเมล์ของท่าน"> </h4>
+                                 style="width: 100%;border: 1px solid #ced4da;"autocomplete="off" placeholder="กรุณากรอกอีเมล์ของท่าน"> </h4>
                                 <br>
                                 <button class="btn btn-outline-warning " style="margin-left: 100%;" type="submit"
                                     name="submit" value="submit" >ส่ง</button>
@@ -123,3 +127,6 @@
 
 
 </html>
+<?php
+ ob_end_flush();
+  ?>

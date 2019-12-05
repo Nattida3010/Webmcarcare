@@ -1,3 +1,8 @@
+<?
+ob_start();
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,33 +47,33 @@ function getClient()
         $client->setAccessToken($accessToken);
     }
 
-    // If there is no previous token or it's expired.
-    if ($client->isAccessTokenExpired()) {
-        // Refresh the token if possible, else fetch a new one.
-        if ($client->getRefreshToken()) {
-            $client->fetchAccessTokenWithRefreshToken($client->getRefreshToken());
-        } else {
-            // Request authorization from the user.
-            $authUrl = $client->createAuthUrl();
-            printf("Open the following link in your browser:\n%s\n", $authUrl);
-            print 'Enter verification code: ';
-            $authCode = trim(fgets(STDIN));
+    // // If there is no previous token or it's expired.
+    // if ($client->isAccessTokenExpired()) {
+    //     // Refresh the token if possible, else fetch a new one.
+    //     if ($client->getRefreshToken()) {
+    //         $client->fetchAccessTokenWithRefreshToken($client->getRefreshToken());
+    //     } else {
+    //         // Request authorization from the user.
+    //         $authUrl = $client->createAuthUrl();
+    //         printf("Open the following link in your browser:\n%s\n", $authUrl);
+    //         print 'Enter verification code: ';
+    //         $authCode = trim(fgets(STDIN));
 
-            // Exchange authorization code for an access token.
-            $accessToken = $client->fetchAccessTokenWithAuthCode($authCode);
-            $client->setAccessToken($accessToken);
+    //         // Exchange authorization code for an access token.
+    //         $accessToken = $client->fetchAccessTokenWithAuthCode($authCode);
+    //         $client->setAccessToken($accessToken);
 
-            // Check to see if there was an error.
-            if (array_key_exists('error', $accessToken)) {
-                throw new Exception(join(', ', $accessToken));
-            }
-        }
-        // Save the token to a file.
-        if (!file_exists(dirname($tokenPath))) {
-            mkdir(dirname($tokenPath), 0777, true);
-        }
-        file_put_contents($tokenPath, json_encode($client->getAccessToken()));
-    }
+    //         // Check to see if there was an error.
+    //         if (array_key_exists('error', $accessToken)) {
+    //             throw new Exception(join(', ', $accessToken));
+    //         }
+    //     }
+    //     // Save the token to a file.
+    //     if (!file_exists(dirname($tokenPath))) {
+    //         mkdir(dirname($tokenPath), 0777, true);
+    //     }
+    //     file_put_contents($tokenPath, json_encode($client->getAccessToken()));
+    // }
     return $client;
 }
 
@@ -102,15 +107,15 @@ if($numrows==0){
  
 }else{ 
  
- $strSubject = "Hello mail";
- $strRawMessage = "From: Me<mcarcare.service@gmail.com>\r\n";
+ $strSubject = "กรุณาตรวจสอบอีเมล์ของท่าน ";
+ $strRawMessage = "From: Mcarcare<mcarcare.service@gmail.com>\r\n";
  $strRawMessage .= "To: <$email>\r\n";
  $strRawMessage .= "Subject: =?utf-8?B?" . base64_encode($strSubject) .     "?=\r\n";
  $strRawMessage .= "MIME-Version: 1.0\r\n";
  $strRawMessage .= "Content-Type: text/html; charset=utf-8\r\n";
  $strRawMessage .= "Content-Transfer-Encoding: base64" . "\r\n\r\n";
- $strRawMessage .= "Welcome : ".$objResult["phone"]."<br>";
- $strRawMessage .=  "Password : ".$objResult["password"]."<br>";
+ $strRawMessage .=  "สวัสดี คุณ   ".$objResult["fname"]." <br><br>";
+ $strRawMessage .=  "รหัสผ่านของท่านคือ  : ".$objResult["password"]."<br>";
 
 
  $mime = rtrim(strtr(base64_encode($strRawMessage), '+/', '-_'), '=');
@@ -140,3 +145,7 @@ if($numrows==0){
 ?>
 </body>
 </html>
+
+<?php
+ ob_end_flush();
+  ?>

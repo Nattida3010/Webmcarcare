@@ -1,7 +1,11 @@
+<?
+ob_start();
+session_start();
+?>
 
 <?php
 include  'config.php';
-session_start();
+
 
 
 $output = '';
@@ -13,7 +17,7 @@ if(isset($_POST["query"]))
 	$search = mysqli_real_escape_string($connect, $_POST["query"]);
 	$query = 'SELECT user.phone,car.car_num,user.fname,user.lname,car.type,car.color,car.size FROM user inner join car on user.phone = car.phone WHERE user.phone = "'.$_POST['query'].'"';
     $result = mysqli_query($connect, $query);
-    if(mysqli_num_rows($result) > 0){
+    if(mysqli_num_rows($result)> 0){
         echo'<div class= "container" > ';
         echo '<table  class="table ">';
         echo '<thead id="colortable" bgcolor = "#6cc1ec" >';
@@ -53,7 +57,6 @@ if(isset($_POST["query"]))
     
     }
     
-
     // echo $output;
     echo "</table>";
     
@@ -68,23 +71,9 @@ if(isset($_POST["query"]))
 }
 else
 {
-    // echo'<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
-    echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>';
-    echo '<script>
- 
-    Swal.fire({
-        type: "error",
-        title: "ไม่พบข้อมูล ",
-        text: "ข้อมูลนี้ยังไม่ได้สมัครใช้งาน",
-       
-      })
-    </script>';
-
+    
    
-
 }
-
-
 echo '<div class="colors" id="red"></div>';
 ?>
 <style>
@@ -104,8 +93,10 @@ echo '<div class="colors" id="red"></div>';
             localStorage.setItem('aaa', a);  
             location.href = ("work.php");
             
-
-
         }
-
     </script>
+
+
+<?php
+ ob_end_flush();
+  ?>

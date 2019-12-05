@@ -1,8 +1,8 @@
-<!DOCTYPE html>
-<?php
+<?
+ob_start();
 session_start();
 ?>
-
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -65,7 +65,7 @@ session_start();
 
                 <div class="col-sm-12 mb-2 ">
                     <div class="form-group inputWithIcon">
-                        <input type="text" class="form-control" name="car_num" placeholder="หมายเลขทะเบียนรถ">
+                        <input type="text" class="form-control" name="car_num" placeholder="หมายเลขทะเบียนรถ" autocomplete="off">
                         <i class="fas fa-user"></i>
                     </div>
                 </div>
@@ -135,8 +135,9 @@ session_start();
     }
 
 
-    <
-    /body>
+    </body>
 
-    <
-    /html>
+    </html>
+    <?php
+ ob_end_flush();
+  ?>

@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html>
 
@@ -62,9 +64,6 @@
       echo '</form>';
       ?>
 
-            <!-- <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button> -->
 
             <ul class="navbar-nav text-uppercase" id="ml" style="margin-left: 25%;">
                 <li class="nav-item mr-sm-3" style="color: white;">
@@ -275,7 +274,7 @@ include  'config.php';
 if(isset($_POST['date'])&&$_POST['date']!='Invalid date'){
 
   $date = $_POST['date'];
-  $sqlsearch = "SELECT w.time,w.car_num,u.fname,u.lname,c.phone,c.color,
+  $sqlsearch = "SELECT w.date,w.times,w.car_num,u.fname,u.lname,c.phone,c.color,
   w.wash_engin, w.spray_under, w.wash_asphalt, w.chang_fuel, w.clean_dust,
   c.size,w.level,w.status,w.payment,c.type
   FROM user AS `u` INNER JOIN car AS `c` ON u.phone = c.phone 
@@ -284,7 +283,7 @@ if(isset($_POST['date'])&&$_POST['date']!='Invalid date'){
 else{
 
 $date = "";
-$sqlsearch = "SELECT w.time,w.car_num,u.fname,u.lname,c.phone,c.color,
+$sqlsearch = "SELECT w.date,w.times,w.car_num,u.fname,u.lname,c.phone,c.color,
 w.wash_engin, w.spray_under, w.wash_asphalt, w.chang_fuel, w.clean_dust,
 c.size,w.level,w.status,w.payment,c.type
 FROM user AS `u` INNER JOIN car AS `c` ON u.phone = c.phone 
@@ -294,7 +293,7 @@ INNER JOIN work AS `w` ON c.car_num = w.car_num WHERE w.time LIKE '%$date%'";
 if(isset($_POST['from'])&&$_POST['from']!='Invalid date'&&isset($_POST['to'])&&$_POST['to']!='Invalid date'){
   $date_from = $_POST['from'];
   $date_to=$_POST['to'];
-    $sqlsearch = "SELECT w.time,w.car_num,u.fname,u.lname,c.phone,c.color,
+    $sqlsearch = "SELECT w.date,w.times,w.car_num,u.fname,u.lname,c.phone,c.color,
     w.wash_engin, w.spray_under, w.wash_asphalt, w.chang_fuel, w.clean_dust,
     c.size,w.level,w.status,w.payment,c.type,w.date
     FROM user AS `u` INNER JOIN car AS `c` ON u.phone = c.phone 
@@ -319,6 +318,7 @@ if(isset($_POST['from'])&&$_POST['from']!='Invalid date'&&isset($_POST['to'])&&$
   echo '<thead id="colortable">';
   echo '<tr>';
   echo '<th scope="col">วัน/เดือน/ปี</th>';
+  echo '<th>ช่วงเวลาบริการ</th>';
   echo '<th>เลขทะเบียนรถ</th>';
   echo '<th>ชื่อเจ้าของรถ</th>';
   echo '<th>เบอร์โทรศัพท์</th>';
@@ -349,15 +349,17 @@ if(isset($_POST['from'])&&$_POST['from']!='Invalid date'&&isset($_POST['to'])&&$
       $size = 'เล็ก ';
      if ($search['size'] == '2')
       $size = 'ใหญ่ ';
+      if ($search['level'] == '0')
+      $level = 'รอดำเนินการ';
     if ($search['level'] == '1')
       $level = 'น้อย';
     else if ($search['level'] == '2')
       $level = 'มาก';
-    else
-      $level = 'error';
+    
     /*  */
     echo "<tr>";
-    echo '<td>' . $search["time"] . '</td>';
+    echo '<td>' . $search["date"] . '</td>';
+    echo '<td>' . $search['times'] . '</td>';
     echo '<td>' . $search["car_num"] . '</td>';
     echo '<td>' . $search['fname'] . ' ' . $search['lname'] . '</td>';
     echo '<td>' . $search['phone'] . '</td>';
@@ -465,3 +467,4 @@ echo '</table>';
 </body>
 
 </html>
+

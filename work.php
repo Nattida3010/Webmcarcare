@@ -1,3 +1,8 @@
+<?
+ob_start();
+session_start();
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -37,8 +42,8 @@
 
 
     <?php
-    session_start();
-    
+ 
+ include  'config.php';
     $val='';
     if(isset($_POST['query'])){
        
@@ -68,6 +73,19 @@
             <form action='work_check.php' method="post" id="mainform" name='form' enctype="multipart/form-data">
                 <input type="hidden" name="car_num" id="_carnum">
 
+                <div class="form-group row">
+                    <label class="col-form-label col-sm-2 pt-0">ช่วงเวลาการให้บริการ</label>
+                    <div class="col-sm-2">
+                    <select name="times" class="form-control" id="times"> 
+                        <option value="8.00-9.30" >8.00-9.30</option>
+                        <option value="9.30-11.00">9.30-11.00</option>
+                        <option value="11.00-12.00">11.00-12.00</option>
+                        <option value="13.00-14.30">13.00-14.30</option>
+                        <option value="14.30-16.00">14.30-16.00</option>
+                        <option value="16.00-17.00">16.00-17.00</option>
+                    </select>
+                    </div>
+                </div>
                 <div class="form-group row">
                     <label class="col-form-label col-sm-2 pt-0">รายการที่ลูกค้าเลือก</label>
                     <div class="col-sm-2">
@@ -172,3 +190,7 @@ function back() {
 </script>
 
 </html>
+
+<?php
+ ob_end_flush();
+  ?>

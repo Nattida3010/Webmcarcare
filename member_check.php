@@ -1,6 +1,11 @@
+<?
+ob_start();
+session_start();
+?>
+
 <?php
 include  'config.php';
-session_start();
+
 
 $sql = 'SELECT * FROM user WHERE phone ="'.$_POST['phone'].'"';
 $result = mysqli_query($connect,$sql);
@@ -10,6 +15,7 @@ if($result){
   $numrows = mysqli_num_rows($result);
   $row = mysqli_fetch_assoc($result);
   $phonenumber=$row['phone'];
+  echo $phonenumber;
   if($numrows<=0){
       echo "<script>
       alert('หมายเลขทะเบียนนี้ยังไม่เป็นสมาชิก กรุณาสมัครสมาชิก');
@@ -24,7 +30,7 @@ if($result){
       include  'config.php';
       $sqlwork = 'SELECT user.phone,car.car_num,user.fname,user.lname,car.type,car.color,car.size
       from user
-      inner join car  on user.phone=car.phone';
+      inner join car  on user.phone = car.phone';
       $result = mysqli_query($connect,$sqlwork); 
       
       echo '<table table-hover class="table">';
@@ -63,3 +69,7 @@ if($result){
 
 
 </html>
+
+<?php
+ ob_end_flush();
+  ?>

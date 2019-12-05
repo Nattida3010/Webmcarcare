@@ -114,7 +114,7 @@
 
         <?php
     include  'config.php';
-    $sqlwork = "SELECT w.work_id,w.time,w.car_num,u.fname,u.lname,c.phone,c.color,
+    $sqlwork = "SELECT w.work_id,w.date ,w.times,w.car_num,u.fname,u.lname,c.phone,c.color,
     w.wash_engin, w.spray_under, w.wash_asphalt, w.chang_fuel, w.clean_dust,
     c.size,w.level,w.status,w.payment,c.type
     FROM user AS `u` INNER JOIN car AS `c` ON u.phone = c.phone 
@@ -127,6 +127,7 @@
     echo '<thead id="colortable">';
     echo '<tr>';
     echo '<th scope="col">วัน/เดือน/ปี</th>';
+    echo '<th>ช่วงเวลาบริการ</th>';
     echo '<th>เลขทะเบียนรถ</th>';
     echo '<th>ชื่อเจ้าของรถ</th>';
     echo '<th>เบอร์โทรศัพท์</th>';
@@ -168,7 +169,8 @@
       else
         $level = 'error';
         echo "<tr>";
-        echo '<td>' . $user["time"] . '</td>';
+        echo '<td>' . $user["date"] .' </td>';
+        echo '<td>' . $user['times'] . '</td>';
         echo '<td>' . $user["car_num"] . '</td>';
         echo '<td>' . $user['fname'] . ' ' . $user['lname'] . '</td>';
         echo '<td>' . $user['phone'] . '</td>';
@@ -177,9 +179,9 @@
         echo '<td>' . $level . '</td>';
         echo '<td>' . $size . '</td>';
         if($user['status']==0)
-        echo '<td><button type="button"  value = "0" onclick = "return status('.$num.','."'".$user["work_id"]."'".')" id = "status'.$num.'" class="btn btn-outline-secondary">รอดำเนิการ</button></td>';
+        echo '<td><button type="button"  value = "0" onclick = "return status('.$num.','."'".$user["work_id"]."'".')" id = "status'.$num.'" class="btn btn-outline-secondary">รอดำเนินการ</button></td>';
         else if($user['status']==1)
-        echo  '<td><button type="button"  value = "1" onclick = "return status('.$num.','."'".$user["work_id"]."'".')" id = "status'.$num.'" class="btn btn-outline-info">กำลังดำเนิการ</button></td>';
+        echo  '<td><button type="button"  value = "1" onclick = "return status('.$num.','."'".$user["work_id"]."'".')" id = "status'.$num.'" class="btn btn-outline-info">กำลังดำเนินการ</button></td>';
         else if($user['status']==2)
         echo '<td><button type="button"  value = "2" onclick = "return status('.$num.','."'".$user["work_id"]."'".')" id = "status'.$num.'" class="btn btn-success">เรียบร้อย</button></td>';
         else if($user['status']==3)
@@ -302,19 +304,10 @@ function status(work, carnum) {
             });
 
     } else if (status == 3) {
-        swal({
-                title: "คุณแน่ใจหรือไหม",
-                text: "ต้องการเปลี่ยนสถานะการจ่ายเงิน",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-            })
-            .then((willDelete) => {
+       
+            then((willDelete) => {
                 if (willDelete) {
 
-                
-                
-                
                     swal("เปลี่ยนสถานะสำเร็จ", {
                         icon: "success",
                     });

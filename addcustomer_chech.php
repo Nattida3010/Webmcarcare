@@ -1,3 +1,19 @@
+<?
+ob_start();
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<title>Mcarcare</title>
+</head>
+<body>
+	
+
 <?php
 include  'config.php';
 session_start();
@@ -18,16 +34,34 @@ $resultuser = mysqli_query($connect,$user);
 
 
 if($resultuser){
-    
+   
+
     echo "<script>window.location = 'adddatacar.php'</script>";
     $_SESSION['phone'] = $phone;
 }else{
     
-    
+    echo"<script>
+ swal({
+    title: 'ท่านกรอกข้อมูลไม่ถูกต้อง',
+    text: 'กรุณากรอกข้อมูลใหม่อีกครั้ง',
+   icon: 'warning',
+   button: 'OK',
+ }).then(function () {
+   window.location.href='addcustomer.php';
+ }, function (dismiss) {
+     return false;
+ })
+ </script>";
   
 }
            
    mysqli_close($connect);   
 
 
-?>
+   ?>
+
+   </body>
+   </html>
+<?php
+ ob_end_flush();
+  ?>

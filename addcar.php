@@ -1,7 +1,10 @@
-<!DOCTYPE html>
-<?php
+<?
+ob_start();
 session_start();
 ?>
+
+<!DOCTYPE html>
+
 <html>
 
 <head>
@@ -23,8 +26,8 @@ session_start();
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        crossorigin="anonymous">
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
@@ -49,7 +52,7 @@ session_start();
         </div>
     </div>
 
-    <form action='adddatacar_check.php' method='post' id="mainform" name='form' enctype="multipart/form-data">
+    <form action='adddatacar_check.php' method='post' id="mainform" name='form-addcar' enctype="multipart/form-data">
         <div class="container" style="margin-top :30px;">
             <div class="row text-center">
 
@@ -63,10 +66,12 @@ session_start();
                 </div>
 
                 <div class="col-sm-12 mb-2 ">
-                    <div class="form-group inputWithIcon">
-                        <input type="text" class="form-control" name="car_num" placeholder="หมายเลขทะเบียนรถ">
+                    <div class="form-group inputWithIcon"> 
+                        <input type="text" class="form-control" id="car_num" name="car_num" placeholder="หมายเลขทะเบียนรถ" required
+                            pattern="^[ก-๏0-9]+$"  title="กรุณากรอกเป็นภาษาไทยกับตัวเลขเท่านั้น"  autocomplete="off">
                         <i class="fas fa-user"></i>
                     </div>
+                    <span id="result-search-carnum"></span>
                 </div>
 
                 <div class="col-sm-12 mb-2 ">
@@ -74,8 +79,9 @@ session_start();
                         <!-- <input type="text" class="form-control" name="type" placeholder="ประเภทรถ">
                         <i class="fas fa-user"></i> -->
                          <i class="fas fa-car-alt" ></i> 
-                    <select name="type"  class="form-control"  > 
-                    <option hidden selected disabled>&nbsp;&nbsp;&nbsp;ประเภทรถ</option>
+                         
+                    <select name="type" class="selectpicker form-control" required aria-required="true" > 
+                    <option hidden selected disabled >&nbsp;&nbsp;&nbsp;ประเภทรถ</option>
                         <option value="กะบะ">&nbsp;&nbsp;&nbsp;กระบะ</option>
                         <option value="เก๋ง">&nbsp;&nbsp;&nbsp;เก๋ง</option>
                         <option value="Suv">&nbsp;&nbsp;&nbsp;Suv</option>
@@ -88,8 +94,10 @@ session_start();
                     <div class="form-group inputWithIcon">
                         <!-- <input type="text"feclass="form-control" name="color" placeholder="สีรถ"> -->
                         <i class="fas fa-palette"></i>
-                        <select name="color"  class="form-control"  > 
-                        <option hidden selected disabled>&nbsp;&nbsp;&nbsp;สีรถ</option>
+                       
+                        
+                        <select name="color" class="selectpicker form-control" required aria-required="true" > 
+                        <option hidden selected disabled >&nbsp;&nbsp;&nbsp;สีรถ</option>
                         <option value="ขาว">&nbsp;&nbsp;&nbsp;ขาว</option>
                         <option value="ดำ">&nbsp;&nbsp;&nbsp;ดำ</option>
                         <option value="บรอนซ์เงิน">&nbsp;&nbsp;&nbsp;บรอนซ์เงิน</option>
@@ -110,8 +118,8 @@ session_start();
                 <div class="col-sm-12 mb-2 ">
                     <div class="form-group inputWithIcon">
                         <i class="fas fa-truck-pickup"></i>
-                        <select name="size"  class="form-control"  > 
-                      <option  hidden selected disabled>&nbsp;&nbsp;&nbsp;ขนาด</option>
+                        <select name="size"  class="selectpicker form-control" required aria-required="true" > 
+                      <option  hidden selected disabled >&nbsp;&nbsp;&nbsp;ขนาด</option>
                         <option  value="1" >&nbsp;&nbsp;&nbsp;เล็ก</option>
                         <option  value="2">&nbsp;&nbsp;&nbsp;ใหญ่</option>
                 
@@ -120,20 +128,66 @@ session_start();
                 </div>
 
                 <div class="col-sm-12">
-                    <button type="submit" class="btn btn btn-info" name='submit'>สมัครสมาชิก </button>
+                    <button type="submit" class="btn btn btn-info" id="submit-btn" name='submit'>เพิ่มข้อมูล </button>
                 </div>
             </div>
         </div>
 
     </form>
     <script language="javascript">
+
+
     function back() {
         console.log("true");
         location.href = ("member.php");
 
     }
+    $(document).ready(function(){
+	function load_data(query)
+	{
+		$.ajax({
+			url:"checkcarnum.php",
+			method:"post",
+			data:{query:query},
+			success:function(data)
+			{                
+                checkCount(data);
+			}
+		});
+	}
+    function checkCount(data){
+        var count = data;
+        if(count > 0){
+            $('#result-search-carnum').text('*หมายเลขทะเบียนนี้ลงทะเบียนแล้ว*');
+
+            console.log(count);
+        }else{
+
+            $('#result-search-carnum').text('');
+        }
+
+    }
+	$('#car_num').keyup(function(){
+		var search = $(this).val();
+        
+		if(search != '')
+		{
+            load_data(search);
+            
+		}
+		else
+		{
+			load_data();			
+		}
+	});
+});
+</script>
     </script>
 
 </body>
 
 </html>
+
+<?php
+ ob_end_flush();
+  ?>

@@ -1,3 +1,6 @@
+<?
+ob_start();
+?>
 <!DOCTYPE html>
 <html>
 
@@ -65,7 +68,7 @@
                 <div class="col-sm-12 mb-2 ">
                     <div class="form-group inputWithIcon">
                         <input type="text" class="form-control" name="fname" id="inputname" placeholder="ชื่อ" required
-                            pattern="^[ก-๏]+$" autocomplete="off">
+                            pattern="^[ก-๏]+$"  title="ชื่อต้องเป็นภาษาไทยเท่านั้น" autocomplete="off">
                         <i class="fas fa-user"></i>
                     </div>
                 </div>
@@ -73,7 +76,7 @@
                 <div class="col-sm-12 mb-2 ">
                     <div class="form-group inputWithIcon">
                         <input type="text" class="form-control" name="lname" id="inputlastname" placeholder="นามสกุล"
-                            required pattern="^[ก-๏]+$" autocomplete="off">
+                            required pattern="^[ก-๏]+$"  title="นามสกุลต้องเป็นภาษาไทยเท่านั้น"  autocomplete="off">
                         <i class="fas fa-user"></i>
                     </div>
                 </div>
@@ -94,22 +97,23 @@
                 <div class="col-sm-12 mb-2 ">
                     <div class="form-group inputWithIcon">
                         <input type="text" class="form-control" name="email" id="email" value!=email
-                            placeholder="อีเมล์" required pattern="^[_\.0-9a-zA-Z-]+@([0-9a-zA-Z][0-9a-zA-Z-]+\.)+[a-zA-Z]+$" autocomplete="off">
-                        <i class="fas fa-mobile-alt"></i>
+                            placeholder="อีเมล์"   title="กรุณากรอกอีเมล์ให้ถูกต้อง" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" autocomplete="off">
+                            <i class="fas fa-envelope-square"></i>
                     </div>
                 </div>
            
                 <div class="col-sm-12 mb-2 ">
                     <div class="form-group inputWithIcon">
-                        <input type="text" class="form-control" name="phone" id="phone" value!=phone
-                            placeholder="เบอร์โทรศัพท์" required pattern="/^[0-9]{10}+$/" autocomplete="off">
+                        <input type="text"class="form-control" name="phone" id="phone" value!=phone   autocomplete="off"
+                            placeholder="เบอร์โทรศัพท์" pattern="^\d{10}$"   title="กรุณากรอกเบอร์โทรให้ถูกต้อง" required/>   
+  
                         <i class="fas fa-mobile-alt"></i>
                     </div>
                 </div>
                 <div class="col-sm-12 mb-3">
                     <div class="form-group inputWithIcon">
                         <input type="password" class="form-control" name="password" id="password" placeholder="รหัสผ่าน"
-                            required autocomplete="off">
+                        pattern=".{8,}" title="รหัสผ่านอย่างน้อย 8 ตัว" autocomplete="off">
                         <i class="fas fa-key"></i>
                     </div>
                 </div>
@@ -119,23 +123,64 @@
                 </div>
             </div>
 
-            <!-- <div class="mt-2">
-                <div class="d-flex justify-content-center links">
-                    <button type="button" name="button" class="btn turnback_btn" OnClick="Back();" class="ml-2">กลับ</button>
-                </div>
-            </div> -->
-
+        
         </div>
     </form>
 
     <script language="javascript">
     function back() {
         console.log("true");
-        window.location.href = ("login.php");
+        location.href = ("login.php");
 
     }
+	function load_data(query)
+	{
+		$.ajax({
+			url:"checkphone.php",
+			method:"post",
+			data:{query:query},
+			success:function(data)
+			{                
+                checkCount(data);
+			}
+		});
+	}
+    function checkCount(data){
+        var count = data;
+        if(count > 0){
+            $('#result-search-phone').text('*หมายเลขโทรศัพท์ซ้ำ*');
+
+            console.log(count);
+        }else{
+
+            $('#result-search-phone').text('');
+        }
+
+    }
+	$('#phone').keyup(function(){
+		var search = $(this).val();
+        
+		if(search != '')
+		{
+            load_data(search);
+            
+		}
+	});
+    </script>
+    <script language="javascript">
+    function next() {
+        console.log("true");
+        //  alert("กรุณากรอกข้อมูลรถ");
+        //  location.href = "addcar.php"; 
+
+    }
+    
     </script>
 
 </body>
 
 </html>
+
+<?php
+ ob_end_flush();
+  ?>

@@ -15,7 +15,6 @@
 
 
     <link rel="stylesheet" type="text/css" href="css/bs-pagepart.css">
-    
     <title>Mcarcare</title>
 
     <!-- Optional JavaScript -->
@@ -43,17 +42,17 @@
                     <?php
                     
                     // echo '<form action="member_check.php" method="post" name="brw_form" >';
-                     echo '<form  method="post" name="brw_form">';
+                     //echo '<form  method="post" name="brw_form">';
                     echo ' <div class="form-group inputWithIcon">';
-                    echo '<input   class="form-control" type="text" name="search_text" id="search_text"  placeholder="หมายเลขโทรศัพท์" autocomplete="off" >';
+                    echo '<input   class="form-control" type="text"  name="phone" id="search_text"  placeholder="หมายเลขโทรศัพท์" autocomplete="off" >';
     
-                    echo '<i class="fas fa-envelope"></i>';  
+                    echo '<i class="fas fa-phone-volume"></i>';  
                     echo '</div>';
                     echo '<div class="col-sm-12 mt-4">';
                     echo '<button class="btn btn btn-warning" type="button" name="button"  OnClick="back();" class="ml-2">กลับ</button>';
     
                     echo '</div>';
-                    echo '</form>';
+                    //echo '</form>';
 
                     
                     ?>
@@ -83,6 +82,7 @@ $(document).ready(function(){
 	
 	$('#search_text').keyup(function(){
 		var search = $(this).val();
+        
 		if(search != '')
 		{
             load_data(search);
@@ -105,4 +105,6 @@ $(document).ready(function(){
         }
        
     </script>
+
+    </body>
 </html>

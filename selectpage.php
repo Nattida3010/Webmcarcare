@@ -43,8 +43,8 @@
     <?php
     echo '<form action="search.php" method="post" name="brw_form" style="width:50%">';
     echo' <div class="form-row ml-sm-5">';
-    echo '<input class="form-control mr-sm-3" id="myInput" type="text" placeholder="กรุณากรอกหมายเลขทะเบียนรถ" name="name">';
-    echo ' <button class="btn btn-outline-light" type="submit" name="submit" value = "ค้นหา">ค้นหา</button>';
+    echo '<input class="form-control mr-sm-3" id="myInput"  autocomplete="off"  type="text" placeholder="กรุณากรอกหมายเลขทะเบียนรถ" name="name">';
+    echo ' <button class="btn btn-outline-light"  type="submit" name="submit" value = "ค้นหา">ค้นหา</button>';
     echo' </div>';
     echo '</form>';
     ?>

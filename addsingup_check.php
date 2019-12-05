@@ -26,7 +26,7 @@ $email = $_POST['email'];
 
 
 $sql = "INSERT INTO user (phone, fname, lname, password, status,email)
-				VALUES ('$phone','$fname','$lname','$password' ,'Admin','$email')";
+				VALUES ('$phone','$fname','$lname','$password' ,'Staff','$email')";
 $result = mysqli_query($connect,$sql);
 if($result){
 	echo" <script>
@@ -36,7 +36,7 @@ if($result){
 	  icon: 'success',
 	  button: 'OK',
 	}).then(function () {
-	  window.location.href='login.php';
+	  window.location.href='home.php';
 	}, function (dismiss) {
 		return false;
 	})
@@ -51,7 +51,7 @@ echo"<script>
    icon: 'warning',
    button: 'OK',
  }).then(function () {
-   window.location.href='singup.php';
+   window.location.href='addsingup.php';
  }, function (dismiss) {
      return false;
  })

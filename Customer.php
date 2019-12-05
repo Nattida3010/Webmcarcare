@@ -1,7 +1,10 @@
-
+<?
+ob_start();
+session_start();
+?>
 <?php
 include  'config.php';
-session_start();
+
 
 $output = '';
 
@@ -28,7 +31,7 @@ if(isset($_POST["query"]))
     echo '<th>อีเมล์</th>';
     echo '<th>ประเภท/สี</th>';
     echo '<th>ขนาดของรถ</th>';
-    echo '<th>รหัสผ่าน</th>';
+   
     echo '</tr>';
     echo  '</center>';
     echo '</thead>';
@@ -41,6 +44,7 @@ if(isset($_POST["query"]))
         $size = 'เล็ก ';
        if ($user['size'] == '2')
         $size = 'ใหญ่ ';
+        
         echo  '<center>';
         echo "<tr>";
         echo '<td>' . $user["car_num"] . '</td>';
@@ -48,7 +52,7 @@ if(isset($_POST["query"]))
         echo '<td>' . $user["email"] . '</td>';
         echo '<td>' . $user['type'] . '/' . $user['color'] . '</td>';
         echo '<td>' . $size. '</td>';
-        echo '<td>' . $user['password'] . '</td>';
+   
         echo "</tr>";
         echo  '</center>';
    
@@ -64,17 +68,17 @@ if(isset($_POST["query"]))
 }
 else
 {
-    // echo'<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
-    echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>';
-    echo '<script>
+    // // echo'<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
+    // echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>';
+    // echo '<script>
  
-    Swal.fire({
-        type: "error",
-        title: "ไม่พบข้อมูล ",
-        text: "กรุณาสมัครสมาชิก ",
+    // Swal.fire({
+    //     type: "error",
+    //     title: "ไม่พบข้อมูล ",
+    //     text: "กรุณาสมัครสมาชิก ",
        
-      })
-    </script>';
+    //   })
+    // </script>';
 
    
 
@@ -105,3 +109,8 @@ echo '<div class="colors" id="red"></div>';
         }
 
     </script>
+
+    
+<?php
+ ob_end_flush();
+  ?>

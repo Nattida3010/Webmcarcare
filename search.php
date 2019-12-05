@@ -103,7 +103,7 @@
     <?php
     include  'config.php';
     $name = $_POST['name'];
-    $sqlsearch = "SELECT w.time,w.car_num,u.fname,u.lname,c.phone,c.color,
+    $sqlsearch = "SELECT w.times,w.time,w.car_num,u.fname,u.lname,c.phone,c.color,
     w.wash_engin, w.spray_under, w.wash_asphalt, w.chang_fuel, w.clean_dust,
     c.size,w.level,w.status,w.payment,c.type
     FROM user AS `u` INNER JOIN car AS `c` ON u.phone = c.phone 
@@ -115,6 +115,7 @@
     echo '<thead id="colortable">';
     echo '<tr>';
     echo '<th scope="col">วัน/เดือน/ปี</th>';
+    echo '<th>ช่วงเวลาบริการ</th>';
     echo '<th>เลขทะเบียนรถ</th>';
     echo '<th>ชื่อเจ้าของรถ</th>';
     echo '<th>เบอร์โทรศัพท์</th>';
@@ -140,22 +141,28 @@
         $works .= 'ล้างยางมะตอย ';
       if ($search['chang_fuel'] == '1')
         $works .= 'ถ่ายน้ำเครื่อง ';
-      if ($search['level'] == '1')
-        $level = 'น้อย';
-      else if ($search['level'] == '2')
+        if ($search['size'] == '1')
+        $size = 'เล็ก ';
+       if ($search['size'] == '2')
+        $size = 'ใหญ่ ';
+      if ($search['level'] == '0')
+        $level = 'รอดำเนินการ';
+      else if ($search['level'] == '1')
+      $level = 'น้อย';
+        else if ($search['level'] == '2')
         $level = 'มาก';
       else
         $level = 'error';
-      /*  */
-      echo "<tr>";
-      echo '<td>' . $search["time"] . '</td>';
-      echo '<td>' . $search["car_num"] . '</td>';
-      echo '<td>' . $search['fname'] . ' ' . $search['lname'] . '</td>';
-      echo '<td>' . $search['phone'] . '</td>';
-      echo '<td>' .$search['type'] . '/' . $search['color'] . '</td>';
-      echo '<td>' . $works . '</td>';
-      echo '<td>' . $level . '</td>';
-      echo '<td>' . $search['size'] . '</td>';
+        echo "<tr>";
+        echo '<td>' . $search["time"] . '</td>';
+        echo '<td>' . $search['times'] . '</td>';
+        echo '<td>' .$search["car_num"] . '</td>';
+        echo '<td>' . $search['fname'] . ' ' . $search['lname'] . '</td>';
+        echo '<td>' . $search['phone'] . '</td>';
+        echo '<td>' . $search['type'] . '/' . $search['color'] . '</td>';
+        echo '<td>' . $works . '</td>';
+        echo '<td>' . $level . '</td>';
+        echo '<td>' . $size . '</td>';
       if($search['status']==0)
       echo '<td><button type="button"  class="btn btn-outline-secondary">รอดำเนิการ</button></td>';
       else if($search['status']==1)
@@ -163,9 +170,9 @@
       else if($search['status']==2)
       echo '<td><button type="button" class="btn btn-success">เรียบร้อย</button></td>';
       else if($search['status']==3)
-        echo '<td><button type="button"  class="btn btn-danger">ยกเลิก</button></td>';
+        echo '<td><button type="button" class="btn btn-danger">ยกเลิก</button></td>';
         else if($search['status']==4)
-        echo '<td><button type="button"  class="btn btn-outline-warning">เลื่อนเวลา</butt></td>';
+        echo '<td><button type="button" class="btn btn-outline-warning">เลื่อนเวลา</butt></td>';
       if($search['payment']==0)
       echo '<td><button type="button"  class="btn btn-outline-warning">รอการชำระ</button></td>';
       else if($search['payment']==1)
